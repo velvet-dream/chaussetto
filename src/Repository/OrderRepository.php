@@ -16,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderRepository extends ServiceEntityRepository
 {
+    public $Order;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Order::class);
@@ -45,4 +47,18 @@ class OrderRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+// ON indique qu'on rentre l'adresse order, suivit d'un paramètre id, done un nom à la rte 'order'
+    /**
+     * @Route("/order/{id}"), name="order"
+     */
+    public function showHistory($id)
+         
+    {
+        $Order = $this->getDoctrine()
+        // l'entité se situe dans REpository
+        ->getRepository('Repository:orderRepository')
+        ->find($id);
+    }
+
 }
