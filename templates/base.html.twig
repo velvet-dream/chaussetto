@@ -15,6 +15,13 @@
 
             {% endblock %}
         </header>
+        {% block popup %}
+            {% if popup is defined and popup != null %}
+                <div class ="popup">
+                    <p class="popup-text">{{ popup }}</p>
+                </div>
+            {% endif %}
+        {% endblock %}
         <main>
             {% block main %}{% endblock %}
         </main>
