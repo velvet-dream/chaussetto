@@ -30,6 +30,11 @@
     <div class="newletter">
         <form>
             <h2>NEWSLETTER</h2>
+            {% if newsform is defined %}
+                {{ form(newsform) }}
+            {% else %}
+                Formulaire indéfini
+            {% endif %}
         </form>
     <div>
 {% endblock %}
