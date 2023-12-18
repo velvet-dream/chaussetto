@@ -4,25 +4,18 @@
         <meta charset="UTF-8">
         <title>{% block title %} {{title}} {% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link href="{{ asset('styles/general.css') }}" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <header>
             
             {% block header %} 
+        
                 <nav> Navigation </nav>
-               
-
+                <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
+                <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a>
 
             {% endblock %}
         </header>
-        {% block popup %}
-            {% if popup is defined and popup != null %}
-                <div class ="popup">
-                    <p class="popup-text">{{ popup }}</p>
-                </div>
-            {% endif %}
-        {% endblock %}
         <main>
             {% block main %}{% endblock %}
         </main>
@@ -33,5 +26,4 @@
         
 
     </body>
-
 </html>
