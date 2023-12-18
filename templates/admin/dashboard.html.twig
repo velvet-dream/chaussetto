@@ -9,9 +9,10 @@
         <header>
             
             {% block header %} 
+        
                 <nav> Navigation </nav>
-               
-
+                <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
+                <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a>
 
             {% endblock %}
         </header>
@@ -25,5 +26,4 @@
         
 
     </body>
-
 </html>
