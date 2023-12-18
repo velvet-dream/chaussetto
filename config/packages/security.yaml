@@ -8,12 +8,12 @@ security:
         app_admin_provider:
             entity:
                 class: App\Entity\Staff
-                property: email_staff
+                property: email
 
         app_user_provider:
             entity:
                 class: App\Entity\Customer
-                property: email_customer
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

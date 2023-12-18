@@ -19,13 +19,13 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $name_customer = null;
+    private ?string $name = null;
 
     #[ORM\Column(length: 50)]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $email_customer = null;
+    private ?string $email = null;
 
     #[ORM\Column(length: 100)]
     private ?string $password = null;
@@ -57,7 +57,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getName(): ?string
     {
-        return $this->name_customer;
+        return $this->name;
     }
 
     public function setName(string $name): static
@@ -81,7 +81,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getEmail(): ?string
     {
-        return $this->email_customer;
+        return $this->email;
     }
 
     public function setEmail(string $email): static

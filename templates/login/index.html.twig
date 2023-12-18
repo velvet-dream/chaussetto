@@ -12,8 +12,8 @@
             </div>
         {% endif %}
         <br><form action={{path('app_login')}} method='POST'>
-            <label for='email'> Username </label>
-            <input type='email' id='email' name='email' value='{{ email }}'>
+            <label for='email'> Email </label>
+            <input type='email' id='email' name='_username' value='{{ email }}'>
 
             <label for='password'> Pwd </label>
             <input type='password' id='password' name='_password'>

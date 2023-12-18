@@ -16,7 +16,7 @@ class Staff implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email_staff = null;
+    private ?string $email = null;
 
     #[ORM\Column]
     private array $roles = [];
@@ -28,7 +28,7 @@ class Staff implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $name_staff = null;
+    private ?string $name = null;
 
     #[ORM\Column(length: 50)]
     private ?string $last_name = null;
@@ -40,7 +40,7 @@ class Staff implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getEmail(): ?string
     {
-        return $this->email_staff;
+        return $this->email;
     }
 
     public function setEmail(string $email): static
@@ -105,12 +105,12 @@ class Staff implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getName(): ?string
     {
-        return $this->name_staff;
+        return $this->name;
     }
 
-    public function setName(string $name_staff): static
+    public function setName(string $name): static
     {
-        $this->name_staff = $name_staff;
+        $this->name = $name;
 
         return $this;
     }

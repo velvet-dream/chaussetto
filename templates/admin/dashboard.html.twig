@@ -13,6 +13,11 @@
                 <nav> Navigation </nav>
                 <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
                 <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a>
+                {% if app.user %}
+                <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_admin_logout') }}">Logout</a>
+                </div>
+                {% endif %}
 
             {% endblock %}
         </header>
