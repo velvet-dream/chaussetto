@@ -11,10 +11,18 @@
             
             {% block header %} 
                 <nav> Navigation </nav>
-               
+                    {% block nav %}
+                        <a href="{{ path('app_index') }}">Acceuil</a><br>
+                    {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                        {{ app.user.email }}
+                        <a href=" {{ path('app_logout') }}">Déconnexion</a><br>
+                    {% else %}
+                        <a href=" {{ path('app_login') }}">Connexion</a><br>
+                    {% endif %}
 
-
+                {% endblock %}
             {% endblock %}
+
         </header>
         {% block popup %}
             {% if popup is defined and popup != null %}
