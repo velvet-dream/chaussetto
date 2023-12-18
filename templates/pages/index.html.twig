@@ -1,0 +1,35 @@
+
+
+{% block title %}Accueil{% endblock %}
+
+{% block main %}
+
+<div class="landing">
+    <h1>CHAUSSETTO</h1>
+    <hr>
+    <H2>LES CRAVATES POUR LES PIEDS</H2>
+</div>
+<div class="banner">
+    <p>DÉCOUVREZ UN MONDE OÙ LE STYLE ET LE CONFORT SE RENCONTRENT</p>
+</div>
+<div class="display-products">
+    <h2>NOS CHAUSSETTES ORIGINALES</h2>
+        <div>
+            <figure>
+                <img/>
+                <figcaption>chaussettes poussin</figcaption>
+            </figure>
+            <a href=""><button>Ajouter au panier</button></a>
+        </div>
+</div>
+
+<div class="display-products">
+    <h2>NOS CHAUSSETTES BASIQUES</h2>
+</div>
+
+{{ block("endpage", "endpage.html.twig") }}
+
+{{ block("footer", "footer.html.twig") }}
+
+
+{% endblock %}
