@@ -30,16 +30,17 @@ class Customer
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Order::class)]
     private Collection $orders;
 
-    #[ORM\OneToOne(inversedBy: 'customer', cascade: ['persist', 'remove'])]
-    private ?Cart $cart = null;
-
     #[ORM\ManyToOne(inversedBy: 'customers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Adress $adress = null;
 
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Cart::class)]
+    private Collection $carts;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->carts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,18 +126,6 @@ class Customer
         return $this;
     }
 
-    public function getCart(): ?Cart
-    {
-        return $this->cart;
-    }
-
-    public function setCart(?Cart $cart): static
-    {
-        $this->cart = $cart;
-
-        return $this;
-    }
-
     public function getAdress(): ?Adress
     {
         return $this->adress;
@@ -145,6 +134,36 @@ class Customer
     public function setAdress(?Adress $adress): static
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): static
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): static
+    {
+        if ($this->carts->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getCustomer() === $this) {
+                $cart->setCustomer(null);
+            }
+        }
 
         return $this;
     }

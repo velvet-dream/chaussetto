@@ -18,11 +18,12 @@ class Cart
     #[ORM\OneToOne(mappedBy: 'cart', cascade: ['persist', 'remove'])]
     private ?Order $correspondingOrder = null;
 
-    #[ORM\OneToOne(mappedBy: 'cart', cascade: ['persist', 'remove'])]
-    private ?Customer $customer = null;
-
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartLine::class)]
     private Collection $cartLines;
+
+    #[ORM\ManyToOne(inversedBy: 'carts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Customer $customer = null;
 
     public function __construct()
     {
@@ -47,28 +48,6 @@ class Cart
         }
 
         $this->correspondingOrder = $correspondingOrder;
-
-        return $this;
-    }
-
-    public function getCustomer(): ?Customer
-    {
-        return $this->customer;
-    }
-
-    public function setCustomer(?Customer $customer): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($customer === null && $this->customer !== null) {
-            $this->customer->setCart(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($customer !== null && $customer->getCart() !== $this) {
-            $customer->setCart($this);
-        }
-
-        $this->customer = $customer;
 
         return $this;
     }
@@ -99,6 +78,18 @@ class Cart
                 $cartLine->setCart(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): static
+    {
+        $this->customer = $customer;
 
         return $this;
     }
