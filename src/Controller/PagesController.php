@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\NewsletterSubscribers;
 use App\Form\NewsletterFormType;
-use App\Repository\NewsletterSubscribersRepository;
 use App\Services\FormNewsletterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PagesController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index( NewsletterSubscribersRepository $nlRepo, FormNewsletterService $formNlService, Request $request): Response
+    public function index( FormNewsletterService $formNlService, Request $request): Response
     {
         $subscriber = new NewsletterSubscribers();
         $nlForm = $this->createForm( NewsletterFormType::class, $subscriber );

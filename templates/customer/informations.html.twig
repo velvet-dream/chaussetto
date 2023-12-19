@@ -4,11 +4,20 @@
     <h2>Informations personnelles</h2>
     <div class="card">
       <h3>Mon compte</h3>
-      <ul>
-        <li>{{ customer.name }}</li>
-        <li>{{ customer.lastName }}</li>
-        <li>{{ customer.email }}</li>
-      </ul>
+      <table>
+        <tr>
+          <th>Prénom</th>
+          <td>{{ customer.name }}</td>
+        </tr>
+        <tr>
+          <th>Nom</th>
+          <td>{{ customer.lastName }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ customer.email }}</td>
+        </tr>
+      </table>
       <hr>
       <div class="card-controls">
         <a href="">Mettre à Jour</a>
