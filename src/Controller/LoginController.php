@@ -27,10 +27,13 @@ class LoginController extends AbstractController
     }
 
     #[Route('/logout', name: 'app_logout')]
-    public function logout(): Response
+    public function logout()
     {
-        return $this->render('login/login.html.twig', [
-            'controller_name' => 'LoginController',
-        ]);
+        // return $this->redirectToRoute('app_index', [
+        //     'popup' => 'Vous êtes désormais déconnecté.e'
+        // ]);
+        // return $this->render('login/login.html.twig', [
+        //     'controller_name' => 'LoginController',
+        // ]);
     }
 }

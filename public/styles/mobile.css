@@ -1,0 +1,146 @@
+@media screen and (min-width:600px){
+
+/* NAV */
+    
+#menu-button {
+    display: inline;
+    color: whitesmoke;
+    font-size: 2em;
+    padding: 0 0.5em;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    top: 3.6em;
+    background-color: rgba(4, 36, 84, 0.952);
+    padding: 2em;
+    min-width: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+#menu-closed {
+    left: -100%;
+}
+
+#menu-opened {
+    left: 0;
+}
+    
+/* PAGE ACCUEIL*/
+    
+.landing {
+    background-image: url(../img/accueil_mobile/chaussetto_accueil.jpeg);
+    height: 1500px;
+    width: 100%;
+}
+.landing h1{
+    color: #000000;
+    text-align: center;
+    font-family: 'InriaSerif-Bold';
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: 14%;
+}
+    
+.landing hr{
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px 0 0 0;
+    width: 65%;
+    position: relative;
+    padding-top: 2%;
+}
+    
+.landing h2{
+    color: #000000;
+    text-align: center;
+    font-family: 'InriaSans-Bold';
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+}
+    
+.banner_home{
+    background: #f5f5e5;
+    position: relative;
+}
+    
+.banner_home p{
+    color: #000000;
+    text-align: center;
+    font-family: 'InriaSans-Light';
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    position: relative;
+    padding: 5%;
+    margin: 0%;
+}
+    
+.display-products h2{
+    color: #000000;
+    text-align: left;
+    font-family: 'InriaSerif-Bold';
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative; 
+    padding-left: 6%;
+    padding-top: 6%;
+}
+
+.display-products hr{
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px 0 0 0;
+    width: 65%;
+    position: relative;
+    padding-top: 2%;
+    margin-left: 6%;
+}
+
+.product_rectangle{
+    border-radius: 0.1875rem;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    width: 52%;
+    height: 450px;
+    flex-shrink: 0;
+    margin-left: 7%;
+    margin-top: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.product_rectangle figcaption{
+    color: #000;
+    text-align: center;
+    font-family: Inria Sans;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    padding-top: 6%;
+}
+
+.product_rectangle button{
+    color: #000;
+    text-align: center;
+    font-family: Inria Sans;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    border-radius: 0.125rem;
+    background: #FFF11D;
+    padding: 4%;
+    width: 87%;
+    margin-left: 5%;
+}
+    
+}
