@@ -25,7 +25,10 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-
+    public function findByOrderStates(): array
+    {
+        return [];
+    }
     
 //    /**
 //     * @return Order[] Returns an array of Order objects
