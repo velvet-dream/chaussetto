@@ -8,76 +8,43 @@
     src: url(../img/polices/InriaSerif-Bold.ttf);
 }
 
-/* Version Mobile */
 
-@media screen and (min-width:640px){
+/* Version Web */
 
-/* PAGE ACCUEIL*/
-
-.landing {
-    background-image: url(../img/accueil_mobile/chaussetto_accueil.jpeg);
-    height: 1500px;
-    width: 100%;
-}
-.landing h1{
-    color: #000000;
-    text-align: center;
-    font-family: 'InriaSerif-Bold';
-    font-size: 7rem;
-    font-weight: 700;
-    text-transform: uppercase;
+.header, main {
+    max-width: 800px;
+    margin: auto;
+    padding: 0.5em;
+  }
+ 
+.nav {
+    position: sticky;
+    top: 0;
+    height: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(4, 36, 84);
+  }
+ 
+.menu {
     position: relative;
-    padding-top: 14%;
-}
-
-.landing hr{
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px 0 0 0;
-    width: 65%;
-    position: relative;
-    padding-top: 2%;
-}
-
-.landing h2{
-    color: #000000;
-    text-align: center;
-    font-family: 'InriaSans-Bold';
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    position: relative;
-}
-
-.banner_home{
-    background: #f5f5e5;
-    position: relative;
-}
-
-.banner_home p{
-    color: #000000;
-    text-align: center;
-    font-family: 'InriaSans-Light';
-    font-size: 3rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    position: relative;
-    padding: 5%;
-    margin: 0%;
-}
-
-.display-products h2{
-    color: #000000;
-    text-align: left;
-    font-family: 'InriaSerif-Bold';
-    font-size: 2.3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    position: relative; 
-    padding-left: 6%;
-    padding-top: 6%;
-}
+    display: flex;
+  }
+ 
+.link {
+    color: whitesmoke;
+    padding: 0 0.5em;
+  }
+ 
+#menu-button {
+    display: none;
+  }
+ 
+.brand {
+    color: whitesmoke;
+    padding: 0 10px;
+  }
 
 
 
-}
