@@ -6,37 +6,37 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link href="{{ asset('styles/general.css') }}" rel="stylesheet" type="text/css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="{{ asset('styles/mobile.css') }}" rel="stylesheet" type="text/css" />
+    
 
 
     </head>
     <body>
         <header>
-            
-            {% block header %} 
-                <nav> 
-                    <ul class="navbar">
-                        {% block nav %}
-                            <li><a href="{{ path('app_index') }}">Acceuil</a></li><br>
+            {% block nav %}
+                <nav>
+                    <div class="header">
+                        <a class="logo" href="#"><img src="../img/logo/logo_icons_chaussetto.png"></a>
+                        <div class="burger-icon" id="burger-icon">&#9776;</div>
+                    </div>
+
+                    <div class="web-menu" id="web-menu">
+                        <a href="#">Chaussettes originales</a>
+                        <a href="#">Chaussettes basiques</a>
+                        <a href="#">Contact</a>
                         {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                             {{ app.user.email }}
-                            <li><a href=" {{ path('app_logout') }}">Déconnexion</a></li><br>
+                            <a href="{{ path('app_logout') }}">Déconnexion</a><br>
                         {% else %}
-                            <li><a href=" {{ path('app_login') }}">Connexion</a></li><br>
-                        {% endif %}
-                    </ul>
+                            <a href="{{ path('app_login') }}"><img class="icons_connexion"  src="../img/icons/people_chaussetto.png"></a>
+                            {% endif %}
+                            <a  href="{{ path('app_login') }}"><img id="icons_panier" src="../img/icons/panier_chaussetto.png"></a><br>
+                    </div>
+
+                    
                 </nav>
-                {% endblock %}
             {% endblock %}
 
         </header>
-        {% block popup %}
-            {% if popup is defined and popup != null %}
-                <div class ="popup">
-                    <p class="popup-text">{{ popup }}</p>
-                </div>
-            {% endif %}
-        {% endblock %}
         <main>
             {% block main %}{% endblock %}
         </main>
@@ -47,5 +47,6 @@
         
 
     </body>
+    <script src="../js/burger.js"></script>
 
 </html>

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<Order>
@@ -16,11 +17,16 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderRepository extends ServiceEntityRepository
 {
+    public $Order;
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Order::class);
     }
 
+
+    
 //    /**
 //     * @return Order[] Returns an array of Order objects
 //     */
@@ -45,4 +51,8 @@ class OrderRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
+
 }

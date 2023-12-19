@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Product;
+use App\Entity\ProductImage;
 
 /**
  * @extends ServiceEntityRepository<Image>
@@ -20,6 +22,7 @@ class ImageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Image::class);
     }
+
 
 //    /**
 //     * @return Image[] Returns an array of Image objects

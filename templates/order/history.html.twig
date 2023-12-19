@@ -1,14 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
-
-{% block body %}
-
-    <div>
-        <title>HISTORIQUE DE VOS COMMANDES</title>
-    </div>
-
-
+{% block title %}
+    Historique de vos commandes
 {% endblock %}
 
- {% block footer %}{% endblock %}
+{% block main %}
+    <div>
+        <h1>HISTORIQUE DE VOS COMMANDES</h1>
+
+        {% if orders is not empty %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer name</th>
+                        <th>Customer Last name</th>
+                        <th>Total</th>
+                        <th>email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.customerName }}</td>
+                            <td>{{ order.customerLastName }}</td>
+                            <td>{{ order.totalPrice }}</td>
+                            <td>{{ order.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucune commande trouvée.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
