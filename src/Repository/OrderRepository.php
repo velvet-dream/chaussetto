@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<Order>
@@ -18,11 +19,14 @@ class OrderRepository extends ServiceEntityRepository
 {
     public $Order;
 
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Order::class);
     }
 
+
+    
 //    /**
 //     * @return Order[] Returns an array of Order objects
 //     */
@@ -48,17 +52,7 @@ class OrderRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-// ON indique qu'on rentre l'adresse order, suivit d'un paramètre id, done un nom à la rte 'order'
-    /**
-     * @Route("/order/{id}"), name="order"
-     */
-    public function showHistory($id)
-         
-    {
-        $Order = $this->getDoctrine()
-        // l'entité se situe dans REpository
-        ->getRepository('Repository:orderRepository')
-        ->find($id);
-    }
+
+
 
 }
