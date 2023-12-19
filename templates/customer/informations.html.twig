@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>Informations personnelles</h2>
+    <div class="card">
+      <h3>Mon compte</h3>
+      <table>
+        <tr>
+          <th>Prénom</th>
+          <td>{{ customer.name }}</td>
+        </tr>
+        <tr>
+          <th>Nom</th>
+          <td>{{ customer.lastName }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ customer.email }}</td>
+        </tr>
+      </table>
+      <hr>
+      <div class="card-controls">
+        <a href="">Mettre à Jour</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Mon adresse</h3>
+      {% if customer.adress is not empty %}
+        <ul>
+          <li>{{ customer.adress.line1 }}</li>
+          <li>{{ customer.adress.line2 }}</li>
+          <li>{{ customer.adress.city }}</li>
+          <li>{{ customer.adress.postCode }}</li>
+          <li>{{ customer.adress.country }}</li>
+        </ul>
+      {% else %}
+        <p div="error">Vous n'avez aucune adresse enregistrée.</p>
+      {% endif %}
+      
+      <hr>
+      <div class="card-controls">
+        <a href="">Mettre à Jour</a>
+      </div>
+    </div>
+    <a href=" {{ path('app_customer_dashboard') }}">Retour</a><br>
+{% endblock %}

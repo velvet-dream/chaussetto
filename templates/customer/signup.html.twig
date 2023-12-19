@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+  {% if form is defined %}
+    {{ form(form) }}
+  {% else %}
+    Formulaire indéfini
+  {% endif %}
+{% endblock %}

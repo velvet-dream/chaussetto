@@ -2,7 +2,7 @@
 
 {% block main %}
     <h2>Bienvenue, {{ customer.name }}!</h2>
-    <a href="">Informations Personnelles</a>
+    <a href="{{ path('app_customer_informations') }}">Informations Personnelles</a>
     <a href=" {{ path('app_order') }}">Mes Commandes</a>
-    <a href=" {{ path('app_logout') }}">Déconnexion</a><br>
+    <a href="{{ path('app_logout') }}">Déconnexion</a><br>
 {% endblock %}
