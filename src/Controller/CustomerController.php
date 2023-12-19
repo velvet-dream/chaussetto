@@ -66,6 +66,39 @@ class CustomerController extends AbstractController
         ]);    
     }
 
+    // Mise à jour d'infos utilisateurice
+    #[Route('update', name: 'app_customer_update')]
+    public function updateInfo( 
+        Request $request, 
+        EntityManagerInterface $em,
+        PasswordHasherService $pwdService,
+        Security $security
+    ): Response
+    {
+        if (($user = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_login');
+        }
+        $customerForm = $this->createForm(CustomerFormType::class, $user, ['user' => $user]);
+
+        $customerForm->handleRequest($request);
+        if ($customerForm->isSubmitted() && $customerForm->isValid()) {
+            $em->persist($pwdService->hashUserPassword($user));
+            $em->flush();
+            
+            // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
+            $this->addFlash(
+                'success',
+                'Mise à jour réussie !'
+            );
+
+            return $this->redirectToRoute("app_customer_informations");
+        }
+        return $this->render('customer/signup.html.twig', [
+            'title' => 'Mettre à jour les informations',
+            'form' => $customerForm,
+        ]);    
+    }
+
     #[Route('orders', name: 'app_customer_orders')]
     public function showOrders(Security $security, OrderRepository $orderRepository): Response
     {
