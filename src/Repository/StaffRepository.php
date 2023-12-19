@@ -48,6 +48,15 @@ class StaffRepository extends ServiceEntityRepository implements PasswordUpgrade
 
     }
 
+    public function searchAdmin(string $name)
+    {
+        return $this->createQueryBuilder('s')
+        ->where('s.name like :val')
+        ->setParameter('val' , '%'.$name.'%')
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Staff[] Returns an array of Staff objects
 //     */

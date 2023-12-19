@@ -1,0 +1,39 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+	<h2>
+		{{ title }}
+	</h2>
+
+	<tr>
+		<td>
+			Administrateur numéro :
+			{{ staff.id}}
+		</td><br>
+		<td>
+			Prénom :
+			{{ staff.name}}
+		</td><br>
+		<td>
+			Nom :
+			{{ staff.lastname}}
+		</td><br>
+
+		<td>
+			E-mail de l'administrateur :
+			{{ staff.email}}
+		</td><br>
+		<td>
+			Rôle de l'administrateur :
+            {% for role in staff.roles %}
+                {{ role }}
+            {% endfor %}
+
+		</td><br>
+	</tr><br>
+
+{% endblock %}
