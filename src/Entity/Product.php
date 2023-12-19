@@ -40,7 +40,7 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Tax $tax = null;
 
-    #[ORM\ManyToMany(targetEntity: image::class)]
+    #[ORM\ManyToMany(targetEntity: Image::class)]
     private Collection $images;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'products')]
