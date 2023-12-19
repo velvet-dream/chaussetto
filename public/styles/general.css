@@ -8,43 +8,95 @@
     src: url(../img/polices/InriaSerif-Bold.ttf);
 }
 
+/* Styles par défaut pour les écrans larges */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F5F5E5; 
+  padding: 10px;
+}
 
-/* Version Web */
+.header {
+  display: flex;
+  align-items: center;
+}
 
-.header, main {
-    max-width: 800px;
-    margin: auto;
-    padding: 0.5em;
-  }
- 
-.nav {
-    position: sticky;
-    top: 0;
-    height: 3.5em;
-    display: flex;
-    align-items: center;
+.logo img {
+  width: 50px; 
+}
+
+
+
+.web-menu a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding-right: 9px;
+  padding-left: 4%;
+  text-align: center;
+}
+
+.burger-icon {
+  cursor: pointer;
+  font-size: 24px; 
+  display: none; 
+}
+
+.icons_connexion{
+  width: 2.5%;
+}
+
+#icons_panier{
+  width: 2.5%;
+}
+
+/* Styles pour les écrans de petite taille (mobile) */
+@media screen and (max-width: 768px) {
+
+  /* NAVIGATION */
+  .header {
     justify-content: space-between;
-    background-color: rgb(4, 36, 84);
+    width: 100%;
+    padding: 0 10px; 
   }
- 
-.menu {
-    position: relative;
-    display: flex;
+
+  .logo {
+    order: -1; 
   }
- 
-.link {
-    color: whitesmoke;
-    padding: 0 0.5em;
+
+  .burger-icon {
+    display: block; 
   }
- 
-#menu-button {
+
+  #web-menu {
     display: none;
   }
- 
-.brand {
-    color: whitesmoke;
-    padding: 0 10px;
+
+  .burger-icon:hover + #web-menu,
+  #web-menu:hover {
+    display: flex; 
   }
 
+  .web-menu {
+    flex-direction: column;
+    position: absolute;
+    top: 60px; 
+    left: 8px;
+    right: 8px;
+    background-color: #F5F5E5;
+    padding: 10px;
+  }
 
+  .icons_connexion{
+    width: 3%;
+  }
+  
+  #icons_panier{
+    width: 3%;
+  }  
 
+  /* FOOTER */
+
+  
+ 
+}
