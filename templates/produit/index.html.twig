@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block main %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% for produit in produit %}
+    <p> <b> nom : </b> {{ produit.name }},  <b>prix :</b> {{produit.price}}, <a href="{{ path("app_detail",{id:produit.id}) }} " >Voir les détails</a>  "</a>
+        {% for category in produit.categories %}
+
+            <b>Catégorie :</b> {{category.label}}
+
+        {% endfor %}
+
+
+    {% for image in produit.images %}
+            <ul>
+                <li><img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit"></li>
+            </ul>
+    {% endfor %}
+ </p>
+    {% endfor %}
+
+    
+
+    
+</div>
+{% endblock %}

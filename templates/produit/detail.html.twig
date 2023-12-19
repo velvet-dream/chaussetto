@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block main %}
+<a href="{{ path("app_produit") }}">retour</a>
+
+    <h1> BIENVENUE SUR LA PAGE Produit </h1>
+
+     <p> <b> nom : </b> {{ produit.name }},  <b>prix :</b> {{produit.price}}, <b>poids :</b> {{produit.weight}},  <b>stock :</b> {{produit.stock}}, <b>tax :</b> {{produit.tax.rate}}, <b> description : </b> {{produit.description}}
+    
+    {% for image in produit.images %}
+            <ul>
+                <li><img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit"></li>
+            </ul>
+    {% endfor %}
+    
+    
+
+
+
+{% endblock %}
