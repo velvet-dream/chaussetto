@@ -25,10 +25,23 @@ class OrderController extends AbstractController
         }
 
         // Récupération de la liste des commandes du client concerné
-        $orders = $orderRepository->findBy(['customer' => $user]);
+        $allOrders = $orderRepository->findBy(['customer' => $user]);
+
+        // Filtrer les commandes en cours (status 2 et 3)
+        $currentOrders = array_filter(
+            $allOrders,
+            fn (Order $order) => $order->getOrderState()->getId() === 2 || $order->getOrderState()->getId() === 3
+        );
+
+        // Filtrer les commandes historiques (status 1 et 4)
+        $historicalOrders = array_filter(
+            $allOrders,
+            fn (Order $order) => $order->getOrderState()->getId() === 1 || $order->getOrderState()->getId() === 4
+        );
 
         return $this->render('order/history.html.twig', [
-            'orders' => $orders,
+            'currentOrders' => $currentOrders,
+            'historicalOrders' => $historicalOrders,
         ]);
         
     }

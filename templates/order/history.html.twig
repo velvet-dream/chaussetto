@@ -8,9 +8,8 @@
 
 {% block main %}
     <div>
-        <h1>HISTORIQUE DE VOS COMMANDES</h1>
-
-        {% if orders is not empty %}
+        <h1>VOS COMMANDES EN COURS</h1>
+        {% if currentOrders is not empty %}
             <table>
                 <thead>
                     <tr>
@@ -19,22 +18,56 @@
                         <th>Customer Last name</th>
                         <th>Total</th>
                         <th>Email</th>
+                        <th>Etat</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for order in orders %}
+                    {% for order in currentOrders %}
                         <tr>
                             <td>{{ order.id }}</td>
                             <td>{{ order.customerName }}</td>
                             <td>{{ order.customerLastName }}</td>
                             <td>{{ order.totalPrice }}</td>
                             <td>{{ order.email }}</td>
+                            <td>{{ order.orderState.label }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% else %}
-            <p>Aucune commande trouvée.</p>
+            <p>Aucune commande en cours trouvée.</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h1>HISTORIQUE DE VOS COMMANDES</h1>
+        {% if historicalOrders is not empty %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer name</th>
+                        <th>Customer Last name</th>
+                        <th>Total</th>
+                        <th>Email</th>
+                        <th>Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in historicalOrders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.customerName }}</td>
+                            <td>{{ order.customerLastName }}</td>
+                            <td>{{ order.totalPrice }}</td>
+                            <td>{{ order.email }}</td>
+                            <td>{{ order.orderState.label }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucune commande historique trouvée.</p>
         {% endif %}
     </div>
 {% endblock %}
