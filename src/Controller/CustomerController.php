@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Customer;
 use App\Form\CustomerFormType;
+use App\Services\PasswordHasherService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -40,15 +41,15 @@ class CustomerController extends AbstractController
         ]);
     }
 
-    #[Route('inscription', name: 'app_customer_inscription')]
-    public function inscription( Request $request, EntityManagerInterface $em ): Response
+    #[Route('signup', name: 'app_customer_inscription')]
+    public function inscription( Request $request, EntityManagerInterface $em, PasswordHasherService $pwdService ): Response
     {
         $subscriber = new Customer();
         $customerForm = $this->createForm( CustomerFormType::class, $subscriber );
 
         $customerForm->handleRequest($request);
         if ($customerForm->isSubmitted() && $customerForm->isValid()) {
-            $em->persist($subscriber);
+            $em->persist($pwdService->hashUserPassword($subscriber));
             $em->flush();
             return $this->redirectToRoute("app_login");
         }

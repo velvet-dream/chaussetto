@@ -17,16 +17,23 @@ class CustomerFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('lastName')
-            ->add('email')
+            ->setMethod("POST")
+            ->add('name', options:[
+                'label' => "Nom",
+            ])
+            ->add('lastName', options:[
+                'label' => "Prénom",
+            ])
+            ->add('email', options:[
+                'label' => "Adresse e-mail",
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe ne sont pas identitques',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmez mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'S\'inscrire',

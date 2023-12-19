@@ -25,13 +25,18 @@
     </div>
     <div class="card">
       <h3>Mon adresse</h3>
-      <ul>
-        <li>{{ customer.adress.line1 }}</li>
-        <li>{{ customer.adress.line2 }}</li>
-        <li>{{ customer.adress.city }}</li>
-        <li>{{ customer.adress.postCode }}</li>
-        <li>{{ customer.adress.country }}</li>
-      </ul>
+      {% if customer.adress is not empty %}
+        <ul>
+          <li>{{ customer.adress.line1 }}</li>
+          <li>{{ customer.adress.line2 }}</li>
+          <li>{{ customer.adress.city }}</li>
+          <li>{{ customer.adress.postCode }}</li>
+          <li>{{ customer.adress.country }}</li>
+        </ul>
+      {% else %}
+        <p div="error">Vous n'avez aucune adresse enregistrée.</p>
+      {% endif %}
+      
       <hr>
       <div class="card-controls">
         <a href="">Mettre à Jour</a>
