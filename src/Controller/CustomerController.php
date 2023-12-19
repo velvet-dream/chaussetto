@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('customer/')]
 class CustomerController extends AbstractController
 {
-    #[Route('dashboard', name: 'app_dashboard')]
+    #[Route('dashboard', name: 'app_customer_dashboard')]
     public function dashboard( Security $security ): Response
     {
         if (($user = $security->getUser()) === NULL) {
@@ -20,7 +20,20 @@ class CustomerController extends AbstractController
 
         return $this->render('customer/dashboard.html.twig', [
             'title' => 'Tableau de bord',
-            'customer' => $user
+            'customer' => $user,
+        ]);
+    }
+
+    #[Route('informations', name: 'app_customer_informations')]
+    public function informations( Security $security ): Response
+    {
+        if (($user = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('customer/informations.html.twig', [
+            'title' => 'Informations personnelles',
+            'customer' => $user,
         ]);
     }
 }
