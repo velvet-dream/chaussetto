@@ -39,6 +39,24 @@ class StaffRepository extends ServiceEntityRepository implements PasswordUpgrade
         $this->getEntityManager()->flush();
     }
 
+    public function InsertStaff($staff)
+    {
+        // $sql = " INSERT INTO `staff` (email,roles,password,name,last_name) VALUES ('toto@g.com', '[\"ROLE_ADMIN\"]', '123', 'toto', 'TOTO' )";
+        $this->getEntityManager()->persist($staff);
+        $this->getEntityManager()->flush();
+
+
+    }
+
+    public function searchAdmin(string $name)
+    {
+        return $this->createQueryBuilder('s')
+        ->where('s.name like :val')
+        ->setParameter('val' , '%'.$name.'%')
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Staff[] Returns an array of Staff objects
 //     */

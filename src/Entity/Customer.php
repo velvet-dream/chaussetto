@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
@@ -18,15 +19,44 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre nom doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Votre nom doit faire moins de {{ limit }} caractères.',
+    )]
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre prénom doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Votre prénom doit faire moins de {{ limit }} caractères.',
+    )]
     #[ORM\Column(length: 50)]
     private ?string $lastName = null;
 
+    #[Assert\Length(
+        max: 100,
+        maxMessage: 'Votre email doit faire moins de {{ limit }} caractères.',
+    )]
+    #[Assert\Email(
+        message: '{{ value }} n\'est pas une adresse mail valide.',
+    )]
     #[ORM\Column(length: 100)]
     private ?string $email = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Votre mot de passe doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Votre mot de passe doit faire moins de {{ limit }} caractères.',
+    )]
+    #[Assert\PasswordStrength([
+        'minScore' => Assert\PasswordStrength::STRENGTH_WEAK, // Very strong password required
+        'message' => "Votre mot de passe n'est pas assez sécure."
+    ])]
     #[ORM\Column(length: 100)]
     private ?string $password = null;
 
@@ -38,7 +68,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $orders;
 
     #[ORM\ManyToOne(inversedBy: 'customers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Adress $adress = null;
 
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Cart::class)]

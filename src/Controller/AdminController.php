@@ -2,10 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Staff;
+use App\Form\StaffFormType;
+use App\Repository\StaffRepository;
+use App\Services\FormStaffService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils; 
 
 #[Route('admin/')]
 class AdminController extends AbstractController
@@ -28,13 +34,13 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route(path: 'admin/logout', name: 'app_admin_logout')]
+    #[Route(path: 'logout', name: 'app_admin_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route('admin/dashboard', name: 'app_admin_dashboard')]
+    #[Route('dashboard', name: 'app_admin_dashboard')]
     public function dashboard() : Response
     {
         return $this->render('admin/dashboard.html.twig', [

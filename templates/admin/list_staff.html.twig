@@ -1,0 +1,31 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+	<h2>
+		{{ title }}
+	</h2>
+	{# {% if is_granted('ROLE_ADMIN') %} #}
+    <h3><a href=" {{ path('app_add_admin')}}"> Ajouter un nouveau administrateur</a></h3>
+    {# {% endif %} #}
+	{% for item in staff %}
+		<tr>
+			<td>
+				Administateur : {{ item.name}}
+			</td>
+			<td>
+				<a href=" {{ path('app_show_admin', {'id' : item.id}) }}">Voir</a> 
+				<a href=" {{ path('app_update_category', {'id' : item.id}) }}">Mettre à jour</a> 
+
+
+			</td><br>
+		</tr>
+		{% else %}
+    {% endfor %}
+
+
+
+{% endblock %}
