@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Panier de {{ customer.name }}</h1>
+    <hr>
+    <a href=" {{ path('app_index') }}"><button>Continuer mes achats</button></a>
+    
+{% endblock %}
