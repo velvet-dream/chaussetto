@@ -1,0 +1,37 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+	<h2>
+		{{ title }}
+	</h2>
+
+		<tr>
+			<td>
+				Catégorie :
+				{{ category.label}}
+			</td><br>
+			<td>
+				Description :
+				{{ category.description}}
+			</td><br>
+
+			<td>
+				Active :
+				{{ category.active}}
+			</td><br>
+			<td>
+				Date d'ajout de la catégorie :
+				{{ category.dateAdd|format_datetime}}   
+			</td><br>
+
+			<td>
+				Position de la catégorie :
+				{{ category.positionning}}
+			</td><br>
+		</tr><br>
+
+{% endblock %}
