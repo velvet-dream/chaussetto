@@ -18,7 +18,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #F5F5E5; 
+  background-color: #cacbb9; 
   padding: 10px;
 }
 
@@ -64,7 +64,7 @@ nav {
 .footer-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  background-color: #F5F5E5;
+  background-color: #cacbb9;
   padding: 20px;
 }
 
@@ -258,7 +258,7 @@ a:any-link {
     top: 60px; 
     left: 8px;
     right: 8px;
-    background-color: #F5F5E5;
+    background-color: #cacbb9;
     padding: 10px;
   }
 
@@ -285,7 +285,7 @@ a:any-link {
   }
 
   button {
-    background-color: #F5F5E5;    
+    background-color: #cacbb9;    
   }
 
   .links-contact,
@@ -368,6 +368,76 @@ a:any-link {
 .up-footer p{
   padding-right: 12%;
 }
+
+/*ACCUEIL*/
+.imageDeFond {
+  background-image: url("../img/accueil_mobile/chaussetto_accueil.jpeg");
+  background-size: cover; 
+  background-position: center; 
+  min-height: 800px; 
+  padding: 20px;
+  
+}
+
+.landing h1{
+  color: #000;
+  text-align: center;
+  font-family: Inria Serif;
+  font-size: 2.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase; 
+}
+
+.landing h2 {
+  color: #000;
+  text-align: center;
+  font-family: Inria Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.banner_index{
+  width: auto;
+  height: 81px;
+  background-color: #cacbb9;
+  margin-top: -4%;
+  padding: 3%;
+}
+
+.banner_index p{
+  color: #000;
+  text-align: center;
+  font-family: Inria Sans;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.display-products{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.display-products h2{
+  font-family: InriaSerif-Bold;
+}
+
+.display-products hr{
+  width: 46%;
+  margin-left: 6%;
+  margin-top: -1%;
+  border-color: black;
+  border-width: 0.2px;
+  margin-bottom: 6%;
+}
+
 
 /* NEWSLETTER */ 
 
