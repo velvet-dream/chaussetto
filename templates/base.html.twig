@@ -39,6 +39,15 @@
             {% endblock %}
 
         </header>
+        {# Lit et affiche tous les message flash #}
+        {# Classes : flash-success, flash-warning #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <main>
             {% block main %}{% endblock %}
         </main>

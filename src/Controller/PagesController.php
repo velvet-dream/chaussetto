@@ -22,13 +22,16 @@ class PagesController extends AbstractController
 
         $nlForm->handleRequest($request);
         if ($formNlService->submitForm($nlForm, $subscriber, $request)) {
-            $popup = "Merci de votre inscription à la Newsletter";
+            // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
+            $this->addFlash(
+                'success',
+                'Merci de votre inscription à la Newsletter'
+            );
         }
 
         return $this->render('pages/index.html.twig', [
             'title' => 'Accueil',
             'newsform' => $nlForm,
-            'popup' => isset($popup) ? $popup : null,
             'products' => $products,
         ]);
     }
