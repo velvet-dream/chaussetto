@@ -7,14 +7,30 @@
     <h2>
 		{{ title }}
 	</h2>
-
-    <table>
-        <tr>
-            <td>
-                Prénom : 
-                {{ staff.name}}
-            </td>
-        </tr>
-    </table>
+    <div class="card">
+        <table>
+            <tr>
+                <td>
+                    Prénom : 
+                    {{ staff.name}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nom : 
+                    {{ staff.lastname}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mail : 
+                    {{ staff.email}}
+                </td>
+            </tr>
+        </table>
+        <div class="card-controls">
+        <a href="{{ path('app_admin_updateprofile')}}">Mettre à Jour</a>
+        </div>
+    </div>
 
 {% endblock %}
