@@ -14,7 +14,10 @@ class NewsletterFormType extends AbstractType
     {
         $builder
             ->setMethod('POST')
-            ->add('adress')
+            ->add('adress', options:[
+                'label' => 'Adresse',
+                'attr' => [ 'placeholder' => 'Adresse Mail']
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'S\'inscrire',
             ]);
