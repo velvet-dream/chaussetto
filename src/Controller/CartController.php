@@ -21,6 +21,9 @@ class CartController extends AbstractController
     #[Route('/add/{id}', name: 'add')]
     public function add(Product $product, SessionInterface $session)
     {
+        $cart[8] = 1;
+        var_dump($cart);
+        $session->set('cart', $cart);
         dd($session);
     }
 }

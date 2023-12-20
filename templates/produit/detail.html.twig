@@ -29,7 +29,7 @@
             </div>
         </div>
                 {# Ajouter condition le boutin Ajouter au panier apparait si le produit est en stock, sinon affichier temporairement en rupture de stock#}
-                <a href="{{ path("app_cart") }}"><button class="add-cart">Ajouter au panier</button></a>
+                <a href="{{ path('app_cart', {id: produit}) }}"><button class="add-cart">Ajouter au panier</button></a>
 
     </div>
 
