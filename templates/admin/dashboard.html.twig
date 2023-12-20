@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {{title}} {% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    </head>
+    <body>
+        <header>
+            
+            {% block header %} 
+        
+                <nav> Navigation Admin : </nav><br>
+
+                <a href= "{{ path ('app_admin_dashboard') }} " > Pannel d'administration </a><br>
+                {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                    <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a><br>
+                    <a href= "{{ path ('app_admin_profile') }} " > Mon profil </a><br>
+                {% else %}
+                    <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
+                {% endif %}
+            {% endblock %}
+        </header>
+        <br><br>
+        <main>
+            {% block main %}
+                
+                Bienvenue sur le dashboard d'administration, {{ app.user.userIdentifier }}<br>
+                <a href= "{{ path ('app_list_admin') }} " > Liste des administrateur :</a><br>
+                <a href= "{{ path ('app_list_category') }} " > Liste des catégories :</a><br>
+                
+            {% endblock %}
+        </main>
+        
+        <footer>
+        {% block footer %}{% endblock %}
+        </footer>
+        
+
+    </body>
+</html>

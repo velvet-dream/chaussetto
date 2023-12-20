@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {{title}} {% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link href="{{ asset('styles/general.css') }}" rel="stylesheet" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+
+
+    </head>
+    <body>
+        <header>
+            {% block nav %}
+                <nav>
+                    <div class="header">
+                        <a class="logo" href="#"><img src="../img/logo/logo_icons_chaussetto.png"></a>
+                        <div class="burger-icon" id="burger-icon">&#9776;</div>
+                    </div>
+
+                    <div class="web-menu" id="web-menu">
+                        <a href="#">Chaussettes originales</a>
+                        <a href="#">Chaussettes basiques</a>
+                        <a href="#">Contact</a>
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                            {{ app.user.email }}
+                            <a href="{{ path('app_logout') }}">Déconnexion</a><br>
+                        {% else %}
+                            <a href="{{ path('app_login') }}"><img class="icons_connexion"  src="../img/icons/people_chaussetto.png"></a>
+                            {% endif %}
+                            <a  href="{{ path('app_login') }}"><img id="icons_panier" src="../img/icons/panier_chaussetto.png"></a><br>
+                    </div>
+
+                    
+                </nav>
+            {% endblock %}
+
+        </header>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        
+        <footer>
+            {{ block("footer", "footer.html.twig") }}
+        </footer>
+        
+
+    </body>
+    <script src="../js/burger.js"></script>
+
+</html>
