@@ -15,6 +15,7 @@
                 <a href= "{{ path ('app_admin_dashboard') }} " > Pannel d'administration </a><br>
                 {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                     <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a><br>
+                    <a href= "{{ path ('app_admin_profile') }} " > Mon profil </a><br>
                 {% else %}
                     <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
                 {% endif %}
@@ -23,6 +24,7 @@
         <br><br>
         <main>
             {% block main %}
+                
                 Bienvenue sur le dashboard d'administration, {{ app.user.userIdentifier }}<br>
                 <a href= "{{ path ('app_list_admin') }} " > Liste des administrateur :</a><br>
                 <a href= "{{ path ('app_list_category') }} " > Liste des catégories :</a><br>

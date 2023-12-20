@@ -1,0 +1,20 @@
+{% extends 'admin/dashboard.html.twig' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+    <h2>
+		{{ title }}
+	</h2>
+
+    <table>
+        <tr>
+            <td>
+                Prénom : 
+                {{ staff.name}}
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

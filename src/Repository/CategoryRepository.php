@@ -21,11 +21,12 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-    public function searchByName(string $name) : ?array
+    public function searchByName(string $name, string $triName) : ?array
     {
         return $this->createQueryBuilder('c')
             ->where('c.label like :val')
             ->setParameter('val' , '%'.$name.'%')
+            ->addOrderBy('c.label', $triName)
             ->getQuery()
             ->getResult();
     }

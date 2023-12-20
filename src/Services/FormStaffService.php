@@ -17,7 +17,7 @@ class FormStaffService
     public function __construct(
         private EntityManagerInterface $em,
         private FormFactoryInterface $formFactoryInterface,
-        private StaffRepository $staffRepository)
+        private StaffRepository $staffRepository,)
     {
 
     }
@@ -25,11 +25,12 @@ class FormStaffService
     public function submitForm(
         FormInterface $formInterface,
         Staff $staff,
-        ?Request $request) :bool 
+        ?Request $request,
+        PasswordHasherService $pwdService) :bool 
     {
         if ($formInterface->isSubmitted() && $formInterface->isValid()) {
             //if($request->request->has())
-            $this->em->persist($staff);
+            $this->em->persist($pwdService->hashUserPassword($staff));
             $this->em->flush();
             return true;
           }
