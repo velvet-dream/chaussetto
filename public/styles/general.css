@@ -11,6 +11,8 @@
 body{
   margin: 0;
 }
+
+@media screen and (max-width: 1920px) {
 /* Styles par défaut pour les écrans larges */
 nav {
   display: flex;
@@ -197,6 +199,7 @@ a:any-link {
 
 }
 
+}
 
 @-webkit-keyframes check {
   50% {
