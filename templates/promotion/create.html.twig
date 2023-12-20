@@ -1,0 +1,10 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block main %}
+  <h1>{{ title }}</h1>
+  {% if form is defined %}
+    {{ form(form) }}
+  {% else %}
+    Formulaire indéfini
+  {% endif %}
+{% endblock %}

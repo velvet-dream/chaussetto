@@ -35,6 +35,7 @@ class CustomerFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->setMethod("POST");
+        // On initialise le formulaire différemment selon si c'est un nouvel objet ou un update
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $customer = $event->getData();
             $form = $event->getForm();

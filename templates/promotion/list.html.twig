@@ -1,0 +1,27 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Liste des Promotions{% endblock %}
+
+{% block main %}
+    <h1>{{ title }}</h1>
+    <table>
+        <tr>
+            <th>Promotion</th>
+            <th>Réduction</th>
+            <th colspan="3">Produits</th>
+        </tr>
+        {% for promotion in promotions %}
+            <tr>
+                <td>{{ promotion.label }}</td>
+                <td>{{ promotion.rate }} %</td>
+                <td colspan="3">
+                    <ul>
+                        {% for product in promotion.products %}
+                            <li><a href="">{{ product.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

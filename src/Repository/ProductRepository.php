@@ -37,6 +37,15 @@ class ProductRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
         return $product;
     }
+
+    public function findAvailableProductsForPromotion()
+    {
+        return $this->createQueryBuilder('p')
+           ->andWhere('p.promotion is null')
+           ->getQuery()
+           ->getResult()
+        ;
+    }
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

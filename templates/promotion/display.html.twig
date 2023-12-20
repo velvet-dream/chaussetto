@@ -1,0 +1,14 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Promotion{% endblock %}
+
+{% block main %}
+  	<h1>{{ title }}</h1>
+	<h2>{{ promotion.label }} - {{ promotion.rate }}%</h2>
+	<h3>Produits concernés</h3>
+	<ul>
+		{% for product in promotion.products %}
+			<li><a href="">{{ product.name }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}
