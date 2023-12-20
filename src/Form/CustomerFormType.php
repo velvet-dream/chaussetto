@@ -18,6 +18,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 
 class CustomerFormType extends AbstractType
 {
@@ -76,6 +79,9 @@ class CustomerFormType extends AbstractType
                         'label' => 'Ancien mot de passe',
                         'hash_property_path' => 'password',
                         'mapped' => false,
+                        'constraints' => [
+                            new SecurityAssert\UserPassword(message: 'Ancien mot de passe invalide'),
+                        ],
                     ])
                     ->add('password', RepeatedType::class, [
                         'type' => PasswordType::class,
@@ -90,28 +96,6 @@ class CustomerFormType extends AbstractType
                     ]);
             }
         });
-
-        /**
-         * The PRE_SUBMIT event is dispatched at the beginning of the Form::submit() method.
-         *
-         * It can be used to:
-         *  - Change data from the request, before submitting the data to the form.
-         *  - Add or remove form fields, before submitting the data to the form.
-         *
-         * @Event("Symfony\Component\Form\Event\PreSubmitEvent")
-         */
-        // $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
-        //     $form = $event->getForm();
-        //     $plainPwd = $form->get("plainPassword")->getData();
-        //     // $plainPwd = $form->getData();
-        //     var_dump($plainPwd);
-        //     die();
-        //     // $user = $this->security->getUser();
-        //     // if (!$this->uph->isPasswordValid($user, $plainPwd)) {
-        //     //     throw new AccessDeniedHttpException();
-        //     // }
-        // });
-        
     }
 
     public function configureOptions(OptionsResolver $resolver): void
