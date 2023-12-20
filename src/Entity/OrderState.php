@@ -21,7 +21,7 @@ class OrderState
         return $this->id;
     }
 
-    public function getLabel(): ?string
+    public function getLabel()
     {
         return $this->label;
     }

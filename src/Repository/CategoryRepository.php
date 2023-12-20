@@ -23,7 +23,7 @@ class CategoryRepository extends ServiceEntityRepository
 
     public function searchByName(string $name, string $triName) : ?array
     {
-        return $this->createQueryBuilder('c')
+        return $this->createQueryBuilder('')
             ->where('c.label like :val')
             ->setParameter('val' , '%'.$name.'%')
             ->addOrderBy('c.label', $triName)
