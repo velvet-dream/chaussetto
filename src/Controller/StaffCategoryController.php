@@ -15,13 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 // #[Route ('admin/')]
 class StaffCategoryController extends AbstractController
 {
-    // #[Route('/staff/category', name: 'app_category')]
-    // public function index(): Response
-    // {
-    //     return $this->render('staff_category/index.html.twig', [
-    //         'controller_name' => 'StaffCategoryController',
-    //     ]);
-    // }
     #[Route ('showCategory/{id}', name: 'app_show_category')]
     public function showCategory(?Category $category) : Response
     {
@@ -35,11 +28,14 @@ class StaffCategoryController extends AbstractController
     #[Route ('listCategory', name: 'app_list_category')]
     public function listCategory (CategoryRepository $categoryRepository, Request $request) : Response
     {
-        $category = $categoryRepository->searchByName($request->query->get('label', ''));
+        $triName = $request->query->get('triName', 'asc');
+        $category = $categoryRepository->searchByName($request->query->get('label', ''), $triName);
 
         return $this->render('staff_category/list.html.twig', [
             'title' => 'Liste des catégories',
             'category' => $category,
+            'triName' => $triName,
+            'label' => $request->query->get('label','')
         ]);
     }
 
@@ -95,11 +91,12 @@ class StaffCategoryController extends AbstractController
             'form' => $form,
         ]);
     }
-    #[Route ('deleteCategory', name: 'app_delete_category')]
-    public function deleteCategory() // A FAIRE 
-    {
+    
+    // #[Route ('deleteCategory', name: 'app_delete_category')]
+    // public function deleteCategory() // A FAIRE 
+    // {
 
-    }
+    // }
 
 
 

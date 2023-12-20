@@ -11,6 +11,15 @@
 	{# {% if is_granted('ROLE_ADMIN') %} #}
     <h3><a href=" {{ path('app_add_admin')}}"> Ajouter un nouveau administrateur</a></h3>
     {# {% endif %} #}
+	<table>
+		<tr>
+		Prénom : 
+		{% if (triName == 'desc') %}
+			<a href=" {{ path('app_list_admin' ) }}?name={{ name }}&triName=asc">></a>
+		{% else %}
+			<a href=" {{ path('app_list_admin' ) }}?name={{ name }}&triName=desc"><</a>
+		{% endif %}
+		</tr>
 	{% for item in staff %}
 		<tr>
 			<td>
@@ -18,14 +27,27 @@
 			</td>
 			<td>
 				<a href=" {{ path('app_show_admin', {'id' : item.id}) }}">Voir</a> 
-				<a href=" {{ path('app_update_category', {'id' : item.id}) }}">Mettre à jour</a> 
+				<a href=" {{ path('app_update_admin', {'id' : item.id}) }}">Mettre à jour</a> 
+				{# <a href=" {{ path('app_update_admin', {'id' : item.id}) }}">Supprimer</a>  #}
 
 
 			</td><br>
-		</tr>
-		{% else %}
+	    {% else %}
+        <tr>
+            <td>Aucun enregistrement</td>
+        </tr>
     {% endfor %}
 
+		</tr>
+	</table>
+	<form>
+        <input type='text' name='name' value='{{ name }}' placeholder='Recherchez par le prénom'>
+        {# <input type='text' name='prenom' value='{{ prenom }}' placeholder='Recherchez par le prénom'> #}
+        {# <input type='text' name='date_naissance' value='{{ date_naissance }}' placeholder='Recherchez par la date de naissance'> #}
+        <input type = 'submit' value='rechercher' name='submit'>
+        {# <button type= 'submit' name= 'subasc'>ASC</button>
+        <button type= 'submit' name= 'subdesc'>DESC</button> #}
 
+    </form>
 
 {% endblock %}

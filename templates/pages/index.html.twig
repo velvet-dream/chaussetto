@@ -5,28 +5,38 @@
 
 {% block main %}
 
-<div class="landing">
-    <h1>CHAUSSETTO</h1>
-    <hr>
-    <H2>LES CRAVATES POUR LES PIEDS</H2>
-</div>
-<div class="banner">
+    <section class="landing">
+        <div class="imageDeFond">
+            <h1>CHAUSSETTO</h1>
+            <hr>
+            <H2>LES CRAVATES POUR LES PIEDS</H2>
+        </div>
+    </section>
+<div class="banner_index">
     <p>DÉCOUVREZ UN MONDE OÙ LE STYLE ET LE CONFORT SE RENCONTRENT</p>
 </div>
+
+
+
+{% for product in products %}
 <div class="display-products">
     <h2>NOS CHAUSSETTES ORIGINALES</h2>
     <hr>
-    <div class="product_rectangle">
-        <figure>
-            <figcaption>chaussettes poussin</figcaption>
-            <figcaption> 9.99€ </figcaption>
-            <img
-            class="fit-picture"
-            src="../img/mobile/chaussette_poussin_originale.png"
-            alt="chaussette poussin originale" />            
-        </figure>
+</div>
+<div class="container">
+  <div id="slider">
+    <div class="slide">
+      <img src="" alt="">
+      <div class="wrapInfoPost">
+        <h3>{{ product.name }} </h3>
+        <p>{{ product.price }}€</p>
+      </div>
         <a href=""><button>Ajouter au panier</button></a>
     </div>
+</div>
+{% endfor %}
+
+
 
 
     {{ block("endpage", "endpage.html.twig") }}

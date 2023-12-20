@@ -20,8 +20,8 @@
                     </div>
 
                     <div class="web-menu" id="web-menu">
-                        <a href="#">Chaussettes originales</a>
-                        <a href="#">Chaussettes basiques</a>
+                        <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
+                        <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a>
                         <a href="#">Contact</a>
                         {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                             {{ app.user.email }}
