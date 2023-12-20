@@ -20,8 +20,11 @@ class AddStaffController extends AbstractController
 
 
     #[Route ('showAdmin/{id}', name: 'app_show_admin')]
-    public function showStaff(?Staff $staff) : Response
+    public function showStaff(?Staff $staff, Security $security) : Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
         return $this->render('admin/show_staff.html.twig', [
             'title' => 'Détails de l\'administrateur',
             'staff' => $staff,
@@ -35,8 +38,11 @@ class AddStaffController extends AbstractController
     #[Route(path: 'listAdmin', name: 'app_list_admin')]
     public function listStaff(
         StaffRepository $staffRepository,
-        Request $request) : Response
+        Request $request, Security $security) : Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
         $triName = $request->query->get('triName', 'asc');
         $staff = $staffRepository->searchAdmin($request->query->get('name', ''),$triName);
 
@@ -60,9 +66,9 @@ class AddStaffController extends AbstractController
     Request $request,
     PasswordHasherService $pwd) : Response
     {
-        // if (!$security->isGranted('ROLE_ADMIN')){
-        //     return $this->redirectToRoute('app_index');
-        // }
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
         $staff = $security->getUser();
         $staff->getRoles();
         // var_dump($staff);
@@ -89,9 +95,9 @@ class AddStaffController extends AbstractController
         Staff $staff,
         PasswordHasherService $pwd) : Response
     {
-        // if (!$security->isGranted('ROLE_ADMIN')){
-        //     return $this->redirectToRoute('app_index');
-        // }
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
         if($staff === null){
             return $this->redirectToRoute('app_show_admin');
         }

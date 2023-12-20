@@ -27,9 +27,9 @@ class CategoryFormType extends AbstractType
             //     'choice_label' => 'id',
             //     'multiple' => true,
             // ])
-            // ->add('parentCategory', EntityType::class, [
-            //     'class' => Category::class,
-            //     'choice_label' => 'id'])
+            ->add('parentCategory', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'id'])
 
             ->add('submit', SubmitType::class, [
                     'label' => 'Ajouter',

@@ -12,12 +12,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// #[Route ('admin/')]
+#[Route ('admin/')]
 class StaffCategoryController extends AbstractController
 {
     #[Route ('showCategory/{id}', name: 'app_show_category')]
-    public function showCategory(?Category $category) : Response
+    public function showCategory(?Category $category, Security $security) : Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
+        
         return $this->render('staff_category/show.html.twig', [
             'title' => 'Détails de la catégorie',
             'category' => $category,
@@ -26,8 +30,11 @@ class StaffCategoryController extends AbstractController
     
 
     #[Route ('listCategory', name: 'app_list_category')]
-    public function listCategory (CategoryRepository $categoryRepository, Request $request) : Response
+    public function listCategory (CategoryRepository $categoryRepository, Request $request,Security $security) : Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
         $triName = $request->query->get('triName', 'asc');
         $category = $categoryRepository->searchByName($request->query->get('label', ''), $triName);
 
@@ -45,9 +52,9 @@ class StaffCategoryController extends AbstractController
         FormCategoryService $formCategoryService,
         Security $security) : Response
     {
-        // if (!$security->isGranted('ROLE_ADMIN')){
-        //     return $this->redirectToRoute('app_index');
-        // }
+        if (!$security->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
 
         $staff = $security->getUser();
         $staff->getRoles();
