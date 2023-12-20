@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block main %}
+
+    <form action="{{ path("add_product") }}" method="post">
+
+        <label for="titre">Titre de l'article</label><br>
+        <input type="text" name="name" placeholder="name" id="name"><br> <br>
+
+        <label for="description">Description de l'article </label> <br> 
+        <textarea id="description" name="description" placeholder='Description' rows="4" cols="50"></textarea> <br> <br>
+
+        <label for="poids"> Poids </label><br>
+        <input type="number" name="poids" placeholder="poids de l'article" id="poids"><br> <br>
+
+        <label for="stock"> Stock </label><br>
+        <input type="number" name="stock" placeholder="stock disponible" id="stock"><br> <br>
+
+        <label for="taxe"> Taxe </label><br>
+        <input type="number" name="taxe" placeholder="Taxe" id="taxe"><br> <br>
+
+        <label for="taxe"> Nom de la taxe </label><br>
+        <input type="text" name="Nomtaxe" placeholder="Nom de Taxe" id="Nomtaxe"><br> <br>
+
+        <label for="categorie"> Catégorie </label><br>
+        <input type="text" name="categorie" placeholder="categorie" id="catégorie"><br> <br>
+
+
+
+
+
+        <input type="submit" value="envoyer">
+
+    </form>
+    <p>{{ message }}</p>
+
+{% endblock %}
