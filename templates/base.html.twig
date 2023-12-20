@@ -4,10 +4,26 @@
         <meta charset="UTF-8">
         <title>{% block title %} {{title}} {% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link href="{{ asset('styles/general.css') }}" rel="stylesheet" type="text/css" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     
+        {% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('general') }}
 
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="/build/app.css"> -->
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('general') }}
+            {{ encore_entry_script_tags('burger') }}
+
+            <!-- Renders app.js & a webpack runtime.js file
+                <script src="/build/runtime.js" defer></script>
+                <script src="/build/app.js" defer></script>
+                See note below about the "defer" attribute -->
+        {% endblock %}
 
     </head>
     <body>
@@ -15,7 +31,7 @@
             {% block nav %}
                 <nav>
                     <div class="header">
-                        <a class="logo" href="{{ path('app_index') }}"><img src="../img/logo/logo_icons_chaussetto.png"></a>
+                        <a class="logo" href="{{ path('app_index') }}"><img src="/images/logo/logo_icons_chaussetto.png"></a>
                         <div class="burger-icon" id="burger-icon">&#9776;</div>
                     </div>
 
@@ -29,9 +45,9 @@
                             <a href="{{ path('app_logout') }}">Déconnexion</a><br>
                             <a href="{{ path('app_customer_informations') }}"><img class="icons_connexion"  src="../img/icons/people_chaussetto.png"></a>
                         {% else %}
-                            <a href="{{ path('app_login') }}"><img class="icons_connexion"  src="../img/icons/people_chaussetto.png"></a>
+                            <a href="{{ path('app_login') }}"><img class="icons_connexion"  src="/images/icons/people_chaussetto.png"></a>
                             {% endif %}
-                            <a  href="{{ path('app_login') }}"><img id="icons_panier" src="../img/icons/panier_chaussetto.png"></a><br>
+                            <a  href="{{ path('app_login') }}"><img id="icons_panier" src="/images/icons/panier_chaussetto.png"></a><br>
                     </div>
 
                     
@@ -60,7 +76,6 @@
 
     </body>
     
-    <script src="../js/burger.js"></script>
   
 
 
