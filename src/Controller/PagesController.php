@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\NewsletterSubscribers;
 use App\Form\NewsletterFormType;
+use App\Repository\ProductRepository;
 use App\Services\FormNewsletterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class PagesController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index( FormNewsletterService $formNlService, Request $request): Response
+    public function index( ProductRepository $productRepo, FormNewsletterService $formNlService, Request $request): Response
     {
+        $products = $productRepo->findAll();
         $subscriber = new NewsletterSubscribers();
         $nlForm = $this->createForm( NewsletterFormType::class, $subscriber );
 
@@ -30,6 +32,7 @@ class PagesController extends AbstractController
         return $this->render('pages/index.html.twig', [
             'title' => 'Accueil',
             'newsform' => $nlForm,
+            'products' => $products,
         ]);
     }
 }

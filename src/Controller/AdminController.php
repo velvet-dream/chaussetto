@@ -43,21 +43,47 @@ class AdminController extends AbstractController
     }
 
     #[Route('dashboard', name: 'app_admin_dashboard')]
-    public function dashboard() : Response
+    public function dashboard(Security $security) : Response
     {
+        if (($staff = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_admin_login');
+        }
         return $this->render('admin/dashboard.html.twig', [
             'title' => 'DASHBOARD ADMIN',
+            'staff' => $staff
         ]);
     }
 
-    #[Route('myprofile/{id}', name: 'app_admin_profile')]
-    public function myprofile(?Staff $staff) : Response
+    #[Route('myprofile', name: 'app_admin_profile')]
+    public function myprofile(Security $security) : Response
     {
-
+        if (($staff = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_admin_login');
+        }
 
         return $this->render('admin/myprofile.html.twig', [
             'title' => 'Mes informations personnelles',
             'staff' => $staff
+        ]);
+    }
+
+    #[Route('updatemyprofile', name: 'app_admin_updateprofile')]
+    public function updatemyprofile(Security $security, FormStaffService $formStaffService,
+    Staff $staff, Request $request, PasswordHasherService $pwd) : Response
+    {
+        if (($staff = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_admin_login');
+        }
+
+        $form = $this->createForm(StaffFormType::class, $staff);
+        $form->handleRequest($request);
+        if($formStaffService->submitForm($form,$staff,$request,$pwd)){
+            return $this->redirectToRoute('app_admin_profile');
+        }
+
+        return $this->render('admin/updatemyprofile.html.twig', [
+            'title' => 'Mettre à jour mes informations personnelles',
+            'form' => $form
         ]);
     }
 }
