@@ -81,6 +81,7 @@ class CustomerController extends AbstractController
         $customerForm = $this->createForm(CustomerFormType::class, $user, ['user' => $user]);
 
         $customerForm->handleRequest($request);
+        // ********************************* CHAMP ANCIEN MOT DE PASSE NON FONCTIONNEL *****************************
         if ($customerForm->isSubmitted() && $customerForm->isValid()) {
             $em->persist($pwdService->hashUserPassword($user));
             $em->flush();
