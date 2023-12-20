@@ -15,11 +15,22 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method OrderState[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OrderStateRepository extends ServiceEntityRepository
+
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, OrderState::class);
     }
+
+    public function searchById( $id)
+    {
+        return $this->createQueryBuilder('order_state')
+            ->where('order_state.id = :val')
+            ->setParameter('val' , $id)
+            ->getQuery()
+            ->getResult();
+    }
+}
 
 //    /**
 //     * @return OrderState[] Returns an array of OrderState objects
@@ -45,4 +56,9 @@ class OrderStateRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+// OrderRepository.php
+
+
+
+
+

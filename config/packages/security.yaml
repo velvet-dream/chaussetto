@@ -25,10 +25,16 @@ security:
             lazy: true
             provider: app_admin_provider
             custom_authenticator: App\Security\AppAdminAuthenticator
+            # form_login: 
+            #     login_path: app_admin_login
+            #     target: app_admin_dashboard
+            #     check_path: app_login_admin
+            #     enable_csrf: true
+            #     default_target_path: app_admin_dashboard
             logout:
                 path: app_admin_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: app_admin_login
 
             remember_me:
                 secret: '%kernel.secret%'

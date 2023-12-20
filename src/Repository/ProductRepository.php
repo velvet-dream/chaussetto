@@ -22,6 +22,21 @@ class ProductRepository extends ServiceEntityRepository
     }
 
 
+    public function getProductByCategory( string $categoryName){
+        return $this->createQueryBuilder('p')
+        ->innerJoin('p.categories','c')
+        ->andWhere('c.label = :categoryName')
+        ->setParameter('categoryName',$categoryName)
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function save(Product $product): Product
+    {
+        $this->getEntityManager()->persist($product);
+        $this->getEntityManager()->flush();
+        return $product;
+    }
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

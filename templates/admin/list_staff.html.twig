@@ -9,39 +9,39 @@
 		{{ title }}
 	</h2>
 	{# {% if is_granted('ROLE_ADMIN') %} #}
-    <h3><a href=" {{ path('app_create_category')}}"> Créer une nouvelle catégorie </a></h3>
+    <h3><a href=" {{ path('app_add_admin')}}"> Ajouter un nouveau administrateur</a></h3>
     {# {% endif %} #}
-
 	<table>
 		<tr>
-		Catégorie : 
+		Prénom : 
 		{% if (triName == 'desc') %}
-			<a href=" {{ path('app_list_category' ) }}?label={{ label }}&triName=asc">></a>
+			<a href=" {{ path('app_list_admin' ) }}?name={{ name }}&triName=asc">></a>
 		{% else %}
-			<a href=" {{ path('app_list_category' ) }}?label={{ label }}&triName=desc"><</a>
+			<a href=" {{ path('app_list_admin' ) }}?name={{ name }}&triName=desc"><</a>
 		{% endif %}
 		</tr>
-	{% for item in category %}
+	{% for item in staff %}
 		<tr>
 			<td>
-				Catégorie : {{ item.label}}
+				Administateur : {{ item.name}}
 			</td>
 			<td>
-				<a href=" {{ path('app_show_category', {'id' : item.id}) }}">Voir</a> 
-				<a href=" {{ path('app_update_category', {'id' : item.id}) }}">Mettre à jour</a> 
+				<a href=" {{ path('app_show_admin', {'id' : item.id}) }}">Voir</a> 
+				<a href=" {{ path('app_update_admin', {'id' : item.id}) }}">Mettre à jour</a> 
+				{# <a href=" {{ path('app_update_admin', {'id' : item.id}) }}">Supprimer</a>  #}
 
 
 			</td><br>
-		</tr>
-		{% else %}
-		<tr>
+	    {% else %}
+        <tr>
             <td>Aucun enregistrement</td>
         </tr>
     {% endfor %}
 
-		</table>
+		</tr>
+	</table>
 	<form>
-        <input type='text' name='label' value='{{ label }}' placeholder='Recherchez par le label'>
+        <input type='text' name='name' value='{{ name }}' placeholder='Recherchez par le prénom'>
         {# <input type='text' name='prenom' value='{{ prenom }}' placeholder='Recherchez par le prénom'> #}
         {# <input type='text' name='date_naissance' value='{{ date_naissance }}' placeholder='Recherchez par la date de naissance'> #}
         <input type = 'submit' value='rechercher' name='submit'>
@@ -49,6 +49,5 @@
         <button type= 'submit' name= 'subdesc'>DESC</button> #}
 
     </form>
-
 
 {% endblock %}

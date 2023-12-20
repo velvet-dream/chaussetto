@@ -1,28 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
-
+{% block title %}Hello ProduitController!{% endblock %}
 {% block main %}
-<a href="{{ path("app_produit") }}">retour</a>
+    <a href="{{ path("app_produit") }}">retour</a>
+    <div style="padding: 20px; border: 1px solid #ccc; margin-bottom: 20px;">
+        <h1>Voici l'article Sélectionné</h1>
 
-    <h1> BIENVENUE SUR LA PAGE Produit </h1>
+        <div style="margin-top: 20px;">
+            <p>
+                <b>Nom :</b> {{ produit.name }},  
+                <b>Prix :</b> {{ produit.price }}, 
+                <b>Poids :</b> {{ produit.weight }},  
+                <b>Stock :</b> {{ produit.stock }}, 
+                <b>Tax :</b> {{ produit.tax.rate }}, 
+                <b>Description :</b> {{ produit.description }}
+            </p>
+            
+            <div style="margin-top: 10px;">
+                {% for category in produit.categories %}
+                    <b>Catégorie :</b> {{ category.label }}<br>
+                {% endfor %}
+            </div>
 
-     <p> <b> nom : </b> {{ produit.name }},  <b>prix :</b> {{produit.price}}, <b>poids :</b> {{produit.weight}},  <b>stock :</b> {{produit.stock}}, <b>tax :</b> {{produit.tax.rate}}, <b> description : </b> {{produit.description}}
+            <div style="margin-top: 10px;">
+                {% for image in produit.images %}
+                    <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit" style="max-width: 200px; height: auto; margin-top: 10px;">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
     
-    {% for category in produit.categories %}
 
-        <b>Catégorie :</b> {{category.label}}
+{# ARTICLES SIMILAIRES ---------------------------------------------------------------------------------------------------------- #}
 
+<h1 style="padding-top: 45px;">ARTICLES SIMILAIRES</h1>
+
+<div class="example-wrapper">
+    {% for product in products %}
+        <div style="display: inline-block; margin-right: 20px; margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
+            <p>
+                <b>Nom :</b> {{ product.name }},  
+                <b>Prix :</b> {{ product.price }}, 
+            </p>
+
+            {% for category in product.categories %}
+                <b>Catégorie :</b> {{ category.label }}
+            {% endfor %}
+
+            {% for image in product.images %}
+                <div>
+                    <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit" style="max-width: 100px; height: auto;">
+                </div>
+            {% endfor %}
+        </div>
     {% endfor %}
-
-    {% for image in produit.images %}
-            <ul>
-                <li><img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit"></li>
-            </ul>
-    {% endfor %}
-    
-    
-
+</div>
 
 
 {% endblock %}

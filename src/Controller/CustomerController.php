@@ -129,4 +129,19 @@ class CustomerController extends AbstractController
         ]);
         
     }
+
+    // Panier de l'utilisateurice
+    #[Route('cart', name: 'app_cart')]
+    public function cart( Security $security ): Response
+    {
+        // Redirection si client est pas connectéx
+        if (($user = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('cart/cart.html.twig', [
+            'title' => 'Panier',
+            'cart' => $user,
+        ]);
+    }
 }

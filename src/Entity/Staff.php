@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\StaffRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StaffRepository::class)]
 class Staff implements UserInterface, PasswordAuthenticatedUserInterface
@@ -15,21 +18,50 @@ class Staff implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        max: 100,
+        maxMessage: 'Votre email doit faire moins de {{ limit }} caractères.',
+    )]
+    #[Assert\Email(
+        message: '{{ value }} n\'est pas une adresse mail valide.',
+    )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = ['ROLE_ADMIN'];
 
     /**
      * @var string The hashed password
      */
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Votre mot de passe doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Votre mot de passe doit faire moins de {{ limit }} caractères.',
+    )]
+    // #[Assert\PasswordStrength([
+    //     'minScore' => Assert\PasswordStrength::STRENGTH_WEAK, // Very strong password required
+    //     'message' => "Votre mot de passe n'est pas assez sécure."
+    // ])]
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre nom doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Votre nom doit faire moins de {{ limit }} caractères.',
+    )]
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre prénom doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Votre prénom doit faire moins de {{ limit }} caractères.',
+    )]
     #[ORM\Column(length: 50)]
     private ?string $last_name = null;
 

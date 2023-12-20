@@ -15,17 +15,19 @@
             {% block nav %}
                 <nav>
                     <div class="header">
-                        <a class="logo" href="#"><img src="../img/logo/logo_icons_chaussetto.png"></a>
+                        <a class="logo" href="{{ path('app_index') }}"><img src="../img/logo/logo_icons_chaussetto.png"></a>
                         <div class="burger-icon" id="burger-icon">&#9776;</div>
                     </div>
 
                     <div class="web-menu" id="web-menu">
-                        <a href="#">Chaussettes originales</a>
-                        <a href="#">Chaussettes basiques</a>
+                        <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
+                        <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a>
                         <a href="#">Contact</a>
                         {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                             {{ app.user.email }}
+                            <a href="{{ path('app_order') }}">Mes commandes</a>
                             <a href="{{ path('app_logout') }}">Déconnexion</a><br>
+                            <a href="{{ path('app_customer_informations') }}"><img class="icons_connexion"  src="../img/icons/people_chaussetto.png"></a>
                         {% else %}
                             <a href="{{ path('app_login') }}"><img class="icons_connexion"  src="../img/icons/people_chaussetto.png"></a>
                             {% endif %}
@@ -53,9 +55,11 @@
         <footer>
             {{ block("footer", "footer.html.twig") }}
         </footer>
+       
         
 
     </body>
     <script src="../js/burger.js"></script>
+
 
 </html>
