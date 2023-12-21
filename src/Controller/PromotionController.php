@@ -153,4 +153,30 @@ class PromotionController extends AbstractController
             'promotion' => $promotion,
         ]);
     }
+
+    #[Route('detach-product/{id}', name: 'app_detach_product_from_promotion')]
+    public function detach(?Product $product, EntityManagerInterface $em): Response
+    {
+        if (!$this->security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_index');
+        }
+        
+        if ($product === null) {
+            $this->addFlash(
+                'warning',
+                'Produit non existant'
+            );
+            return $this->redirectToRoute('app_list_promotion');
+        }
+
+        $product->setPromotion(null);
+        $em->persist($product);
+        $em->flush();
+        $this->addFlash(
+            'success',
+            'Produit retiré!'
+        );
+
+        return $this->redirectToRoute('app_list_promotion');
+    }
 }

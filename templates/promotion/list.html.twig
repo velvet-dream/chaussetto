@@ -21,7 +21,7 @@
                 <td colspan="3">
                     <ul>
                         {% for product in promotion.products %}
-                            <li><a href="">{{ product.name }}</a></li>
+                            <li><a href="">{{ product.name }}</a> <a href="{{ path('app_detach_product_from_promotion', { 'id': product.id }) }}">Retirer</a></li>
                         {% endfor %}
                     </ul>
                 </td>

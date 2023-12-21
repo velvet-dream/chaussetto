@@ -7,6 +7,7 @@ use App\Entity\Promotion;
 use App\Repository\ProductRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,24 +33,22 @@ class PromotionFormType extends AbstractType
                 'attr' => ['value'=> $options['promotion']->getLabel()],
             ])
             ->add('rate', NumberType::class ,[
-                'label' => 'Taux de réduction',
+                'label' => 'Taux de réduction (%)',
                 'attr' => ['value'=> $options['promotion']->getRate()],
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Créer la promotion',
             ]);
         if ($choices = $this->prodRepo->findAvailableProductsForPromotion()) {  
             $builder->add('products', EntityType::class, [
                 'class' => Product::class,
                 'choices' => $choices,
                 'multiple' => true,
-                // 'expanded' => true,
+                'label' => 'Produits à mettre en promotion',
+                'expanded' => true,
             ]);
         }
-
         $builder->add('submit', SubmitType::class, [
             'label' => $options['label'],
         ]);
+
 
         // $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
         //     $promotion = $event->getData();
