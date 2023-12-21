@@ -21,6 +21,12 @@ class TaxRepository extends ServiceEntityRepository
         parent::__construct($registry, Tax::class);
     }
 
+    public function save(Tax $tax): Tax
+    {
+        $this->getEntityManager()->persist($tax);
+        $this->getEntityManager()->flush();
+        return $tax;
+    }
 //    /**
 //     * @return Tax[] Returns an array of Tax objects
 //     */

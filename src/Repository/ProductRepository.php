@@ -31,6 +31,17 @@ class ProductRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function getTaxes( string $categoryName){
+        return $this->createQueryBuilder('p')
+        ->innerJoin('p.categories','c')
+        ->andWhere('c.label = :categoryName')
+        ->setParameter('categoryName',$categoryName)
+        ->getQuery()
+        ->getResult();
+    }
+
+
+
     public function save(Product $product): Product
     {
         $this->getEntityManager()->persist($product);
