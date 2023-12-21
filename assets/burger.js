@@ -1,3 +1,6 @@
+import './styles/burger.css'
+
+
 document.addEventListener('DOMContentLoaded', function () {
     let burgerIcon = document.getElementById('burger-icon');
     let mobileMenu = document.getElementById('web-menu');
