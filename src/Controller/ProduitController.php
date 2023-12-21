@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ImageRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\TaxRepository;
  
 
 
@@ -62,9 +64,13 @@ class ProduitController extends AbstractController
 
 
     #[Route('/addProduct', name: 'add_product')]
-    public function add_product(Request $request, ProductRepository $productRepository): Response
+    public function add_product(Request $request, ProductRepository $productRepository, CategoryRepository $categorieRepo, TaxRepository $taxrepo): Response
     {
         $message = '';
+        $categorie = $categorieRepo->findAll();
+        $taxes_existantes = $taxrepo->findAll();
+
+
         if( $request->getMethod() === 'POST'){
             $name = $request->request->get('name');
             $description = $request->request->get('description');
@@ -73,11 +79,23 @@ class ProduitController extends AbstractController
             $taxe = $request->request->get('taxe');
             $category = $request->request->get('category');
             $NomTaxe = $request->request->get('Nomtaxe');
+            $nomCat = $request->request->get('nomCat');
+            $descat = $request->request->get('descriptionCat');
+            $active = $request->request->get('isActive');
+            $statut = $request->request->get('statut');
+            $price = floatval($request->request->get('prix'));
+            
 
-            if($name === '' || $description === '' || $taxe === '' || $stock === '' || $poids === '' || $category === ''){
+
+            if($name === '' || $description === '' || $taxe === '' || $stock === '' || $poids === ''){
                 $message = 'Un des champs sont videds, Veuillez remplir tout ces champs';
-            } else{
+            }elseif($category === '' && $nomCat === '' ){
+                $message = "Vous n\'avez pas selectionné une catégorie ou créer une catégorie";
+            }
+            
+            else{
                 $product = new Product();
+                
                 $product->setName($name);
                 $product->setDescription($description);
 
@@ -86,12 +104,47 @@ class ProduitController extends AbstractController
                 $tax->setLabel($NomTaxe);
                 $tax->setRate($taxe);
 
+
+                $taxrepo->save($tax);
+
                 $product->setTax($tax);
                 
                 $product->setWeight($poids);
                 $product->setStock($stock);
                 
-                $product->addCategory($category);
+                $product->setPrice($price);
+                
+                if($category !== ''){ 
+                    
+                    $cat = $categorieRepo->findOneByLabel($category);                
+                    $product->addCategory($cat);
+                }else{
+                    $cat = new Category;
+                    $cat->setLabel($nomCat);
+
+                    $cat->setDescription($descat);
+                    $cat->setIsRootCategory(true);
+                    $cat->setPositionning(1);
+                    if($active === 'Active'){
+                        $cat->setActive(true);
+                    }else{
+                        $cat->setActive(false);
+                    }
+
+                    $product->addCategory($cat);
+                }
+
+
+                if($statut === 'Actif'){
+                    $product->setActive(true);
+                }else{
+                    $product->setActive(false);
+                }
+
+                
+
+
+
                 
                 $productRepository->save($product);
                 $message = ' Article créé félicitations';
@@ -102,6 +155,8 @@ class ProduitController extends AbstractController
         }
         return $this->render('produit/ajoutProduit.html.twig', [
             'message' => $message,
+            'categories' => $categorie,
+            'tax' => $taxes_existantes,
         ]);
     }
 

@@ -31,6 +31,12 @@ class CategoryRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    // Dans CategoryRepository.php
+    public function findOneByLabel(string $label): ?Category
+    {
+        return $this->findOneBy(['label' => $label]);
+    }
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */
