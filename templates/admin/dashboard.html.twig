@@ -36,9 +36,10 @@
         <main>
             {% block main %}
                 
-                Bienvenue sur le dashboard d'administration, {{ staff.name }}<br>
+                <p>Bienvenue sur le dashboard d'administration, {{ staff.name }}</p>
                 <a href= "{{ path ('app_list_admin') }} " > Liste des administrateur :</a><br>
                 <a href= "{{ path ('app_list_category') }} " > Liste des catégories :</a><br>
+                <a href="{{ path('app_list_promotion') }}">Promotions</a>
                 
             {% endblock %}
         </main>

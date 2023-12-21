@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Promotion;
 use App\Form\PromotionFormType;
-use App\Repository\ProductRepository;
 use App\Repository\PromotionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -79,7 +78,6 @@ class PromotionController extends AbstractController
             $this->redirectToRoute('app_list_promotion');
         }
         $form = $this->createForm(PromotionFormType::class, $promotion, ["promotion"=>$promotion, "label"=>"Mettre à jour"]);
-        // var_dump($form->getData()->getProducts());
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
