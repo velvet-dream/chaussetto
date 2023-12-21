@@ -20,13 +20,13 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
-    .addEntry('general', './assets/general.js')
-    .addEntry('burger', './assets/burger.js')
-    .addEntry('connexion', './assets/connexion.js')
-    .addEntry('footer', './assets/footer.js')
-    .addEntry('signup', './assets/signup.js')
-    .addEntry('endpage', './assets/endpage.js')
+    // .addEntry('app', './assets/app.js')
+    // .addEntry('general', './assets/general.js')
+    // .addEntry('burger', './assets/burger.js')
+    // .addEntry('connexion', './assets/connexion.js')
+    // .addEntry('footer', './assets/footer.js')
+    // .addEntry('signup', './assets/signup.js')
+    // .addEntry('endpage', './assets/endpage.js')
     
 
     

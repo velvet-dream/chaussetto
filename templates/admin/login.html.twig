@@ -1,7 +1,7 @@
 {% extends 'admin/dashboard.html.twig' %}
 
 {% block additionalStyles %}
-    {{ encore_entry_link_tags('back-office/login.css') }}
+    <link href="{{ asset('styles/back-office/login.css') }}" rel="stylesheet" />
 {% endblock %}
 
 {% block title %}Connectez-vous{% endblock %}

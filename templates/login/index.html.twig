@@ -1,18 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
+{% block additionalStyles %}
     {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-    {{ encore_entry_link_tags('connexion') }}
-    {{ encore_entry_link_tags('general') }}
-    {{ encore_entry_link_tags('burger') }}
-    {{ encore_entry_link_tags('footer') }}
-
+    <link href="{{ asset('styles/connexion.css') }}" rel="stylesheet" />
 
     <!-- Renders a link tag (if your module requires any CSS)
     <link rel="stylesheet" href="/build/app.css"> -->
 {% endblock %}
 
-{% block javascripts %}
+{# {% block javascripts %}
     {{ encore_entry_script_tags('general') }}
     {{ encore_entry_script_tags('burger') }}
     {{ encore_entry_script_tags('connexion') }}
@@ -23,7 +19,7 @@
         <script src="/build/runtime.js" defer></script>
         <script src="/build/app.js" defer></script>
             See note below about the "defer" attribute -->
-{% endblock %}
+{% endblock %} #}
 
 
 {% block title %}
