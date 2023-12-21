@@ -42,7 +42,8 @@ class CustomerFormType extends AbstractType
             // If no data is passed to the form, the data is "null".
             // This should be considered a new "Customer"
             if (!$customer || null === $customer->getId()) {
-                $form->add('name', TextType::class, [
+                $form->add('name', TextType::class, [ 
+                    'attr'=> ['class' => 'form_nom'],
                     'label' => "Nom",
                     ])
                     ->add('lastName', TextType::class,[
