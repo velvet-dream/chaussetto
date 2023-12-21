@@ -9,4 +9,20 @@ h1 {
 
 form {
   background-color: white;
+  max-width: 50rem;
+  margin: auto;
+  padding: 2rem;
+}
+
+form label, form input {
+  display: block;
+  margin: .5rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form input {
+  padding: 1rem;
+  border: 0;
+  box-shadow: inset 1px 6px 8px 4px #F5F5E5;
 }
