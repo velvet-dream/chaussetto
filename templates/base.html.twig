@@ -10,6 +10,8 @@
         {% block stylesheets %}
             {# 'app' must match the first argument to addEntry() in webpack.config.js #}
             {{ encore_entry_link_tags('general') }}
+            {{ encore_entry_link_tags('burger') }}
+            {{ encore_entry_link_tags('footer') }}
 
             <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->
@@ -18,6 +20,7 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('general') }}
             {{ encore_entry_script_tags('burger') }}
+            {{ encore_entry_script_tags('footer') }}
 
             <!-- Renders app.js & a webpack runtime.js file
                 <script src="/build/runtime.js" defer></script>
