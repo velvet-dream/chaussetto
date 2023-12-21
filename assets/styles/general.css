@@ -159,6 +159,10 @@ nav {
 .display-products h2{
   font-family: InriaSerif-Bold;
   margin-top: 7%;
+  width: 100%;
+}
+
+.grid_product{
   width: 22%;
 }
 
@@ -281,7 +285,7 @@ nav {
   margin-left: 10%;
   padding: 2%;
   padding-left: 29%;
-  margin-top: 1%;
+  margin-top: 9px;
   border-color: black;
   margin-left: 17%;
 }
@@ -765,6 +769,14 @@ a:any-link {
 .display-products h2{
   font-family: InriaSerif-Bold;
   margin-top: 14%;
+  width: 100%;
+}
+
+.product_h2{
+  font-family: InriaSerif-Bold;
+  margin-top: 14%;
+  width: 100%!important;
+
 }
 
 .display-products hr{
@@ -954,5 +966,19 @@ flex-direction: column;
 .banner h2{
   font-family: InriaSerif-Bold;
 }
+
+/* PAGE CONNEXTION */
+/* FORMULAIRE LOGIN */
+
+.formulaire{
+  border-radius: 0.1875rem;
+  background: #FFF;
+  box-shadow: 1px 6px 8px 4px #F5F5E5;
+  width: 20.3125rem;
+  height: 20.25rem;
+  flex-shrink: 0;
+}
+
+.form_email{}
 
 }
