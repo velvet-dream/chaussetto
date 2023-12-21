@@ -31,6 +31,13 @@ class CategoryRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function save(Category $category): Category
+    {
+        $this->getEntityManager()->persist($category);
+        $this->getEntityManager()->flush();
+        return $category;
+    }
+
 
     // Dans CategoryRepository.php
     public function findOneByLabel(string $label): ?Category

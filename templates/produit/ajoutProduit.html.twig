@@ -2,73 +2,23 @@
 
 {% block title %}Hello ArticleController!{% endblock %}
 
+
 {% block main %}
+    <h1>Formulaire de Produit</h1>
 
-    <form action="{{ path("add_product") }}" method="post">
+    {{ form_start(form) }}
 
-        <label for="name">Titre de l'article</label><br>
-        <input type="text" name="name" placeholder="Nom" id="name"><br><br>
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.active) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.weight) }}
+    {{ form_row(form.tax) }}
+    {{ form_row(form.categories) }}
+    {{ form_row(form.stock) }}
 
-        <label for="description">Description de l'article</label><br>
-        <textarea id="description" name="description" placeholder='Description' rows="4" cols="50"></textarea><br><br>
-        
-        <label for="price">Prix</label><br>
-        <input type="number" name="Prix" placeholder="Prix" id="prix" step="0.01"><br><br>
+    {{ form_row(form.submit) }}
 
-
-        <label for="poids">Poids</label><br>
-        <input type="number" name="poids" placeholder="Poids de l'article" id="poids"><br><br>
-
-        <label for="stock">Stock</label><br>
-        <input type="number" name="stock" placeholder="Stock disponible" id="stock"><br><br>
-
-        <label for="taxlabel">Taxe</label><br>
-        <select name="tax" id="tax">
-            <option value="">Sélectionnez une taxe </option>
-            {% for taxes in tax %}
-                <option value="{{ taxes.label }}">{{ taxes.label }} - {{taxes.rate}}% </option>
-            {% endfor %}
-        </select><br><br>
-
-       
-
-        <label for="Nomtaxe">Nom de la Taxe si vous voulez en créer une</label><br>
-        <input type="text" name="Nomtaxe" placeholder="Nom de la Taxe" id="Nomtaxe"><br><br>
-
-        <label for="taxe">Montant de la taxe</label><br>
-        <input type="number" name="taxe" placeholder="Montant Taxe" id="rate_taxe"><br><br>
-
-
-        <label for="image">Image de l'article</label><br>
-        <input type="file" name="image" id="image"><br><br>
-        
-
-        <label for="categorie">Catégorie</label><br>
-        <select name="category" id="category">
-            <option value="">Sélectionnez une catégorie</option>
-            {% for category in categories %}
-                <option value="{{ category.label }}">{{ category.label }}</option>
-            {% endfor %}
-        </select><br><br>
-
-        {# <a href="{{ path("createCategory") }}">Créer une catégorie</a> #}
-
-        
-        
-        <label>Produit est-il actif ? : </label><br>
-        <input type="radio" id="active" name="statut" value="active">
-        <label for="active">Actif </label><br>
-        
-        <input type="radio" id="inactive" name="statut" value="inactive">
-        <label for="inactive">Inactif</label><br><br>
-
-
-
-
-
-        <input type="submit" value="Envoyer">
-    </form>
-
-    <p>{{ message }}</p>
-
+    {{ form_end(form) }}
 {% endblock %}
+
