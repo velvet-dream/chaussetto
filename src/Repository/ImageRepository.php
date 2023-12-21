@@ -23,7 +23,12 @@ class ImageRepository extends ServiceEntityRepository
         parent::__construct($registry, Image::class);
     }
 
-
+    public function save(Image $image): Image
+    {
+        $this->getEntityManager()->persist($image);
+        $this->getEntityManager()->flush();
+        return $image;
+    }
 //    /**
 //     * @return Image[] Returns an array of Image objects
 //     */

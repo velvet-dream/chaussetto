@@ -3,6 +3,7 @@
 
 namespace App\Form;
 use App\Entity\Tax;
+use App\Entity\Image;
 
 use App\Entity\Category;
 use App\Entity\Product;
@@ -37,10 +38,12 @@ class ProductFormType extends AbstractType
 
             
         ])
+        ->add('images', EntityType::class, [
+            'class' => Image::class,
+            'label' => 'name',
+        ])
         
-    
-
-       ->add('submit',SubmitType::class,[
+        ->add('submit',SubmitType::class,[
         'label' => 'Ajouter'
        ]);
 
