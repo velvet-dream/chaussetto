@@ -7,6 +7,16 @@ app_cart_add:
     path: '/cart/add/{id}'
     controller: 'App\Controller\CartController::add'
     methods: ['GET']
+
+app_cart_remove:
+    path: '/cart/remove/{id}'
+    controller: 'App\Controller\CartController::remove'
+    methods: ['GET']
+
+app_cart_delete:
+    path: '/cart/delete/{id}'
+    controller: 'App\Controller\CartController::delete'
+    methods: ['GET']
    
 app_cart_index:
     path: '/cart'
