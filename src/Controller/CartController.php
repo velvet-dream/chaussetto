@@ -32,10 +32,9 @@ class CartController extends AbstractController
             //le total est égal au prix des produits multiplié par la quantité.
             $total += $product->getPrice() * $quantity;
         }
-        $session->set('panier', []);
-        dd($data);
+        
 
-        return $this->render('customer/cart/cart.html.twig', compact('data'));
+        return $this->render('cart/cart.html.twig', compact('data', 'total'));
     } 
 
     #[Route('/add/{id}', name: 'app_cart_add')]
