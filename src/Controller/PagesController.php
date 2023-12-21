@@ -35,4 +35,9 @@ class PagesController extends AbstractController
             'products' => $products,
         ]);
     }
+
+    public function category(Catego)
+    {
+
+    }
 }

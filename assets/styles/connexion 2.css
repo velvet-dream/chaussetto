@@ -1,0 +1,38 @@
+@font-face {
+    font-family: InriaSans-Light;
+    src: url(../img/polices/InriaSans-Light.ttf);
+}
+
+@font-face {
+    font-family: InriaSerif-Bold;
+    src: url(../img/polices/InriaSerif-Bold.ttf);
+}
+
+body{
+  margin: 0;
+}
+
+@media screen and (max-width: 1920px)
+{
+
+}
+
+/* Styles pour les écrans de petite taille (tablette) */
+@media screen and (max-width: 1300px) 
+ {
+
+ }
+
+ /* Styles pour les écrans de petite taille (mobile) */
+@media screen and (max-width: 480px) 
+{
+/* page de connection */
+/* formulaire */
+
+
+}
+.h1{
+  width: 356px;
+height: 90px;
+flex-shrink: 0;
+}

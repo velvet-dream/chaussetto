@@ -163,7 +163,6 @@ class Category
         if ($this->products->removeElement($product)) {
             $product->removeCategory($this);
         }
-
         return $this;
     }
 

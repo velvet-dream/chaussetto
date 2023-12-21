@@ -66,7 +66,7 @@ class StaffCategoryController extends AbstractController
             return $this->redirectToRoute('app_index');
         }
 
-        return $this->render('tax\index.html.twig', [
+        return $this->render('staff_category/new.html.twig', [
             'title' => 'Création d\une nouvelle catégorie !',
             'form' => $form,
         ]);

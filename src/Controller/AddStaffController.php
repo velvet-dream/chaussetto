@@ -17,8 +17,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AddStaffController extends AbstractController
 {
 
-
-
     #[Route ('showAdmin/{id}', name: 'app_show_admin')]
     public function showStaff(?Staff $staff, Security $security) : Response
     {
