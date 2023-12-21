@@ -88,7 +88,7 @@ class CustomerController extends AbstractController
             // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
             $this->addFlash(
                 'success',
-                'Mise à jour réussie !'
+                'Mise à jour réussie !' 
             );
 
             return $this->redirectToRoute("app_customer_informations");

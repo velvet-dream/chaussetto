@@ -78,6 +78,11 @@ class AdminController extends AbstractController
         $form = $this->createForm(StaffFormType::class, $staff);
         $form->handleRequest($request);
         if($formStaffService->submitForm($form,$staff,$request,$pwd)){
+            $this->addFlash(
+                'success',
+                'Mise à jour réussie !'
+            );
+
             return $this->redirectToRoute('app_admin_profile');
         }
 
