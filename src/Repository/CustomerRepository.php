@@ -21,6 +21,22 @@ class CustomerRepository extends ServiceEntityRepository
         parent::__construct($registry, Customer::class);
     }
 
+    public function searchByName(string $name,
+    string $triName, 
+    string $triLastname, 
+    string $trimail) :?array
+
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.name like :val')
+            ->setParameter('val' , '%'.$name.'%')
+            ->addOrderBy('c.name', $triName)
+            ->addOrderBy('c.lastName', $triLastname)
+            ->addOrderBy('c.email', $trimail)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Customer[] Returns an array of Customer objects
 //     */

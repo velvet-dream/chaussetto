@@ -1,8 +1,34 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('general') }}
+            {{ encore_entry_link_tags('burger') }}
+            {{ encore_entry_link_tags('footer') }}
+            {{ encore_entry_link_tags('signup') }}
+
+
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="/build/app.css"> -->
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('general') }}
+            {{ encore_entry_script_tags('burger') }}
+            {{ encore_entry_script_tags('footer') }}
+            {{ encore_entry_script_tags('signup') }}
+
+            <!-- Renders app.js & a webpack runtime.js file
+                <script src="/build/runtime.js" defer></script>
+                <script src="/build/app.js" defer></script>
+                See note below about the "defer" attribute -->
+        {% endblock %}
+
 {% block main %}
   {% if form is defined %}
+  <div class="formulaire">
     {{ form(form) }}
+  </div>
   {% else %}
     Formulaire indéfini
   {% endif %}

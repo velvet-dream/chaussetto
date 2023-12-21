@@ -16,27 +16,33 @@
     <p>DÉCOUVREZ UN MONDE OÙ LE STYLE ET LE CONFORT SE RENCONTRENT</p>
 </div>
 
+<div id="discovery_category">
+  <a href=""><button class="discovery_category" >Découvrir nos chaussettes originales</button></a>
 
-
-{% for product in products %}
-<div class="display-products">
-    <h2>NOS CHAUSSETTES ORIGINALES</h2>
-    <hr>
+  <a href=""><button class="discovery_category_basic" >Découvrir nos chaussettes basiques</button></a>
 </div>
-<div class="container">
-  <div id="slider">
-    <div class="slide">
-      <img src="" alt="">
+
+<div class="display-products">
+    <h2 class="product_h2">NOS CHAUSSETTES </h2>
+    <hr>
+
+<div class="grid_product">
+{% for product in products[:4] %}
+<div class="container_product" >
+  <div id="slider_product">
+    <div class="slide_product">
       <div class="wrapInfoPost">
         <h3>{{ product.name }} </h3>
         <p>{{ product.price }}€</p>
+        <img src="/images/mobile/chaussette_guitare_basique.png" > <!-- a finir  -->
+        <a href=""><button class="ajout_panier" >Ajouter au panier</button></a>
       </div>
-        <a href=""><button>Ajouter au panier</button></a>
     </div>
+  </div>
 </div>
 {% endfor %}
 
-
+</div>
 
 
     {{ block("endpage", "endpage.html.twig") }}
