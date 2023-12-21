@@ -27,10 +27,13 @@
                     <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit" style="max-width: 200px; height: auto; margin-top: 10px;">
                 {% endfor %}
             </div>
-        </div>
-                {# Ajouter condition le boutin Ajouter au panier apparait si le produit est en stock, sinon affichier temporairement en rupture de stock#}
-                <a href="{{ path('app_cart', {id: produit}) }}"><button class="add-cart">Ajouter au panier</button></a>
-
+        </div>  
+                {% if produit.stock > 0 %}
+                {# Verifier l'ajout de condition ajout au panier apparait SI le produit est en stock, sinon affichier temporairement en rupture de stock #}
+                <a href="{{ path('app_cart_add', {id: produit.id}) }}"><button class="add-cart">Ajouter au panier</button></a>
+                {% else %}
+                    <p>Temporairement en rupture de stock>
+                {% endif %}
     </div>
 
 

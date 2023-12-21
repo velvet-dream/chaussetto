@@ -1,5 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+    {{ encore_entry_link_tags('connexion') }}
+    {{ encore_entry_link_tags('general') }}
+    {{ encore_entry_link_tags('burger') }}
+    {{ encore_entry_link_tags('footer') }}
+
+
+    <!-- Renders a link tag (if your module requires any CSS)
+    <link rel="stylesheet" href="/build/app.css"> -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('general') }}
+    {{ encore_entry_script_tags('burger') }}
+    {{ encore_entry_script_tags('connexion') }}
+    {{ encore_entry_script_tags('footer') }}
+
+
+    <!-- Renders app.js & a webpack runtime.js file
+        <script src="/build/runtime.js" defer></script>
+        <script src="/build/app.js" defer></script>
+            See note below about the "defer" attribute -->
+{% endblock %}
+
+
 {% block title %}
     {{ title }}
 {% endblock %}
@@ -11,7 +37,13 @@
                 {{ error.messageKey|trans(error.messageData, 'security') }}
             </div>
         {% endif %}
-        <br><form action={{path('app_login')}} method='POST'>
+        <h1> CONNECTEZ-VOUS <h1>
+
+        <br>
+        
+        
+        <form action={{path('app_login')}} method='POST'>
+
             <label for='email'> Email </label>
             <input type='email' id='email' name='_username' value='{{ email }}'>
 
@@ -23,6 +55,7 @@
             <input type='hidden' name='_csrf_token' value="{{ csrf_token('authenticate') }}">
 
             <button type='submit'> Login </button>
+
 
 
 

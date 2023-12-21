@@ -1,0 +1,64 @@
+@font-face {
+    font-family: InriaSans-Light;
+    src: url(../img/polices/InriaSans-Light.ttf);
+}
+
+@font-face {
+    font-family: InriaSerif-Bold;
+    src: url(../img/polices/InriaSerif-Bold.ttf);
+}
+
+body{
+  margin: 0;
+}
+
+@media screen and (max-width: 1920px) {
+/* Styles par défaut pour les écrans larges */
+
+}
+
+
+/* Styles pour les écrans de petite taille (mobile) */
+@media screen and (max-width: 480px) {
+
+.formulaire{
+    display: flex;
+    justify-content: center;
+}
+
+#customer_form{
+    border-radius: 0.1875rem;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    width: 90%;
+    height: auto;
+    flex-shrink: 0;
+    text-align: left; 
+    padding: 5%;
+}
+
+#customer_form div {
+    color: #000;
+    font-family: Inria Sans;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#customer_form label {
+    color: #000;
+    font-family: Inria Sans;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#customer_form input {
+    border-radius: 0.1875rem;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5 inset;
+}
+
+}
