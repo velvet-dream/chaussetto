@@ -25,6 +25,9 @@ Encore
     .addEntry('burger', './assets/burger.js')
     .addEntry('connexion', './assets/connexion.js')
     .addEntry('footer', './assets/footer.js')
+    .addEntry('signup', './assets/signup.js')
+
+    
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

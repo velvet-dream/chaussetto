@@ -81,6 +81,10 @@ nav {
     #web-menu {
       display: none;
     }
+
+    #web-menu{
+      width: 100% !important;
+    }
   
     .burger-icon:hover + #web-menu,
     #web-menu:hover {
