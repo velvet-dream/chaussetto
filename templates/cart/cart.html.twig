@@ -3,7 +3,7 @@
 {% block main %}
 <div class="top-cart">
     <h1>Panier</h1>
-    <hr>
+    <hr> 
      {# Article par défaut avant d'ajouter methode pour ajout de produit #}
      <div class="product-default">
     {# Dans le Controller #}
@@ -30,16 +30,32 @@
             <thead>
                     <tr>
                         <th>Article(s)</th>
-                        {# Dans le Controller #}
-                        {# ajouter methode avec render pour renvoyer le prix de l'article #}
-                        <td>9,99E (prix de l'article)</td>
+                        {% for element in data %}
+                            <td>{{ element.product.name }}</td>
+                        {% endfor %}
                     </tr>
                     <tr>
-                        <th>Livraison</th>
-                         {# ajouter methode avec render pour renvoyer le prix de la livraison #}
-                        <td>4,50E (prix de la livraison)</td>
+                        <th>prix</th>
+                        {% for element in data %}
+                            <td>{{ element.product.price / 100 }} €</td>
+                        {% endfor %}
                     </tr>
+                    <tr>
+                        <th>quantité</th>
+                        {% for element in data %}
+                            <td>{{ element.quantity }}</td>
+                        {% endfor %}
+                    </tr>
+                        <a href="#">+</a>
+                        <a href="#">_</a>
+                        <a href="#"><img class="icon-trash"  src="../img/icons/poubelle_panier_chaussetto.png"/></a>
+                    <td>
+
+                    </td>
             </thead>
+            <tbody>
+               
+            </tbody>
                 
         </table>
 </div>    
@@ -48,8 +64,9 @@
             <thead>
                     <tr>
                         <th>Total TTC </th>
-                         {# ajouter methode avec render pour renvoyer le prix total #}
-                        <td>14,40E (prix total de la vente)</td>
+                        {% for element in data %}
+                            <td>{{ element.quantity * element.product.price / 100 }} €</td>
+                        {% endfor %}
                     </tr>
             </thead>            
     </table>
