@@ -26,13 +26,90 @@ body{
  /* Styles pour les écrans de petite taille (mobile) */
 @media screen and (max-width: 480px) 
 {
-/* page de connection */
-/* formulaire */
+  .connection h1{
+    width: 356px;
+    height: 90px;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: Inria Serif;
+    font-size: 35px;
+    text-transform: uppercase;
+    width: 356px;
+    height: 35px;
+    margin-top: 11%;
+  }
 
+  .sectionformulaire{
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .formulaire{
+    width: 77%;
+    height: 100%;
+    border-radius: 3px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    padding:5%;
+  }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    padding-top:5%;
+  }
+  .info label{
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.5rem;
+    padding-bottom: 2%;
+  }
+  .info input{
+    border-radius: 1px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5 inset;
+    height: 30px;
+    border-color: #F5F5E5;
+
+  }
+  .button-form button{
+    color: #000;
+    text-align: center;
+    font-family: InriaSans-Light;
+    font-size: 17px;      
+    line-height: normal;       
+    background: #FFF11D;
+    float: right;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    border-color: #F5F5E5;
+    padding: 2%;
+  
+  }
+  
+  #basdepage{
+    display: flex;
+    justify-content: center;
+  }
+
+  .basdepage{
+    border-radius: 1px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    width: 87%;
+    margin: 6%;
+    padding: 2%;
+    margin-bottom: 19%;
+  }
+
+  .basdepage p {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 17px;
+    text-align: center;
+  }
 
 }
-.h1{
-  width: 356px;
-height: 90px;
-flex-shrink: 0;
-}
+

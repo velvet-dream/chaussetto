@@ -37,29 +37,42 @@
                 {{ error.messageKey|trans(error.messageData, 'security') }}
             </div>
         {% endif %}
-        <h1> CONNECTEZ-VOUS <h1>
+<div class="connection"> 
+    <h1> CONNECTEZ-VOUS </h1>
+</div>
 
-        <br>
         
-        
+<section class="sectionformulaire">
+    <div class="formulaire">
         <form action={{path('app_login')}} method='POST'>
+            <div class="info">
+                <label for='email'> Email de connection</label>
+                <input type='email' id='email' name='_username' value='{{ email }}'>
+            </div>
 
-            <label for='email'> Email </label>
-            <input type='email' id='email' name='_username' value='{{ email }}'>
-
-            <label for='password'> Pwd </label>
-            <input type='password' id='password' name='_password'>
+            <div class="info">
+                <label for='password'> Mot de passe </label>
+                <input type='password' id='password' name='_password'>
+            </div>
 
             {# redirection vers une route valide #}
             {# <input type='hidden' name='_target_path' value='{{ path('app_customer_dashboard') }}'> #}
-            <input type='hidden' name='_csrf_token' value="{{ csrf_token('authenticate') }}">
 
-            <button type='submit'> Login </button>
+            <div class="button-form">
+                <input type='hidden' name='_csrf_token' value="{{ csrf_token('authenticate') }}">
 
-
-
-
-        </form><br>
+                <button type='submit'> Se connecter </button>
+                
+            </div>
+        </form>
     </div>
+</section>
+        
+<section id="basdepage">
+    <div class="basdepage">    
+        <a href=""><p> Pas de compte ? Créer-en un</p></a>
+    </div>
+</section>    
+
 
 {% endblock %}
