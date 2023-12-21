@@ -27,6 +27,11 @@ class TaxRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
         return $tax;
     }
+
+    public function findOneByLabel(string $label): ?Tax
+    {
+        return $this->findOneBy(['label' => $label]);
+    }
 //    /**
 //     * @return Tax[] Returns an array of Tax objects
 //     */

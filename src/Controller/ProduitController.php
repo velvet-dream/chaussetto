@@ -76,7 +76,7 @@ class ProduitController extends AbstractController
             $description = $request->request->get('description');
             $poids = $request->request->get('poids');
             $stock = $request->request->get('stock');
-            $taxe = $request->request->get('taxe');
+            $rate_tax = $request->request->get('rate_taxe');
             $category = $request->request->get('category');
             $NomTaxe = $request->request->get('Nomtaxe');
             $nomCat = $request->request->get('nomCat');
@@ -84,11 +84,14 @@ class ProduitController extends AbstractController
             $active = $request->request->get('isActive');
             $statut = $request->request->get('statut');
             $price = floatval($request->request->get('prix'));
+            $selected_taxe = $request->request->get('tax');
+            $imageFile = $request->files->get('image');
+
             
 
 
-            if($name === '' || $description === '' || $taxe === '' || $stock === '' || $poids === ''){
-                $message = 'Un des champs sont videds, Veuillez remplir tout ces champs';
+            if($name === '' || $description === '' || $stock === '' || $poids === ''){
+                $message = 'Un des champs sont vides, Veuillez remplir tout ces champs';
             }elseif($category === '' && $nomCat === '' ){
                 $message = "Vous n\'avez pas selectionné une catégorie ou créer une catégorie";
             }
@@ -99,15 +102,28 @@ class ProduitController extends AbstractController
                 $product->setName($name);
                 $product->setDescription($description);
 
-                $tax = new Tax();
+                if($selected_taxe !== ''){ 
+                    $selected_taxe = $taxrepo->findOneByLabel($selected_taxe);                
+                    $product->setTax($selected_taxe);
+                    $product->setTax($selected_taxe);
 
-                $tax->setLabel($NomTaxe);
-                $tax->setRate($taxe);
+                   
+                }else{
+
+                    $tax = new Tax();
+
+                    $tax->setLabel($NomTaxe);
+                    $tax->setRate($rate_tax);
+                    $taxrepo->save($tax);
+                    $product->setTax($tax);
 
 
-                $taxrepo->save($tax);
+                }
+                    
+                
 
-                $product->setTax($tax);
+
+
                 
                 $product->setWeight($poids);
                 $product->setStock($stock);
@@ -144,6 +160,7 @@ class ProduitController extends AbstractController
                 
 
 
+                $directory = $this->getParameter('../../public/images/'); 
 
                 
                 $productRepository->save($product);

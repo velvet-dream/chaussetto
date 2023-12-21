@@ -22,19 +22,26 @@
         <label for="stock">Stock</label><br>
         <input type="number" name="stock" placeholder="Stock disponible" id="stock"><br><br>
 
-        <label for="tax">Taxe</label><br>
-        <select name="taxes" id="tax">
+        <label for="taxlabel">Taxe</label><br>
+        <select name="tax" id="tax">
             <option value="">Sélectionnez une taxe </option>
             {% for taxes in tax %}
                 <option value="{{ taxes.label }}">{{ taxes.label }} - {{taxes.rate}}% </option>
             {% endfor %}
         </select><br><br>
 
-        <label for="taxe">Taxe</label><br>
-        <input type="number" name="taxe" placeholder="Taxe" id="taxe"><br><br>
+       
 
-        <label for="Nomtaxe">Nom de la taxe</label><br>
+        <label for="Nomtaxe">Nom de la Taxe si vous voulez en créer une</label><br>
         <input type="text" name="Nomtaxe" placeholder="Nom de la Taxe" id="Nomtaxe"><br><br>
+
+        <label for="taxe">Montant de la taxe</label><br>
+        <input type="number" name="taxe" placeholder="Montant Taxe" id="rate_taxe"><br><br>
+
+
+        <label for="image">Image de l'article</label><br>
+        <input type="file" name="image" id="image"><br><br>
+        
 
         <label for="categorie">Catégorie</label><br>
         <select name="category" id="category">
@@ -44,19 +51,9 @@
             {% endfor %}
         </select><br><br>
 
+        {# <a href="{{ path("createCategory") }}">Créer une catégorie</a> #}
 
-        <label for="nomCate">Saisissez la categorie ci-dessous si vous voulez en créer une </label><br>
-        <input type="text" name="nomCat" placeholder="Nom de la Categorie" id="nomCat"><br><br>
-
-        <label for="descat">Description de la catégorie </label><br>
-        <input type="text" name="descriptionCat" placeholder="Nom de la Categorie" id="descriptionCat"><br><br>
         
-          <label>Categorie : </label><br>
-        <input type="radio" id="active" name="isActive" value="active">
-        <label for="active">Active</label><br>
-        
-        <input type="radio" id="inactive" name="isActive" value="inactive">
-        <label for="inactive">Inactive</label><br><br>
         
         <label>Produit est-il actif ? : </label><br>
         <input type="radio" id="active" name="statut" value="active">

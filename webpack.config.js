@@ -26,8 +26,8 @@ Encore
     .addEntry('connexion', './assets/connexion.js')
     .addEntry('footer', './assets/footer.js')
     .addEntry('signup', './assets/signup.js')
-    .addEntry('colors', './assets/colors.js')
-    .addEntry('bo-login', './assets/bo-login.js')
+    .addEntry('endpage', './assets/endpage.js')
+    
 
     
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

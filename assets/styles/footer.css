@@ -12,7 +12,7 @@ body{
   margin: 0;
 }
 
-@media screen and (max-width: 1920px) {
+@media screen and (min-width: 1300px) {
 /* Styles par défaut pour les écrans larges */
 
 
