@@ -4,7 +4,7 @@
 
 ```bash
 composer update
-npm update
+npm install
 ```
 
 ## compile css and js one time:
