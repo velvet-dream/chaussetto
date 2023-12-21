@@ -12,7 +12,7 @@ body{
   margin: 0;
 }
 
-@media screen and (max-width: 1920px) {
+@media screen and (min-width: 480px) {
 /* Styles par défaut pour les écrans larges */
 nav {
   display: flex;
@@ -27,14 +27,12 @@ nav {
   align-items: center;
 }
 
-.logo img {
-  width: 50px; 
-}
+
 
 #web-menu{
-  width: 50%;
-  float: right;
-}
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;}
 
 .web-menu a {
   color: rgb(0, 0, 0);
@@ -50,13 +48,13 @@ nav {
   display: none; 
 }
 
-.icons_connexion{
+/* .icons_connexion{
   width: 2.5%;
 }
 
 #icons_panier{
   width: 2.5%;
-}
+} */
 }
 
 
@@ -67,15 +65,12 @@ nav {
     .header {
       justify-content: space-between;
       width: 100%;
-      padding: 0 10px; 
     }
-  
-    .logo {
-      order: -1; 
-    }
-  
+    
     .burger-icon {
-      display: block; 
+      display: flex;
+      float: right;
+      font-size: 2rem;
     }
   
     #web-menu {
@@ -94,11 +89,11 @@ nav {
     .web-menu {
       flex-direction: column;
       position: absolute;
-      top: 60px; 
       left: 0px;
       right: 0px;
       background-color: #ffffff;
       padding: 10px;
+      text-align: center;
     }
   
     .icons_connexion{
