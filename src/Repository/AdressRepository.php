@@ -11,7 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method Adress|null find($id, $lockMode = null, $lockVersion = null)
  * @method Adress|null findOneBy(array $criteria, array $orderBy = null)
- * @method Adress[]    findAll()
+ * @method Adress[]j    findAll()
  * @method Adress[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AdressRepository extends ServiceEntityRepository
@@ -19,6 +19,16 @@ class AdressRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Adress::class);
+    }
+
+    public function searchByName(string $name,) :?array
+
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.line1 like :val')
+            ->setParameter('val' , '%'.$name.'%')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**
@@ -45,4 +55,5 @@ class AdressRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
 }
