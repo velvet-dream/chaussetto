@@ -88,7 +88,7 @@ class ProduitController extends AbstractController
 
 
             if($name === '' || $description === '' || $taxe === '' || $stock === '' || $poids === ''){
-                $message = 'Un des champs sont videds, Veuillez remplir tout ces champs';
+                $message = 'Un ou des champs sont vides, Veuillez remplir tout ces champs';
             }elseif($category === '' && $nomCat === '' ){
                 $message = "Vous n\'avez pas selectionné une catégorie ou créer une catégorie";
             }
