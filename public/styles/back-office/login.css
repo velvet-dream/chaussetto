@@ -1,3 +1,12 @@
 html {
   background-color: var(--kaki);
 }
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+form {
+  background-color: white;
+}
