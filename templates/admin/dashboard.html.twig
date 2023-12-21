@@ -10,17 +10,28 @@
             
             {% block header %} 
         
-                <nav> Navigation Admin : </nav><br>
+                <nav>
+                    <p>Navigation Admin :</p>
 
-                <a href= "{{ path ('app_admin_dashboard') }} " > Pannel d'administration </a><br>
-                {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
-                    <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a><br>
-                    <a href= "{{ path ('app_admin_profile') }} " > Mon profil </a><br>
-                {% else %}
-                    <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
-                {% endif %}
+                    <a href= "{{ path ('app_admin_dashboard') }} " > Pannel d'administration </a><br>
+                    {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                        <a href= "{{ path ('app_admin_logout') }} " > Se déconnecter </a><br>
+                        <a href= "{{ path ('app_admin_profile') }} " > Mon profil </a><br>
+                    {% else %}
+                        <a href= "{{ path ('app_admin_login') }} " > Se connecter </a><br>
+                    {% endif %}
+                </nav>
             {% endblock %}
         </header>
+        {# Lit et affiche tous les message flash #}
+        {# Classes : flash-success, flash-warning #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <br><br>
         <main>
             {% block main %}

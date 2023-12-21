@@ -27,52 +27,72 @@ class PromotionFormType extends AbstractType
     {
         $builder
             ->setMethod('POST')
-            ;
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
-            $promotion = $event->getData();
-            $form = $event->getForm();
-            // Si "promotion" existe bien, on est en train de l'update
-            if ($promotion && null !== $promotion->getId()) {
-                
-                $form
-                    ->add('label', TextType::class,[
-                        'label' => 'Intitulé',
-                        'attr' => ['value'=> $promotion->getLabel()],
-                    ])
-                    ->add('rate', NumberType::class ,[
-                        'label' => 'Taux de réduction',
-                        'attr' => ['value'=> $promotion->getRate()],
-                    ]);
-                if ($choices = $this->prodRepo->findAvailableProductsForPromotion()) {
-                    
-                    $form->add('products', EntityType::class, [
-                        'class' => Product::class,
-                        'choices' => $choices,
-                        'multiple' => true,
-                        // 'expanded' => true,
-                    ]);
-                }
-                
-            } else {
-                $form->add('label', TextType::class,[
-                        'label' => 'Intitulé',
-                    ])
-                    ->add('rate', NumberType::class ,[
-                        'label' => 'Taux de réduction',
-                    ]);
-            }
-        });
-            
+            ->add('label', TextType::class,[
+                'label' => 'Intitulé',
+                'attr' => ['value'=> $options['promotion']->getLabel()],
+            ])
+            ->add('rate', NumberType::class ,[
+                'label' => 'Taux de réduction',
+                'attr' => ['value'=> $options['promotion']->getRate()],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Créer la promotion',
+            ]);
+        if ($choices = $this->prodRepo->findAvailableProductsForPromotion()) {  
+            $builder->add('products', EntityType::class, [
+                'class' => Product::class,
+                'choices' => $choices,
+                'multiple' => true,
+                // 'expanded' => true,
+            ]);
+        }
+
         $builder->add('submit', SubmitType::class, [
-            'label' => 'Créer la promotion',
+            'label' => $options['label'],
         ]);
+
+        // $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+        //     $promotion = $event->getData();
+        //     $form = $event->getForm();
+        //     // Si "promotion" existe bien, on est en train de l'update
+        //     if ($promotion && null !== $promotion->getId()) {
+                
+        //         $form
+        //             ->add('label', TextType::class,[
+        //                 'label' => 'Intitulé',
+        //                 'attr' => ['value'=> $promotion->getLabel()],
+        //             ])
+        //             ->add('rate', NumberType::class ,[
+        //                 'label' => 'Taux de réduction',
+        //                 'attr' => ['value'=> $promotion->getRate()],
+        //             ]);
+        //         if ($choices = $this->prodRepo->findAvailableProductsForPromotion()) {
+                    
+        //             $form->add('products', EntityType::class, [
+        //                 'class' => Product::class,
+        //                 'choices' => $choices,
+        //                 'multiple' => true,
+        //                 // 'expanded' => true,
+        //             ]);
+        //         }
+                
+        //     } else {
+        //         $form->add('label', TextType::class,[
+        //                 'label' => 'Intitulé',
+        //             ])
+        //             ->add('rate', NumberType::class ,[
+        //                 'label' => 'Taux de réduction',
+        //             ]);
+        //     }
+        // });    
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Promotion::class,
-            'products' => NULL,
+            'promotion' => new Promotion(),
+            'label' => 'Créer'
         ]);
     }
 }

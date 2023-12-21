@@ -21,7 +21,11 @@ class Promotion
     #[ORM\Column]
     private ?float $rate = null;
 
-    #[ORM\OneToMany(mappedBy: 'promotion', targetEntity: Product::class)]
+    #[ORM\OneToMany(
+        mappedBy: 'promotion', 
+        targetEntity: Product::class,
+        orphanRemoval: false
+        )]
     private Collection $products;
 
     public function __construct()

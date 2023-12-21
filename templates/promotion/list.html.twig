@@ -4,15 +4,19 @@
 
 {% block main %}
     <h1>{{ title }}</h1>
+    <div class="">
+        <p><a href="{{ path('app_create_promotion') }}">Ajouter une nouvelle promo</a></p>
+    </div>
     <table>
         <tr>
             <th>Promotion</th>
             <th>Réduction</th>
             <th colspan="3">Produits</th>
+            <th>Contrôles</th>
         </tr>
         {% for promotion in promotions %}
             <tr>
-                <td>{{ promotion.label }}</td>
+                <td><a href="{{ path('app_show_promotion', { 'id': promotion.id }) }}">{{ promotion.label }}</a></td>
                 <td>{{ promotion.rate }} %</td>
                 <td colspan="3">
                     <ul>
@@ -20,6 +24,10 @@
                             <li><a href="">{{ product.name }}</a></li>
                         {% endfor %}
                     </ul>
+                </td>
+                <td>
+                    <a href="{{ path('app_update_promotion', { 'id': promotion.id }) }}">Modifier</a>
+                    <a href="{{ path('app_delete_promotion', { 'id': promotion.id }) }}" class="danger">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}
