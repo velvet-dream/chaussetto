@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block main %}
+    {% if contactForm is defined %}
+    <div class="formulaire">
+        {{ form(contactForm) }}
+    </div>
+    {% else %}
+        Formulaire indéfini
+    {% endif %}
+{% endblock %}

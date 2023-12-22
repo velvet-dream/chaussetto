@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryFormType;
 use App\Repository\CategoryRepository;
-use App\Services\FormCategoryService;
+use App\Services\SimpleFormHandlerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +49,7 @@ class StaffCategoryController extends AbstractController
     #[Route ('createCategory', name: 'app_create_category')]
     public function createCategory (
         Request $request, 
-        FormCategoryService $formCategoryService,
+        SimpleFormHandlerService $formHandler,
         Security $security) : Response
     {
         if (!$security->isGranted('ROLE_ADMIN')){
@@ -61,9 +61,8 @@ class StaffCategoryController extends AbstractController
         $category = new Category;
         $form = $this->createForm(CategoryFormType::class, $category);
 
-        $form->handleRequest($request);
-        if ($formCategoryService->submitForm($form, $category,$request)){
-            return $this->redirectToRoute('app_index');
+        if($formHandler->handleForm($form, $request)) {
+            return $this->redirectToRoute('app_show_category');
         }
 
         return $this->render('tax\index.html.twig', [
@@ -75,8 +74,7 @@ class StaffCategoryController extends AbstractController
     #[Route ('updateCategory/{id}', name: 'app_update_category')]
     public function updateCategory (
         Request $request, 
-        FormCategoryService $formCategoryService,
-        Security $security,
+        SimpleFormHandlerService $formHandler,
         Category $category) : Response
     {
         // if (!$security->isGranted('ROLE_ADMIN')){
@@ -88,11 +86,10 @@ class StaffCategoryController extends AbstractController
 
         $form = $this->createForm(CategoryFormType::class, $category);
 
-        $form->handleRequest($request);
-        if ($formCategoryService->submitForm($form, $category,$request)){
+        if($formHandler->handleForm($form, $request)) {
             return $this->redirectToRoute('app_show_category');
         }
-
+    
         return $this->render('staff_category/new.html.twig', [
             'title' => 'Mise à jour d\'une catégorie !',
             'form' => $form,
