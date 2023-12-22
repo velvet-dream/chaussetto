@@ -53,7 +53,9 @@ class ProduitController extends AbstractController
     public function updateProduct(ProductRepository $product): Response
     {
         $categories = $this->getCategories($categoryRepository);
+        $form = $this->createForm(CategoryFormType::class, $category);
 
+        $form->handleRequest($request);
 
 
         
