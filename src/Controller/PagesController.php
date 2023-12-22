@@ -36,8 +36,5 @@ class PagesController extends AbstractController
         ]);
     }
 
-    public function category(Catego)
-    {
-
-    }
+    
 }

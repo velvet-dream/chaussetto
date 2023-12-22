@@ -4,7 +4,7 @@
 namespace App\Form;
 use App\Entity\Tax;
 use App\Entity\Image;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Category;
 use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -38,9 +38,10 @@ class ProductFormType extends AbstractType
 
             
         ])
-        ->add('images', EntityType::class, [
-            'class' => Image::class,
+        ->add('image', FileType::class, [
             'label' => 'name',
+            'mapped' => false, // Indique que ce champ n'est pas lié directement à une propriété de l'entité Product
+            'required' => false, // Rend le champ facultatif
         ])
         
         ->add('submit',SubmitType::class,[
