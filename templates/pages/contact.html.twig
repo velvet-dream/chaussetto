@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block main %}
+<h1>{{ title }}</h1>
     {% if contactForm is defined %}
     <div class="formulaire">
         {{ form(contactForm) }}

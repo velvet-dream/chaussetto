@@ -55,7 +55,7 @@ class PagesController extends AbstractController
         }
 
         return $this->render('pages/contact.html.twig', [
-            'title' => 'S\'inscrire',
+            'title' => 'Nous Contacter',
             'contactForm' => $contactForm,
         ]);    
     }
