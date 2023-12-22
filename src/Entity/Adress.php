@@ -133,5 +133,11 @@ class Adress
         return $this;
     }
 
-
+    public function __toString()
+    {
+        $res = $this->line1 . "\n";
+        $res .= ($this->line2) ? $this->line2 . "\n" : "";
+        $res .= $this->postCode . " " . $this->city . "\n" . $this->country;
+        return $res;
+    }
 }
