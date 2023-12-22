@@ -24,7 +24,12 @@ class ContactFormType extends AbstractType
             ->add('lastName', options:[
                 'attr' => ['value' => $options['customer']->getLastName()],
             ])
-            ->add('message')
+            ->add('object', options:[
+                'label' => 'Objet',
+            ])
+            ->add('message', options:[
+                'label' => 'Votre message',
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
             ])
