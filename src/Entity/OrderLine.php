@@ -123,4 +123,11 @@ class OrderLine
 
         return $this;
     }
+
+    /********************** Fait maison uwu **********************/
+
+    function __toString()
+    {
+        return $this->quantity . " × " . $this->productName . " " . $this->productPrice . "€/u";
+    }
 }

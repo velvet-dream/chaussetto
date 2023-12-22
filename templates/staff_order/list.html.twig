@@ -1,0 +1,31 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+    <h1>{{ title }}</h1>
+    <table>
+        <tr>
+            <th>N° de commande</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Prix Total</th>
+            <th>État de la commande</th>
+            <th>Contrôles</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td><a href="{{ path('app_show_order', { 'id': order.id }) }}">{{ order.id }}</a></td>
+                <td>{{ order.customerLastName }}</td>
+                <td>{{ order.customerName }}</td>
+                <td>{{ order.totalPrice }}</td>
+                <td>{{ order.orderState.label }}</td>
+                <td>
+                    {# <a href="{{ path('app_update_order', { 'id': order.id }) }}">Modifier</a>
+                    <a href="{{ path('app_delete_order', { 'id': order.id }) }}" class="danger">Supprimer</a> #}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
