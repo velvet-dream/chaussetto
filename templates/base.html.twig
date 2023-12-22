@@ -43,11 +43,6 @@
 
                     <div class="web-menu" id="web-menu">
                     {# boucler sur caté parent  #}
-<<<<<<< HEAD
-                        <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
-                        <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a>
-                        <a href="{{ path('app_contact') }}">Contact</a>
-=======
 
                         {{ render(controller(
                             'App\\Controller\\StaffCategoryController::getCategories'
@@ -55,13 +50,12 @@
                         {# <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
                         <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a> #}
                         <a href="#">Contact</a>
->>>>>>> lilya
                         {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                             {{ app.user.email }}
                             <a href="{{ path('app_order') }}">Mes commandes</a>
                             <a href="{{ path('app_logout') }}">Déconnexion</a><br>
                             <a href="{{ path('app_customer_dashboard') }}"><img class="icons_connexion"  src="/images/icons/people_chaussetto.png"></a>
-                        {% else %}
+                        {% else %}.
                             <a href="{{ path('app_login') }}"><img class="icons_connexion"  width="20" height="20" src="/images/icons/people_chaussetto.png"></a>
                             {% endif %}
                             <a  href="{{ path('app_login') }}"><img id="icons_panier"  width="20" height="20"  src="/images/icons/panier_chaussetto.png"></a><br>
