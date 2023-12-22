@@ -70,9 +70,10 @@ class StaffCategoryController extends AbstractController
         }
 
         return $this->render('staff_category/new.html.twig', [
-            'title' => 'Création d\une nouvelle catégorie !',
+            'title' => 'Création d\'une nouvelle catégorie !',
             'form' => $form,
             'categories' => $categories,
+            'category' => $category
         
         ]);
     }
