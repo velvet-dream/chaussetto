@@ -8,14 +8,23 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
+use Symfony\Bundle\SecurityBundle\Security;
+
 
 #[Route('/cart', name: 'app_cart')]
 class CartController extends AbstractController
 {
    
     #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, ProductRepository $productRepository)
+    public function index(Security $security, SessionInterface $session, ProductRepository $productRepository)
     {
+        $user = $this->getUser();
+
+        // Vérification si l'utilisateur est connecté
+        if (($user = $security->getUser()) === NULL) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $cart = $session->get('cart', []);
        
        // initialisation des variables

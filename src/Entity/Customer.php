@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Cart;
 use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -170,6 +171,19 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->carts;
     }
+
+    /*public function getCurrentCart(): Cart
+    {
+        
+        $pouet = uasort($this->carts, function($firstCart, $secondCart) 
+        {
+        return ($firstCart->getId() < $secondCart->getId()) ? -1 : 1 ; 
+        });
+
+       dd($pouet);
+       //return $pouet;
+    }*/
+
 
     public function addCart(Cart $cart): static
     {
