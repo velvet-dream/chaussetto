@@ -1,58 +1,71 @@
 {% extends 'base.html.twig' %}
 
+	{% block additionalStyles %}
+		{# 'app' must match the first argument to addEntry() in webpack.config.js #}
+		<link
+		href="{{ asset('./styles/home.css') }}" rel="stylesheet"/>
+	<!-- Renders a link tag (if your module requires any CSS)
+	    <link rel="stylesheet" href="/build/app.css"> -->
+	{% endblock %}
+
 {% block title %}Accueil{% endblock %}
 
 
 {% block main %}
 
-    <section class="landing">
-        <div class="imageDeFond">
-            <h1>CHAUSSETTO</h1>
-            <hr>
-            <H2>LES CRAVATES POUR LES PIEDS</H2>
-        </div>
-    </section>
-<div class="banner_index">
-    <p>DÉCOUVREZ UN MONDE OÙ LE STYLE ET LE CONFORT SE RENCONTRENT</p>
-</div>
+	<section class="landing">
+		<div class="imageDeFond">
+			<h1>CHAUSSETTO</h1>
+			<hr>
+			<H2>LES CRAVATES POUR LES PIEDS</H2>
+		</div>
+	</section>
+	<div class="banner_index">
+		<p>DÉCOUVREZ UN MONDE OÙ LE STYLE ET LE CONFORT SE RENCONTRENT</p>
+	</div>
 
-<div id="discovery_category">
-  <a href=""><button class="discovery_category" >Découvrir nos chaussettes originales</button></a>
+	<div id="discovery_category">
+		<a href="">
+			<button class="discovery_category">Découvrir nos chaussettes originales</button>
+		</a>
 
-  <a href=""><button class="discovery_category_basic" >Découvrir nos chaussettes basiques</button></a>
-</div>
+		<a href="">
+			<button class="discovery_category_basic">Découvrir nos chaussettes basiques</button>
+		</a>
+	</div>
 
-<div class="display-products">
-    <h2 class="product_h2">NOS CHAUSSETTES </h2>
-    <hr>
+	<div class="display-products">
+		<h2 class="product_h2">NOS CHAUSSETTES
+		</h2>
+		<hr>
 
-<div class="grid_product">
-{% for product in products[:4] %}
-<div class="container_product" >
-  <div id="slider_product">
-    <div class="slide_product">
-      <div class="wrapInfoPost">
-        <h3>{{ product.name }} </h3>
-        <p>{{ product.price }}€</p>
-        <img src="/images/mobile/chaussette_guitare_basique.png" > <!-- a finir  -->
-        <a href=""><button class="ajout_panier" >Ajouter au panier</button></a>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
+		<div class="grid_product">
+			{% for product in products[:4] %}
+				<div class="container_product">
+					<div id="slider_product">
+						<div class="slide_product">
+							<div class="wrapInfoPost">
+								<h3>{{ product.name }}
+								</h3>
+								<p>{{ product.price }}€</p>
+								<img
+								src="/images/mobile/chaussette_guitare_basique.png">
+								<!-- a finir  -->
+								<a href="">
+									<button class="ajout_panier">Ajouter au panier</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 
-</div>
+		</div>
+	</div>
 
-
-    {{ block("endpage", "endpage.html.twig") }}
-
+	<div>
+		{{ block("endpage", "endpage.html.twig") }}
+	</div>
 
 
 {% endblock %}
-
-
-
-
-
-
