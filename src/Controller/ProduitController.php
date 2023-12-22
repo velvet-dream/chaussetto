@@ -39,7 +39,7 @@ class ProduitController extends AbstractController
     }
 
 
-    #[Route('/gestionProduct', name: 'app_gestionProduct')]
+    #[Route('/updateProduct', name: 'app_updateProduct')]
     public function gestionProduct(ProductRepository $product): Response
     {
         $produit = $product->findAll();
@@ -49,9 +49,10 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/gestionProduct', name: 'app_gestionProduct')]
+    #[Route('/updateProduct', name: 'app_gestionProduct')]
     public function updateProduct(ProductRepository $product): Response
     {
+        $categories = $this->getCategories($categoryRepository);
 
 
 
