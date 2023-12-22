@@ -49,15 +49,19 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/gestionProduct', name: 'app_gestionProduct')]
-    public function updateProduct(ProductRepository $product): Response
+    #[Route('/updateProduct/{id}', name: 'app_updateProduct')]
+    public function updateProduct(ProductRepository $productRepo, Product $product,FormCategoryService $formCategoryService,
+    ): Response
     {
 
+        $form = $this->createForm(ProductFormType::class, $product);
+        $form->handleRequest($request);
+       
 
 
-        
-        return $this->render('produit/GestionProduit.html.twig', [
-            'produit' => $produit,
+
+        return $this->render('produit/ajoutProduit.html.twig', [
+            'form' => $form,
         ]);
     }
 
