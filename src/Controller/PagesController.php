@@ -35,4 +35,10 @@ class PagesController extends AbstractController
             'products' => $products,
         ]);
     }
+    
+    #[Route('/', name: 'app_index')]
+    public function contact(): Response
+    {
+        
+    }
 }
