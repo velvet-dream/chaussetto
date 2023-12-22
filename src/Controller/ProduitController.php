@@ -40,10 +40,22 @@ class ProduitController extends AbstractController
 
 
     #[Route('/gestionProduct', name: 'app_gestionProduct')]
-    public function autre_action(ProductRepository $product): Response
+    public function gestionProduct(ProductRepository $product): Response
     {
         $produit = $product->findAll();
 
+        return $this->render('produit/GestionProduit.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
+
+    #[Route('/gestionProduct', name: 'app_gestionProduct')]
+    public function updateProduct(ProductRepository $product): Response
+    {
+
+
+
+        
         return $this->render('produit/GestionProduit.html.twig', [
             'produit' => $produit,
         ]);

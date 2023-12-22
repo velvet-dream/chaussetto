@@ -1,0 +1,26 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Liste des Produits{% endblock %}
+
+{% block main %}
+    <h1>Liste des Produits</h1>
+
+    <div style="display: flex; flex-wrap: wrap;">
+        {% for product in produit %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin: 10px; width: 300px;">
+                <h2>{{ product.name }}</h2>
+                <p>Prix: {{ product.price }}</p>
+                <div>
+                    {% for image in product.images %}
+                        <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <a href="" style="padding: 5px 10px; background-color: #3498db; color: #fff; text-decoration: none; margin-right: 5px;">Modifier</a>
+                    <a href="" style="padding: 5px 10px; background-color: #e74c3c; color: #fff; text-decoration: none;">Supprimer</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
