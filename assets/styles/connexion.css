@@ -12,15 +12,174 @@ body{
   margin: 0;
 }
 
-@media screen and (max-width: 1920px)
+@media screen and (min-width: 1300px)
 {
+  .connection h1{
+     color: #000;
+    text-align: center;
+    font-family: Inria Serif;
+    font-size: 35px;
+    text-transform: uppercase;
+  }
 
+  .sectionformulaire{
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .formulaire{
+    width: 77%;
+    height: 100%;
+    border-radius: 3px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    padding-left:5%;
+    padding-right: 5%;
+    
+  }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    padding-top:5%;
+  }
+  .info label{
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.5rem;
+    padding-bottom: 2%;
+  }
+  .info input{
+    border-radius: 1px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5 inset;
+    height: 35px;
+    border-color: #F5F5E5;
+
+  }
+  .button-form button{
+    color: #000;
+    text-align: center;
+    font-family: InriaSans-Light;
+    font-size: 17px;      
+    line-height: normal;       
+    background: #FFF11D;
+    float: right;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-color: #F5F5E5;
+    padding: 2%;
+  
+  }
+  
+  #basdepage{
+    display: flex;
+    justify-content: center;
+  }
+
+  .basdepage{
+    border-radius: 1px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    width: 87%;
+    margin: 2%;
+    padding: 2%;
+    margin-bottom: 10%;
+  }
+
+  .basdepage p {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 17px;
+    text-align: center;
+  }
 }
 
 /* Styles pour les écrans de petite taille (tablette) */
 @media screen and (max-width: 1300px) 
- {
+ 
+{
+  .connection h1{
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: Inria Serif;
+    font-size: 35px;
+    text-transform: uppercase;
+    margin-top: 11%;
+  }
 
+  .sectionformulaire{
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .formulaire{
+    width: 77%;
+    height: 100%;
+    border-radius: 3px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    padding:5%;
+  }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    padding-top:5%;
+  }
+  .info label{
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.5rem;
+    padding-bottom: 2%;
+  }
+  .info input{
+    border-radius: 1px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5 inset;
+    height: 30px;
+    border-color: #F5F5E5;
+
+  }
+  .button-form button{
+    color: #000;
+    text-align: center;
+    font-family: InriaSans-Light;
+    font-size: 17px;      
+    line-height: normal;       
+    background: #FFF11D;
+    float: right;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    border-color: #F5F5E5;
+    padding: 2%;
+  
+  }
+  
+  #basdepage{
+    display: flex;
+    justify-content: center;
+  }
+
+  .basdepage{
+    border-radius: 1px;
+    background: #FFF;
+    box-shadow: 1px 6px 8px 4px #F5F5E5;
+    width: 87%;
+    margin: 6%;
+    padding: 2%;
+    margin-bottom: 4%;
+  }
+
+  .basdepage p {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 17px;
+    text-align: center;
+  }
  }
 
  /* Styles pour les écrans de petite taille (mobile) */
