@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+{% block main %}
+    <a href="{{ path("app_produit") }}">retour</a>
+    <div style="padding: 20px; border: 1px solid #ccc; margin-bottom: 20px;">
+        <h1>Voici l'article Sélectionné</h1>
+
+        <div style="margin-top: 20px;">
+            <p>
+                <b>Nom :</b> {{ produit.name }},  
+                <b>Prix :</b> {{ produit.price }}, 
+                <b>Poids :</b> {{ produit.weight }},  
+                <b>Stock :</b> {{ produit.stock }}, 
+                <b>Tax :</b> {{ produit.tax.rate }}, 
+                <b>Description :</b> {{ produit.description }}
+            </p>
+            
+            <div style="margin-top: 10px;">
+                {% for category in produit.categories %}
+                    <b>Catégorie :</b> {{ category.label }}<br>
+                {% endfor %}
+            </div>
+
+            <div style="margin-top: 10px;">
+                {% for image in produit.images %}
+                    <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit" style="max-width: 200px; height: auto; margin-top: 10px;">
+                {% endfor %}
+            </div>
+        </div>  
+                {% if produit.stock > 0 %}
+                {# Verifier l'ajout de condition ajout au panier apparait SI le produit est en stock, sinon affichier temporairement en rupture de stock #}
+                <a href="{{ path('app_cart_add', {id: produit.id}) }}"><button class="add-cart">Ajouter au panier</button></a>
+                {% else %}
+                    <p>Temporairement en rupture de stock>
+                {% endif %}
+    </div>
+
+
+    
+
+{# ARTICLES SIMILAIRES ---------------------------------------------------------------------------------------------------------- #}
+
+<h1 style="padding-top: 45px;">ARTICLES SIMILAIRES</h1>
+
+<div class="example-wrapper">
+    {% for product in products %}
+        <div style="display: inline-block; margin-right: 20px; margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
+            <p>
+                <b>Nom :</b> {{ product.name }},  
+                <b>Prix :</b> {{ product.price }}, 
+            </p>
+
+            {% for category in product.categories %}
+                <b>Catégorie :</b> {{ category.label }}
+            {% endfor %}
+
+            {% for image in product.images %}
+                <div>
+                    <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit" style="max-width: 100px; height: auto;">
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block additionalStyles %}
+  <link href="{{ asset('styles/signup.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block main %}
+
+  <div class="titre_form">
+    <h1> Créez votre compte </h1>
+  </div>
+
+<section id="connexion">
+  <div class="connexion">
+    <a href="">
+      <p> Vous avez déjà un compte ?  <br> Connectez -vous ! </p>
+    </a>
+  </div> 
+</section>
+
+<section class="formulaire">
+  {% if form is defined %}
+  <div class="formulaire">
+    {{ form(form) }}
+  </div>
+  {% else %}
+    Formulaire indéfini
+  {% endif %}
+
+</section>
+{% endblock %}

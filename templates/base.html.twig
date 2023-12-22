@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} pouet {% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+        {% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            <link href="{{ asset('styles/general.css') }}" rel="stylesheet" />
+            <link href="{{ asset('styles/burger.css') }}" rel="stylesheet" />
+            <link href="{{ asset('styles/footer.css') }}" rel="stylesheet" />
+
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="/build/app.css"> -->
+        {% endblock %}
+        {% block additionalStyles %}
+            
+        {% endblock %}
+
+        {# {% block javascripts %}
+            {{ encore_entry_script_tags('general') }}
+            {{ encore_entry_script_tags('burger') }}
+            {{ encore_entry_script_tags('footer') }}
+
+            <!-- Renders app.js & a webpack runtime.js file
+                <script src="/build/runtime.js" defer></script>
+                <script src="/build/app.js" defer></script>
+                See note below about the "defer" attribute -->
+        {% endblock %} #}
+
+    </head>
+    <body>
+        <header>
+            {% block nav %}
+                <nav>
+                    <div class="header">
+                        <a class="logo" href="{{ path('app_index') }}"><img src="/images/logo/logo_icons_chaussetto.png"  width="40" height="40" ></a>
+                        <div class="burger-icon" id="burger-icon" >&#9776;</div>
+                    </div>
+
+                    <div class="web-menu" id="web-menu">
+                    {# boucler sur caté parent  #}
+
+                        {{ render(controller(
+                            'App\\Controller\\StaffCategoryController::getCategories'
+                        )) }}
+                        {# <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
+                        <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a> #}
+                        <a href="#">Contact</a>
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                            {{ app.user.email }}
+                            <a href="{{ path('app_order') }}">Mes commandes</a>
+                            <a href="{{ path('app_logout') }}">Déconnexion</a><br>
+                            <a href="{{ path('app_customer_dashboard') }}"><img class="icons_connexion"  src="/images/icons/people_chaussetto.png"></a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}"><img class="icons_connexion"  width="20" height="20" src="/images/icons/people_chaussetto.png"></a>
+                            {% endif %}
+                            <a  href="{{ path('app_login') }}"><img id="icons_panier"  width="20" height="20"  src="/images/icons/panier_chaussetto.png"></a><br>
+                    </div>
+
+                    
+                </nav>
+            {% endblock %}
+
+        </header>
+        {# Lit et affiche tous les message flash #}
+        {# Classes : flash-success, flash-warning #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        
+        <footer>
+            {{ block("footer", "footer.html.twig") }}
+        </footer>
+       
+        
+
+    </body>
+    
+  
+
+
+</html>

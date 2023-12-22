@@ -1,0 +1,22 @@
+
+<div class="example-wrapper">
+    {% for product in produit %}
+        <p>
+            <b>Nom :</b> {{ product.name }},  
+            <b>Prix :</b> {{ product.price }}, 
+            <a href="{{ path('app_detail', {'id': product.id, 'category': product.categories.first().label}) }}">Voir les détails</a>
+        </p>
+
+        {% for category in product.categories %}
+            <b>Catégorie :</b> {{ category.label }}
+        {% endfor %}
+
+        {% for image in product.images %}
+            <ul>
+                <li><img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit"></li>
+            </ul>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+
