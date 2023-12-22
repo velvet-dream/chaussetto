@@ -1,14 +1,39 @@
 {% extends 'admin/dashboard.html.twig' %}
 
 {% block title %}
-    {{ title }}
+	{{ title }}
 {% endblock %}
 
 {% block main %}
-    <h2> 
-        {{ title }}
-    </h2>
+	<h2>
+		{{ title }}
+	</h2>
 
-    {{ form(form) }}
+	{# {{ form(form) }} #}
+
+	{{ form_start(form) }}
+    {{ form_row(form.label) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.active) }}
+    {{ form_row(form.dateAdd) }}
+    {{ form_row(form.isRootCategory) }}
+    {{ form_row(form.positionning) }}
+
+	<label for="">Choose a category :</label>
+
+    {# {{ dump(category) }} #}
+	<select name="parentCategory">
+        {% if category is not null %}
+            <option value="{{ category.id }}">{{ category.label }}</option>
+            {# {{ dump(category) }} #}
+        {% endif %}
+		<option value="">--Please choose an option--</option>
+        {% for category in categories %}
+		    <option value="{{ category.id }}"> {{category.label}}</option>
+
+        {% endfor %}
+	</select>
+	{{ form_end(form) }}
+
 
 {% endblock %}

@@ -171,9 +171,9 @@ class Category
         return $this->parentCategory;
     }
 
-    public function setParentCategory(?self $parentCategory): static
+    public function setParentCategory(?self $parentCategory = null): static
     {
-        $this->parentCategory = $parentCategory;
+        $this->parentCategory = $parentCategory ?: null;
 
         return $this;
     }

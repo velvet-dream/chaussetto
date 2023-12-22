@@ -50,7 +50,8 @@ class StaffCategoryController extends AbstractController
     public function createCategory (
         Request $request, 
         FormCategoryService $formCategoryService,
-        Security $security) : Response
+        Security $security,
+        CategoryRepository $categoryRepository) : Response
     {
         if (!$security->isGranted('ROLE_ADMIN')){
             return $this->redirectToRoute('app_admin_dashboard');
@@ -61,6 +62,8 @@ class StaffCategoryController extends AbstractController
         $category = new Category;
         $form = $this->createForm(CategoryFormType::class, $category);
 
+        $categories = $this->getCategories($categoryRepository);
+
         $form->handleRequest($request);
         if ($formCategoryService->submitForm($form, $category,$request)){
             return $this->redirectToRoute('app_index');
@@ -69,6 +72,8 @@ class StaffCategoryController extends AbstractController
         return $this->render('staff_category/new.html.twig', [
             'title' => 'Création d\une nouvelle catégorie !',
             'form' => $form,
+            'categories' => $categories,
+        
         ]);
     }
 
@@ -77,26 +82,47 @@ class StaffCategoryController extends AbstractController
         Request $request, 
         FormCategoryService $formCategoryService,
         Security $security,
-        Category $category) : Response
+        Category $category, CategoryRepository $categoryRepository) : Response
     {
         // if (!$security->isGranted('ROLE_ADMIN')){
         //     return $this->redirectToRoute('app_index');
         // }
         if($category === null){
-            return $this->redirectToRoute('app_show_category');
+            return $this->redirectToRoute('app_list_category');
         }
+        $categories = $this->getCategories($categoryRepository);
 
         $form = $this->createForm(CategoryFormType::class, $category);
 
         $form->handleRequest($request);
         if ($formCategoryService->submitForm($form, $category,$request)){
-            return $this->redirectToRoute('app_show_category');
+            return $this->redirectToRoute('app_list_category');
         }
 
         return $this->render('staff_category/new.html.twig', [
             'title' => 'Mise à jour d\'une catégorie !',
             'form' => $form,
+            'categories' => $categories,
+            'category' => $category->getParentCategory()
         ]);
+    }
+    // a refacto 
+    #[Route ('getCategories', name: 'app_get_categories')]
+    public function getCategories(CategoryRepository $categoryRepository) : Response
+    {
+        $categories = $categoryRepository->findAll();
+        // dd($categories);
+        $tabEmpty = [];
+        foreach ($categories as $category) {
+            if ($category->getParentCategory() === null) {
+                $tabEmpty[] = $category; 
+                
+            }
+        }
+        return $this->render('_header/_nav.html.twig', [
+            'categories' => $tabEmpty
+        ]);
+        // dd($tabEmpty); 
     }
     
     // #[Route ('deleteCategory', name: 'app_delete_category')]

@@ -7,6 +7,7 @@ use App\Entity\Customer;
 use App\Entity\NewsletterSubscribers;
 use App\Form\ContactFormType;
 use App\Form\NewsletterFormType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Services\SimpleFormHandlerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,11 +19,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class PagesController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index( ProductRepository $productRepo, SimpleFormHandlerService $formHandler, Request $request): Response
+    public function index( ProductRepository $productRepo, 
+    FormNewsletterService $formNlService, 
+    Request $request,SimpleFormHandlerService $formHandler, 
+    CategoryRepository $categoryRepository): Response
     {
         $products = $productRepo->findAll();
         $subscriber = new NewsletterSubscribers();
         $nlForm = $this->createForm( NewsletterFormType::class, $subscriber );
+        $categories = $this->getCategories($categoryRepository);
 
         if ($formHandler->handleForm($nlForm, $request)) {
             // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
@@ -36,6 +41,7 @@ class PagesController extends AbstractController
             'title' => 'Accueil',
             'newsform' => $nlForm,
             'products' => $products,
+            'categories' => $categories
         ]);
     }
 
@@ -57,9 +63,25 @@ class PagesController extends AbstractController
         return $this->render('pages/contact.html.twig', [
             'title' => 'Nous Contacter',
             'contactForm' => $contactForm,
-        ]);    
+        ]);
+    }
+
+    public function getCategories(CategoryRepository $categoryRepository)
+    {
+        $categories = $categoryRepository->findAll();
+        // dd($categories);
+        $tabEmpty = [];
+        foreach ($categories as $category) {
+            if ($category->getParentCategory() === null) {
+                $tabEmpty[] = $category; 
+                
+            }
+        }
+        return $tabEmpty;
+        // dd($tabEmpty);
     }
 
     
     
 }
+// 

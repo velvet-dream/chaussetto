@@ -23,11 +23,22 @@ class FormCategoryService
     public function submitForm(FormInterface $formInterface, Category $category, ?Request $request):bool
   {
     if ($formInterface->isSubmitted() && $formInterface->isValid()) {
+      // dd($request);
+      if ($parentCategory= $request->request->get('parentCategory')){
+        // dd($parentCategory);
+        $category->setParentCategory($this->categoryRepository->findBy([
+          'id' => $parentCategory
+        ])[0]);
+      } else {
+        $category->setParentCategory();
+      }
       //if($request->request->has())
       $this->em->persist($category);
       $this->em->flush();
+
       return true;
     }
+    
     return false;
   }
 }

@@ -23,6 +23,7 @@ class LoginController extends AbstractController
             'title' => 'Connexion',
             'email' => $email,
             'error' => $error,
+            
         ]);
     }
 
