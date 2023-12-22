@@ -1,47 +1,65 @@
 {% extends 'base.html.twig' %}
 
+{% block additionalStyles %}
+	<link href="{{ asset('./styles/information_perso.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}information personnelles
+{% endblock %}
 
 {% block main %}
-    <h2>Informations personnelles</h2>
-    <div class="card">
-      <h3>Mon compte</h3>
-      <table>
-        <tr>
-          <th>Prénom</th>
-          <td>{{ customer.name }}</td>
-        </tr>
-        <tr>
-          <th>Nom</th>
-          <td>{{ customer.lastName }}</td>
-        </tr>
-        <tr>
-          <th>Email</th>
-          <td>{{ customer.email }}</td>
-        </tr>
-      </table>
-      <hr>
-      <div class="card-controls">
-        <a href="{{ path('app_customer_update') }}">Mettre à Jour</a>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Mon adresse</h3>
-      {% if customer.adress is not empty %}
-        <ul>
-          <li>{{ customer.adress.line1 }}</li>
-          <li>{{ customer.adress.line2 }}</li>
-          <li>{{ customer.adress.city }}</li>
-          <li>{{ customer.adress.postCode }}</li>
-          <li>{{ customer.adress.country }}</li>
-        </ul>
-      {% else %}
-        <p div="error">Vous n'avez aucune adresse enregistrée.</p>
-      {% endif %}
-      
-      <hr>
-      <div class="card-controls">
-        <a href="">Mettre à Jour</a>
-      </div>
-    </div>
-    <a href=" {{ path('app_customer_dashboard') }}">Retour</a><br>
+	<div class="information_perso">
+		<h1>Informations personnelles</h1>
+	</div>
+
+	<section class="card_info">
+		<div class="card">
+			<h2>Mon compte</h2>
+			<table>
+				<tr>
+					<th>Prénom :
+					</th>
+					<td>{{ customer.name }}</td>
+				</tr>
+				<tr>
+					<th>Nom :
+					</th>
+					<td>{{ customer.lastName }}</td>
+				</tr>
+				<tr>
+					<th>Email :
+					</th>
+					<td>{{ customer.email }}</td>
+				</tr>
+			</table>
+			<hr>
+			<div class="card-controls">
+				<a href="{{ path('app_customer_update') }}">Mettre à Jour</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<h2>Mon adresse</h3>
+			{% if customer.adress is not empty %}
+				<ul>
+					<li>{{ customer.adress.line1 }}</li>
+					<li>{{ customer.adress.line2 }}</li>
+					<li>{{ customer.adress.city }}</li>
+					<li>{{ customer.adress.postCode }}</li>
+					<li>{{ customer.adress.country }}</li>
+				</ul>
+			{% else %}
+				<p div="error">Vous n'avez aucune adresse enregistrée.</p>
+			{% endif %}
+
+			<hr>
+			<div class="card-controls">
+				<a href="">Mettre à Jour</a>
+			</div>
+		</div>
+
+		<div class="retour">
+			<a href=" {{ path('app_customer_dashboard') }}">+ Revenir sur le profil</a>
+		</div>
+	</section>
 {% endblock %}
