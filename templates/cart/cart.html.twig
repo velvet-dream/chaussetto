@@ -11,21 +11,20 @@
      <div>
         <img class="img-product" src=""/>
      </div>
-     <div>
-        
+     <div>     
+     {#}{% for i in 1..100 %}
+              <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+    {#}
         <input type="number" id="nbre" name="nbre" min="0" max="100" />
         {# rendre le panier cliquable pour remove l'article #}
      <div>
-     
-     
-     
-
      </div>    
     <a href=" {{ path('app_index') }}"><button>Continuer mes achats</button></a>
 </div>
 <div class="bottom-cart">
     <table>
-            <thead>
+        <thead>
             {#}
                 {% if data is not empty %}
                     <tr>
@@ -63,8 +62,9 @@
                 </tr>
             {% endif %}{#}
 
-            </thead>
-            <tbody>
+        </thead>
+        
+        <tbody>
             {% if data is not empty %}
                 {% for element in data %}
                     <tr>
@@ -77,35 +77,32 @@
                             <a href="{{ path('app_cart_remove', {id: element.product.id}) }}" class="">_</a>
                             <a href="{{ path('app_cart_delete', {id: element.product.id}) }}"><img class="icon-trash"  src="../images/icons/poubelle_panier_chaussetto.png"/></a>
                         </td>
-                    </tr>
-                {% endfor %}
+                    </tr> 
+                {% endfor %} 
             {% else %}
                 <tr>
                     <td colspan="5">Votre panier est vide.</td>
                 </tr>
-            {% endif %}
-        </tbody>
-
-
-        </table>
-</div>    
-
-<div class="total-cart">
+            {% endif %}    
+            </tbody>
+        
+    </table>   
+    {% if data is not empty %}
     <table>
-            <tfoot>
-                    <tr>
-                        <th>Total TTC </th>
-                        {% for element in data %}
-                            <td>{{ total }} €</td>
-                        {% endfor %}
-                    </tr>
-            </tfoot>            
+        <tr>
+            <th>Total TTC </th>
+            <td>{{ total }} €</td>
+        </tr>
     </table>
-</div>
-
-<div>
-   <a href=""><button>COMMANDER</button></a>
+    <div>
+        <a href="{{ path('app_add_order') }}"><button>COMMANDER</button></a>
+    </div>
+    {% endif %}
+        
+        
 </div>    
+
+    
 
 {% endblock %}
 

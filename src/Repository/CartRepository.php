@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-
+use App\Entity\Customer;
 use App\Entity\Cart;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -45,4 +45,17 @@ class CartRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getLastCart(Customer $customer)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.customer = :value')
+            ->setParameter('value', $customer)
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }

@@ -44,7 +44,7 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Adress $deliveryAdress = null;
 
-    #[ORM\OneToMany(mappedBy: 'correspondingOrder', targetEntity: OrderLine::class)]
+    #[ORM\OneToMany(mappedBy: 'correspondingOrder', targetEntity: OrderLine::class, cascade:['persist'])]
     private Collection $orderLine;
 
     #[ORM\ManyToOne]
