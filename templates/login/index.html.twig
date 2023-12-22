@@ -3,23 +3,7 @@
 {% block additionalStyles %}
     {# 'app' must match the first argument to addEntry() in webpack.config.js #}
     <link href="{{ asset('styles/connexion.css') }}" rel="stylesheet" />
-
-    <!-- Renders a link tag (if your module requires any CSS)
-    <link rel="stylesheet" href="/build/app.css"> -->
 {% endblock %}
-
-{# {% block javascripts %}
-    {{ encore_entry_script_tags('general') }}
-    {{ encore_entry_script_tags('burger') }}
-    {{ encore_entry_script_tags('connexion') }}
-    {{ encore_entry_script_tags('footer') }}
-
-
-    <!-- Renders app.js & a webpack runtime.js file
-        <script src="/build/runtime.js" defer></script>
-        <script src="/build/app.js" defer></script>
-            See note below about the "defer" attribute -->
-{% endblock %} #}
 
 
 {% block title %}
@@ -43,12 +27,12 @@
         <form action={{path('app_login')}} method='POST'>
             <div class="info">
                 <label for='email'> Email de connection</label>
-                <input type='email' id='email' name='_username' value='{{ email }}'>
+                <input type='email' id='email' name='_username'  placeholder='example@mail.com' value='{{ email }}'>
             </div>
 
             <div class="info">
                 <label for='password'> Mot de passe </label>
-                <input type='password' id='password' name='_password'>
+                <input type='password' id='password' placeholder='mot de passe' name='_password'>
             </div>
 
             {# redirection vers une route valide #}
