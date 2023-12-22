@@ -20,7 +20,7 @@ class PagesController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
     public function index( ProductRepository $productRepo, 
-    FormNewsletterService $formNlService, 
+    // FormNewsletterService $formNlService,
     Request $request,SimpleFormHandlerService $formHandler, 
     CategoryRepository $categoryRepository): Response
     {
