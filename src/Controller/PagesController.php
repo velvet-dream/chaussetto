@@ -27,7 +27,7 @@ class PagesController extends AbstractController
         $products = $productRepo->findAll();
         $subscriber = new NewsletterSubscribers();
         $nlForm = $this->createForm( NewsletterFormType::class, $subscriber );
-        $categories = $this->getCategories($categoryRepository);
+        // $categories = $this->getCategories($categoryRepository);
 
         if ($formHandler->handleForm($nlForm, $request)) {
             // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
@@ -41,7 +41,7 @@ class PagesController extends AbstractController
             'title' => 'Accueil',
             'newsform' => $nlForm,
             'products' => $products,
-            'categories' => $categories
+            // 'categories' => $categories
         ]);
     }
 
@@ -66,22 +66,15 @@ class PagesController extends AbstractController
         ]);
     }
 
-    public function getCategories(CategoryRepository $categoryRepository)
+    #[Route('/categories_links/{isFooter}', name: 'app_categories_links')]
+    public function getCategories(CategoryRepository $categoryRepository, $isFooter): Response
     {
-        $categories = $categoryRepository->findAll();
-        // dd($categories);
-        $tabEmpty = [];
-        foreach ($categories as $category) {
-            if ($category->getParentCategory() === null) {
-                $tabEmpty[] = $category; 
-                
-            }
-        }
-        return $tabEmpty;
-        // dd($tabEmpty);
-    }
-
+        $categories = $categoryRepository->findRootCategories();
+        $template = ($isFooter) ? "categories_footer_links" : "categories_links";
     
+        return $this->render("fragments/$template.html.twig", [
+            'categories' => $categories,
+        ]);
+    }  
     
 }
-// 
