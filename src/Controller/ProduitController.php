@@ -5,14 +5,9 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Tax;
 use App\Entity\Image;
-
 use App\Entity\Category;
 use App\Form\CategoryFormType;
 use App\Form\ProductFormType;
-
-
-
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,31 +33,6 @@ class ProduitController extends AbstractController
         ]);
     }
 
-
-    #[Route('/updateProduct', name: 'app_updateProduct')]
-    public function gestionProduct(ProductRepository $product): Response
-    {
-        $produit = $product->findAll();
-
-        return $this->render('produit/GestionProduit.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
-
-    #[Route('/updateProduct', name: 'app_gestionProduct')]
-    public function updateProduct(ProductRepository $product): Response
-    {
-        $categories = $this->getCategories($categoryRepository);
-        $form = $this->createForm(CategoryFormType::class, $category);
-
-        $form->handleRequest($request);
-
-
-        
-        return $this->render('produit/GestionProduit.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
 
     #[Route('produit/detail/{id}', name: 'app_detail')]
     public function detail(Product $produit, ProductRepository $productRepo): Response
@@ -90,49 +60,6 @@ class ProduitController extends AbstractController
 
         return $this->render('produit/categorie.html.twig', [
             'produit' => $product,
-        ]);
-
-    }
-
-
-
-    #[Route('/addProduct', name: 'add_product')]
-    public function addproduct (Request $request, ProductRepository $productrepo, ImageRepository $imageRepo): Response
-    {
-        $product = new Product(); // Ou récupérez une catégorie existante à éditer
-
-        $form = $this->createForm(ProductFormType::class, $product);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData(); // Récupérer le fichier image soumis
-            
-            // Vérifier si une image a été soumise
-            if ($imageFile) {
-                // Générer un nom de fichier unique
-                $newFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME).'.'.$imageFile->guessExtension();
-    
-                // Déplacer le fichier vers le répertoire où vous souhaitez le stocker
-                $imageFile->move(
-                    $this->getParameter('kernel.project_dir') . '/assets/img/web/', // Remplacez 'dossier_images' par le nom de votre répertoire
-                    $newFilename
-                );
-    
-                // Enregistrer le nom de l'image dans l'entité Product
-                $img = new Image;
-                $img->setName($newFilename);
-                $imageRepo->save($img);
-                $product->addImage($img);
-            }
-
-            $productrepo->save($product);
-
-        }
-
-        return $this->render('produit/ajoutProduit.html.twig', [
-            'form' => $form,
-    
-    
         ]);
 
     }

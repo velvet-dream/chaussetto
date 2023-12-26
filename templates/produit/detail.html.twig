@@ -2,7 +2,6 @@
 
 {% block title %}Hello ProduitController!{% endblock %}
 {% block main %}
-    <a href="{{ path("app_produit") }}">retour</a>
     <div>
         <h1>Voici l'article Sélectionné</h1>
 
@@ -35,6 +34,7 @@
                     <p>Temporairement en rupture de stock>
                 {% endif %}
     </div>
+    <a href="{{ path("app_produit") }}">Retour</a>
 
 
     

@@ -1,0 +1,52 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+	<h2>
+		{{ title }}
+	</h2>
+    <table>
+        <tr>
+            <td> 
+                Produit : 
+                    {{ product.name }}
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                Description : 
+                    {{ product.description }}
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                Prix : 
+                    {{ product.price }} €
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                Poids : 
+                    {{ product.weight }}
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                Stock : 
+                    {{ product.stock }}
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                Est actif ? : 
+                    {{ product.active }}
+            </td>
+        </tr>
+        
+    </table>
+
+
+{% endblock %}

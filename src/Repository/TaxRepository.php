@@ -32,6 +32,17 @@ class TaxRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['label' => $label]);
     }
+
+    public function searchByName(string $name, string $triName) : ?array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.label like :val')
+            ->setParameter('val' , '%'.$name.'%')
+            ->addOrderBy('t.label', $triName)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Tax[] Returns an array of Tax objects
 //     */

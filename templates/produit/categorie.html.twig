@@ -1,4 +1,9 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}
+{% endblock %}
+
+{% block main %}
 <div class="example-wrapper">
     {% for product in produit %}
         <p>
@@ -18,5 +23,7 @@
         {% endfor %}
     {% endfor %}
 </div>
+
+{% endblock %}
 
 
