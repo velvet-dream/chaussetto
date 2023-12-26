@@ -58,13 +58,13 @@ class OrderController extends AbstractController
 
     #[Route('/ajout', name: 'app_add_order')]
     public function add(Security $security, 
-    SessionInterface $session, 
-    ProductRepository $productRepository, 
-    EntityManagerInterface $em,
-    CartRepository $cartRepository,
-    OrderStateRepository $orderStateRepository,
-    PaymentMethodRepository $paymentMethodRepository,
-    CarrierRepository $carrierRepository): Response
+        SessionInterface $session, 
+        ProductRepository $productRepository, 
+        EntityManagerInterface $em,
+        CartRepository $cartRepository,
+        OrderStateRepository $orderStateRepository,
+        PaymentMethodRepository $paymentMethodRepository,
+        CarrierRepository $carrierRepository): Response
     {
     
         // Vérification si l'utilisateur est connecté
@@ -73,7 +73,7 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $cart = $cartRepository->getLastCart($user)[0];
+        $cart = $cartRepository->getLastCart($user);
         
 
         // si j'ai un panier vide, j'affiche un message
