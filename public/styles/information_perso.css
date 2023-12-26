@@ -43,7 +43,7 @@ body {
         padding: 1% 5% 2% 5%;
         margin-bottom: 3%;
         }
-      }
+      
     
       .card h2 {
         color: #000;
@@ -91,8 +91,8 @@ body {
         font-size: 1.0625rem;
         text-decoration: none;
       }
-}
 
+    }
 /* Styles pour les écrans de petite taille (mobile) */
 @media screen and (max-width: 480px) {
   .information_perso h1 {
