@@ -1,11 +1,7 @@
 {% extends 'base.html.twig' %}
 
 	{% block additionalStyles %}
-		{# 'app' must match the first argument to addEntry() in webpack.config.js #}
-		<link
-		href="{{ asset('./styles/home.css') }}" rel="stylesheet"/>
-	<!-- Renders a link tag (if your module requires any CSS)
-	    <link rel="stylesheet" href="/build/app.css"> -->
+		<link href="{{ asset('./styles/home.css') }}" rel="stylesheet"/>
 	{% endblock %}
 
 {% block title %}Accueil{% endblock %}
@@ -50,10 +46,9 @@
 								<p>{{ product.price }}€</p>
 								<img
 								src="/images/mobile/chaussette_guitare_basique.png">
-								<!-- a finir  -->
-								<a href="">
-									<button class="ajout_panier">Ajouter au panier</button>
-								</a>
+								<!-- AJOUTER AU PANIER  -->
+								{{ include('fragments/add_to_cart.html.twig') }}
+								<!-- AJOUTER AU PANIER -->
 							</div>
 						</div>
 					</div>

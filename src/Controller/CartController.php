@@ -11,11 +11,11 @@ use App\Repository\ProductRepository;
 use Symfony\Bundle\SecurityBundle\Security;
 
 
-#[Route('/cart', name: 'app_cart')]
+#[Route('/cart')]
 class CartController extends AbstractController
 {
    
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'app_cart_index')]
     public function index(Security $security, SessionInterface $session, ProductRepository $productRepository)
     {
         $user = $this->getUser();

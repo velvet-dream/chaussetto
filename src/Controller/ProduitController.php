@@ -51,17 +51,13 @@ class ProduitController extends AbstractController
 
     }
 
-    #[Route('/produit/{category}', name: 'app_categorie')]
-    public function showCategorie (ProductRepository $productRepo, string $category): Response
+    #[Route('/category/{id}', name: 'app_categorie')]
+    public function showCategorie (Category $category): Response
     {
-        $product= $productRepo->getProductByCategory($category);
-        
-    
-
         return $this->render('produit/categorie.html.twig', [
-            'produit' => $product,
+            'title' => $category->getLabel(),
+            'products' => $category->getProducts(),
         ]);
-
     }
 
 }
