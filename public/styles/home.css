@@ -204,7 +204,7 @@ margin: 0;
 /* ACCUEIL */
 
 .imageDeFond {
-  background-image: url("../img/accueil_web/chaussette_page_accueil_version_web_chaussetto.jpg");
+  background-image: url("/images/accueil_web/chaussette_page_accueil_version_web_chaussetto.jpg");
   background-size: cover; 
   background-position: center; 
   min-height: 700px; 
@@ -460,7 +460,9 @@ flex-direction: column;
   margin-top: 0%;
   margin-bottom: 3%;
 }
+
 }
+
 
 
 
