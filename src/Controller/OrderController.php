@@ -143,10 +143,25 @@ class OrderController extends AbstractController
 
         $this->addFlash('success', 'commande créée avec succés');
         return $this->redirectToRoute('app_index');
-
-        
-        
         
     }
+
+    #[Route('/show/{id}', name: 'app_order_show')]
+    public function show(Security $security,
+    ?Order $order,    
+): Response
+
+{
+    // Vérification si l'utilisateur est connecté
+    if (($user = $security->getUser()) === NULL) 
+    {
+        return $this->redirectToRoute('app_login');
+    }
+
+    return $this->render('order/show.html.twig', [
+        'title' => 'TA commande !',
+        'order' => $order,     
+    ]);
+}
 
 }
