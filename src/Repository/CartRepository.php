@@ -46,7 +46,7 @@ class CartRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function getLastCart(Customer $customer)
+    public function getLastCart(Customer $customer): Cart
     {
         return $this->createQueryBuilder('c')
             ->where('c.customer = :value')
@@ -54,7 +54,7 @@ class CartRepository extends ServiceEntityRepository
             ->orderBy('c.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getResult()
+            ->getSingleResult()
         ;
     }
 

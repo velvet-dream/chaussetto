@@ -1,15 +1,18 @@
+{% extends 'base.html.twig' %}
 
-<div class="example-wrapper">
-    {% for product in produit %}
-        <p>
-            <b>Nom :</b> {{ product.name }},  
-            <b>Prix :</b> {{ product.price }}, 
-            <a href="{{ path('app_detail', {'id': product.id, 'category': product.categories.first().label}) }}">Voir les détails</a>
-        </p>
+{% block main %}
+        
+    <div class="example-wrapper">
+        {% for product in products %}
+            <p>
+                <b>Nom :</b> {{ product.name }},  
+                <b>Prix :</b> {{ product.price }}, 
+                <a href="{{ path('app_detail', {'id': product.id, 'category': product.categories.first().label}) }}">Voir les détails</a>
+            </p>
 
-        {% for category in product.categories %}
-            <b>Catégorie :</b> {{ category.label }}
-        {% endfor %}
+            {% for category in product.categories %}
+                <b>Catégorie :</b> {{ category.label }}
+            {% endfor %}
 
         {% for image in product.images %}
             <ul>
@@ -19,4 +22,7 @@
     {% endfor %}
 </div>
 
+{% endblock %}
+
+{% endblock %}
 

@@ -44,6 +44,18 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['label' => $label]);
     }
+
+    // Renvoie les catégories racines
+    public function findRootCategories(): ?array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.parentCategory IS NULL')
+            ->orderBy('c.positionning', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

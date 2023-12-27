@@ -1,0 +1,55 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+
+<h2>
+	{{ title }}
+</h2>
+
+{% if is_granted('ROLE_ADMIN') %}
+	<h3>
+		<a href=" {{ path('app_create_product')}}">
+			Créer une nouveau produit
+		</a>
+	</h3>
+{% endif %}
+
+<table>
+	<tr>
+		Produit :
+		{% if (triName == 'desc') %}
+			<a href=" {{ path('app_list_product' ) }}?name={{ name }}&triName=asc">></a>
+		{% else %}
+			<a href=" {{ path('app_list_product' ) }}?name={{ name }}&triName=desc"><</a> 
+        {% endif %} 
+    </tr>
+
+    {% for products in product %}
+        <tr>
+            <td>
+                Produit : {{ products.name }}
+            </td>
+            <td>
+                <a href=" {{ path('app_show_product', {'id' : products.id}) }}">Voir</a> 
+				<a href=" {{ path('app_update_product', {'id' : products.id}) }}">Mettre à jour</a> 
+				{# <a href=" {{ path('app_update_category', {'id' : item.id}) }}">Supprimer</a>  #}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td> Aucun produit n'a été trouvé </td>
+        </tr>
+    {% endfor %}
+
+</table>
+	<form>
+        <input type='text' name='name' value='{{ name }}' placeholder='Recherchez par le nom'>
+        <input type = 'submit' value='rechercher' name='submit'>
+
+    </form>
+            
+{% endblock %}

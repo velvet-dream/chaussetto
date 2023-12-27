@@ -57,6 +57,16 @@ class ProductRepository extends ServiceEntityRepository
            ->getResult()
         ;
     }
+
+    public function searchByName(string $name, string $triName) : ?array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.name like :val')
+            ->setParameter('val' , '%'.$name.'%')
+            ->addOrderBy('p.name', $triName)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

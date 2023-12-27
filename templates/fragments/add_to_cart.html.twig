@@ -1,0 +1,14 @@
+{# PENSEZ À ENVOYER cartForm DANS LE RENDER DU CONTROLLER #}
+
+{% if cartForm is defined %}
+    {{ form_start(cartForm) }}
+        {{ form_widget(cartForm.quantity) }}
+        {{ form_widget(cartForm.submit) }}
+        <select name="{{ field_name(cartForm.product) }}" class="form-control" hidden>
+            <option value="{{ product.id }}">{{ field_label(cartForm.product) }}</option>
+        </select>
+        {{ form_rest(cartForm) }}
+    {{ form_end(cartForm) }}
+{% else %}
+    Formulaire "cartForm" indéfini
+{% endif %}

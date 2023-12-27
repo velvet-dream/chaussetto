@@ -19,15 +19,14 @@
     {{ form_row(form.isRootCategory) }}
     {{ form_row(form.positionning) }}
 
-	<label for="">Choose a category parent :</label>
+	<label for="">Choix de la catégorie parent :</label>
 
     {# {{ dump(category) }} #}
 	<select name="parentCategory">
         {% if category is not null %}
             <option value="{{ category.id }}">{{ category.label }}</option>
-            {# {{ dump(category) }} #}
         {% endif %}
-		<option value="">--Please choose an option--</option>
+		<option value="">Catégorie Racine </option>
         {% for category in categories %}
 		    <option value="{{ category.id }}"> {{category.label}}</option>
 

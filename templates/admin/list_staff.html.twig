@@ -8,22 +8,27 @@
 	<h2>
 		{{ title }}
 	</h2>
-	{# {% if is_granted('ROLE_ADMIN') %} #}
+	{% if is_granted('ROLE_ADMIN') %}
     <h3><a href=" {{ path('app_add_admin')}}"> Ajouter un nouveau administrateur</a></h3>
-    {# {% endif %} #}
+    {% endif %}
+
 	<table>
 		<tr>
-		Prénom : 
+		<td>
+
+		Administrateur : 
 		{% if (triName == 'desc') %}
 			<a href=" {{ path('app_list_admin' ) }}?name={{ name }}&triName=asc">></a>
 		{% else %}
 			<a href=" {{ path('app_list_admin' ) }}?name={{ name }}&triName=desc"><</a>
 		{% endif %}
+		</td>
 		</tr>
+
 	{% for item in staff %}
 		<tr>
 			<td>
-				Administateur : {{ item.name}}
+				Admin : {{ item.name}}
 			</td>
 			<td>
 				<a href=" {{ path('app_show_admin', {'id' : item.id}) }}">Voir</a> 

@@ -1,5 +1,10 @@
 {% block endpage %}
 
+{% block stylesheets %}
+    <link href="{{ asset('styles/endpage.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
 	{% block additionalStyles %}
 		{# 'app' must match the first argument to addEntry() in webpack.config.js #}
 		<link
@@ -20,7 +25,6 @@
 			</p>
 			<img/>
 		</div>
-
 
 		<h2 class="H2_avis">VOS AVIS CHAUSSETTO</h2>
 		<hr class="avis_HR">
@@ -78,8 +82,9 @@
 			</p>
 			{% if newsform is defined %}
 				{{ form(newsform) }}
-					{% else %}
-						Formulaire indéfini
-				{% endif %}
-				<div></section>
-			{% endblock %}
+			{% else %}
+				Formulaire indéfini
+			{% endif %}
+		</div>
+	</section>
+{% endblock %}

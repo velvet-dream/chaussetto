@@ -1,9 +1,9 @@
 {% block nav %}
-	{% if is_granted("ROLE_USER") and is_granted("IS_AUTHENTICATED_FULLY") %}
-		{% for category in categories %}
+	{# {% if is_granted("ROLE_USER") and is_granted("IS_AUTHENTICATED_FULLY") %} #}
+		{% for category in header_categories %}
 			<a href="{{ path('app_categorie', { 'category': category.label} )}}">{{category.label}}</a>
 			{# {{ dump(category) }} #}
 
 		{% endfor %}
-	{% endif %}
+	{# {% endif %} #}
 {% endblock %}

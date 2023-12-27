@@ -57,10 +57,11 @@
                 
                 <p>Bienvenue sur le dashboard d'administration, {{ staff.name }}</p>
                 <a href= "{{ path ('app_list_admin') }} " > Liste des administrateur :</a><br>
-                <a href= "{{ path ('app_list_category') }} " > Liste des catégories :</a><br>
                 <a href= "{{ path ('app_list_customer') }} " > Liste des utilisateurs :</a><br>
+                <a href= "{{ path ('app_list_category') }} " > Liste des catégories :</a><br>
+                <a href= "{{ path ('app_list_product') }} " > Liste des produits</a><br>
+                <a href= "{{ path ('app_list_tax') }} " > Liste des taxes</a><br>
                 <a href= "{{ path ('app_list_orders') }} " > Liste des commandes</a><br>
-
                 <a href="{{ path ('app_list_promotion') }}">Promotions</a><br>
                 
             {% endblock %}

@@ -1,8 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard.html.twig' %}
 
-{% block title %}Hello TaxController!{% endblock %}
+{% block title %}
+    {{ title }}
+{% endblock %}
 
 {% block main %}
-<h1></h1>
+    <h2>
+        {{ title }}
+    </h2>
 {{form(form)}}
+
+
+
 {% endblock %}

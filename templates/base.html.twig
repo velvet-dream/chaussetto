@@ -2,7 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %} pouet {% endblock %}</title>
+        <title>{% block title %}
+            {% if title is defined %}
+                Chaussetto // {{ title }}
+            {% else %}
+                Chaussetto // Votre magasin de chaussettes coquettes
+            {% endif %}
+        {% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,6 +41,7 @@
     <body>
         <header>
             {% block nav %}
+                
                 <nav>
                     <div class="header">
                         <a class="logo" href="{{ path('app_index') }}"><img src="/images/logo/logo_icons_chaussetto.png"  width="40" height="40" ></a>
@@ -42,14 +49,9 @@
                     </div>
 
                     <div class="web-menu" id="web-menu">
-                    {# boucler sur caté parent  #}
+                        {{ render( path('app_categories_links', {'isFooter':'0'}) ) }}
 
-                        {{ render(controller(
-                            'App\\Controller\\StaffCategoryController::getCategories'
-                        )) }}
-                        {# <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
-                        <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a> #}
-                        <a href="#">Contact</a>
+                        <a href="path('app_contact')">Contact</a>
                         {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                             {{ app.user.email }}
                             <a href="{{ path('app_order') }}">Mes commandes</a>
@@ -58,10 +60,11 @@
                         {% else %}.
                             <a href="{{ path('app_login') }}"><img class="icons_connexion"  width="20" height="20" src="/images/icons/people_chaussetto.png"></a>
                             {% endif %}
-                            <a  href="{{ path('app_login') }}"><img id="icons_panier"  width="20" height="20"  src="/images/icons/panier_chaussetto.png"></a><br>
+                            <a  href="{{ path('app_cart_index') }}"><img id="icons_panier"  width="20" height="20"  src="/images/icons/panier_chaussetto.png"></a><br>
                     </div>
 
-                    
+                {# <a href="{{ path('app_categorie', {'category': 'originales'}) }}">Chaussettes originales</a>
+                        <a href="{{ path('app_categorie', {'category': 'basiques'},) }}">Chaussettes basiques</a> #}
                 </nav>
             {% endblock %}
 
@@ -70,7 +73,7 @@
         {# Classes : flash-success, flash-warning #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
-                <div class="flash-{{ label }}">
+                <div class="flash-message flash-{{ label }}" onclick="this.style.display='none';">
                     {{ message }}
                 </div>
             {% endfor %}
