@@ -56,11 +56,6 @@ class ThumbnailController extends AbstractController {
     {
         foreach($productThumbnails as $productThumbnail) {
             if ($cartService->addToCartHandle($productThumbnail["cartForm"], $request)) {
-                // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
-                $this->addFlash(
-                    'success',
-                    'Article ajouté au panier !'
-                );
                 return true;
             }
             //Sinon, si le formulaire a été entré sans qu'on soit connecté :

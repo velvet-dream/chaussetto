@@ -3,6 +3,7 @@
 namespace App\Repository;
 use App\Entity\Customer;
 use App\Entity\Cart;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -46,7 +47,7 @@ class CartRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function getLastCart(Customer $customer): Cart
+    public function getLastCart(Customer $customer): ?Cart
     {
         return $this->createQueryBuilder('c')
             ->where('c.customer = :value')
@@ -54,7 +55,7 @@ class CartRepository extends ServiceEntityRepository
             ->orderBy('c.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleResult()
+            ->getOneOrNullResult()
         ;
     }
 

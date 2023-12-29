@@ -23,10 +23,6 @@ class AddToCartFormType extends AbstractType
         $builder
             ->setMethod('POST')
             ->add('quantity')
-            // ->add('cart', EntityType::class, [
-            //     'class' => Cart::class,
-            //     'choice_label' => 'id',
-            // ])
             ->add('product', EntityType::class, [
                 'class' => Product::class,
                 'choice_label' => 'id',

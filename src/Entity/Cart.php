@@ -18,7 +18,7 @@ class Cart
     #[ORM\OneToOne(mappedBy: 'cart', cascade: ['persist', 'remove'])]
     private ?Order $correspondingOrder = null;
 
-    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartLine::class)]
+    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartLine::class, cascade:['persist'])]
     private Collection $cartLines;
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
@@ -62,12 +62,16 @@ class Cart
 
     public function addCartLine(CartLine $cartLine): static
     {
-        if (!$this->cartLines->contains($cartLine)) {
+        if (!$this->containsCartLine($cartLine)) {
             $this->cartLines->add($cartLine);
             $cartLine->setCart($this);
-        }
-
+        } 
         return $this;
+    }
+
+    public function containsCartLine(CartLine $cartLine): bool
+    {
+        return $this->cartLines->contains($cartLine);
     }
 
     public function removeCartLine(CartLine $cartLine): static

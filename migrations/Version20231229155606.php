@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231228164411 extends AbstractMigration
+final class Version20231229155606 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,15 @@ final class Version20231228164411 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE staff (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, UNIQUE INDEX UNIQ_426EF392E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE cart_line MODIFY id INT NOT NULL');
+        $this->addSql('DROP INDEX `primary` ON cart_line');
+        $this->addSql('ALTER TABLE cart_line DROP id');
+        $this->addSql('ALTER TABLE cart_line ADD PRIMARY KEY (cart_id, product_id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE staff');
+        $this->addSql('ALTER TABLE cart_line ADD id INT AUTO_INCREMENT NOT NULL, DROP PRIMARY KEY, ADD PRIMARY KEY (id)');
     }
 }
