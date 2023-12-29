@@ -51,7 +51,7 @@
                     <div class="web-menu" id="web-menu">
                         {{ render( path('app_categories_links', {'isFooter':'0'}) ) }}
 
-                        <a href="path('app_contact')">Contact</a>
+                        <a href="{{ path('app_contact') }}">Contact</a>
                         {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
                             {{ app.user.email }}
                             <a href="{{ path('app_order') }}">Mes commandes</a>
