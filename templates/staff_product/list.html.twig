@@ -1,49 +1,29 @@
 {% extends 'admin/dashboard.html.twig' %}
 
+{% block additionalStyles %}
+	<link href="{{ asset('styles/back-office/list.css') }}" rel="stylesheet"/>
+{% endblock %}
 {% block title %}
 	{{ title }}
 {% endblock %}
 
 {% block main %}
+	<div class="info_page_product">
+		<h2 class="title_product">
+		{{ title }}
+		</h2>
+		<hr class="info_hr">
+	</div>
 
-<h2>
-	{{ title }}
-</h2>
-
-{% if is_granted('ROLE_ADMIN') %}
-	<h3>
-		<a href=" {{ path('app_create_product')}}">
-			Créer une nouveau produit
-		</a>
-	</h3>
-{% endif %}
-
-<table>
-	<tr>
-		Produit :
-		{% if (triName == 'desc') %}
-			<a href=" {{ path('app_list_product' ) }}?name={{ name }}&triName=asc">></a>
-		{% else %}
-			<a href=" {{ path('app_list_product' ) }}?name={{ name }}&triName=desc"><</a> 
-        {% endif %} 
-    </tr>
-
-    {% for products in product %}
-        <tr>
-            <td>
-                Produit : {{ products.name }}
-            </td>
-            <td>
-                <a href=" {{ path('app_show_product', {'id' : products.id}) }}">Voir</a> 
-				<a href=" {{ path('app_update_product', {'id' : products.id}) }}">Mettre à jour</a> 
-				{# <a href=" {{ path('app_update_category', {'id' : item.id}) }}">Supprimer</a>  #}
-            </td>
-        </tr>
-        {% else %}
-        <tr>
-            <td> Aucun produit n'a été trouvé </td>
-        </tr>
-    {% endfor %}
+	{% if is_granted('ROLE_ADMIN') %}
+	<div class="bouton_ajout">
+		<h3>
+			<a href=" {{ path('app_create_product')}}">
+				Créer une nouveau produit
+			</a>
+		</h3>
+	</div>
+	{% endif %}
 
 </table>
 	<form>
