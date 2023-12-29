@@ -72,6 +72,7 @@
                         <td>{{ element.product.price }} €</td>
                         <td>{{ element.quantity }}</td>
                         <td>{{ element.quantity * element.product.price }} €</td>
+                        <td>TVA {{ element.product.tax.rate }} %</td>
                         <td>
                             <a href="{{ path('app_cart_add', {id: element.product.id}) }}" class="">+</a>
                             <a href="{{ path('app_cart_remove', {id: element.product.id}) }}" class="">_</a>
@@ -81,7 +82,7 @@
                 {% endfor %} 
             {% else %}
                 <tr>
-                    <td colspan="5">Votre panier est vide.</td>
+                    <td colspan="6">Votre panier est vide.</td>
                 </tr>
             {% endif %}    
             </tbody>
@@ -90,8 +91,12 @@
     {% if data is not empty %}
     <table>
         <tr>
-            <th>Total TTC </th>
+            <th>Total HT </th>
             <td>{{ total }} €</td>
+        </tr>
+        <tr>
+            <th>Total TTC </th>
+            <td>{{ totalTTC }} €</td>
         </tr>
     </table>
     <div>
