@@ -116,6 +116,10 @@ class OrderController extends AbstractController
         $order->setPaymentMethod($paymentMethod);
         $order->setCarrier($carrier);
         $order->setCart($cart);
+
+        // affecter par la suite un nouveau panier a l'utlisateur ¿¿
+        // peut être passer par une méthode qui affecte un new Cart à un customer ¿¿
+        
         
 
         // on parcourt le panier pour créer les détails de commande
