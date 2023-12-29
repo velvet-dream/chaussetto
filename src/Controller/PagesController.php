@@ -18,6 +18,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\ThumbnailController;
 
 class PagesController extends AbstractController
 {
@@ -25,15 +26,17 @@ class PagesController extends AbstractController
     public function index( ProductRepository $productRepo, 
         Request $request,
         SimpleFormHandlerService $formHandler, 
-        CategoryRepository $categoryRepository,
-        CartService $cartService,        
+        Security $security,
+        CartService $cartService,
+        ThumbnailController $thumbnailController,        
     ): Response
     {
-        $products = $productRepo->findAll();
+        $products = $productRepo->findLatestActiveProducts();
         $subscriber = new NewsletterSubscribers();
         $cartLine = new CartLine();
         $nlForm = $this->createForm( NewsletterFormType::class, $subscriber );
-        $cartForm = $this->createForm(AddToCartFormType::class, $cartLine);
+        $productThumbnails = $thumbnailController->generateProductThumbnails($products);
+
         // $categories = $this->getCategories($categoryRepository);
 
         if ($formHandler->handleForm($nlForm, $request)) {
@@ -42,21 +45,16 @@ class PagesController extends AbstractController
                 'success',
                 'Merci de votre inscription à la Newsletter !'
             );
-        }
-
-        if ($cartService->addToCartHandle($cartForm, $request)) {
-            // On envoie un message flash qui indique que l'utilisateurice a réussi sa msie à jour d'informations !
-            $this->addFlash(
-                'success',
-                'Article ajouté au panier !'
-            );
+        } // sinon si on a un POST et que l'utilisateur n'est pas connecté alors qu'il essaie d'ajouter un article...
+        elseif ($request->isMethod('POST') && !$thumbnailController->handleCartRequests($productThumbnails, $request, $cartService, $security)) {
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('pages/index.html.twig', [
             'title' => 'Accueil',
             'newsform' => $nlForm,
             'products' => $products,
-            'cartForm' => $cartForm,
+            'productThumbnails' => $productThumbnails,
             // 'categories' => $categories
         ]);
     }

@@ -31,6 +31,15 @@ class ProductRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function findLatestActiveProducts(int $max=4): ?array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = 1')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getTaxes( string $categoryName){
         return $this->createQueryBuilder('p')
         ->innerJoin('p.categories','c')
