@@ -1,14 +1,32 @@
 @font-face {
-    font-family: InriaSans-Light;
-    src: url(../img/polices/InriaSans-Light.ttf);
+  font-family: "InriaSans-Light";
+  src: url(../fonts/Inria_Sans/InriaSans-Light.ttf);
+  font-style: normal;
 }
 
 @font-face {
-    font-family: InriaSerif-Bold;
-    src: url(../img/polices/InriaSerif-Bold.ttf);
+  font-family: "InriaSans-Light";
+  src: url(../fonts/Inria_Sans/InriaSans-LightItalic.ttf);
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "InriaSerif-Bold";
+  src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "InriaSerif-Bold";
+  src: url(../fonts/Inria_Serif/InriaSerif-BoldItalic.ttf);
+  font-style: italic;
 }
 
 body{
   margin: 0;
+  font-family: 'InriaSans-Light', 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'InriaSerif-Bold', Georgia, 'Times New Roman', Times, serif;
+}

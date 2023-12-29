@@ -1,18 +1,3 @@
-@font-face {
-  font-family: InriaSans-Light;
-  src: url(../img/polices/InriaSans-Light.ttf);
-}
-
-@font-face {
-  font-family: InriaSerif-Bold;
-  src: url(../img/polices/InriaSerif-Bold.ttf);
-}
-
-body {
-  margin: 0;
-}
-
-
 @media screen and (min-width: 1300px) {
   /* FOOTER */
 
