@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Entity\Cart;
 use App\Repository\CartRepository;
 use App\Services\SimpleFormHandlerService;
+use Doctrine\ORM\EntityManagerInterface;
+use Error;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +24,7 @@ class CartService {
         private Security $security,
         private CartRepository $cartRepo,
         private SimpleFormHandlerService $simpleService,
+        private EntityManagerInterface $em
     )
     {
         // Empty
@@ -39,6 +42,20 @@ class CartService {
         $cartLine->setCart($currentCart);
         $form->setData($cartLine);
         return $this->simpleService->handleForm($form, $request);
+    }
+
+    public function persistCart(Cart $cart):void
+    {
+        $this->em->persist($cart);
+        $this->em->flush();
+    }
+
+    public function getUserCart(): Cart
+    {
+        if (($user = $this->security->getUser()) === NULL) {
+            throw new Error("Cannot get a cart if user isn't authenticated");
+        }
+        return $this->cartRepo->getLastCart($user) ? $this->cartRepo->getLastCart($user) : new Cart();
     }
 
 }
