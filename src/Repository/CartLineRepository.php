@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Cart;
 use App\Entity\CartLine;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +22,19 @@ class CartLineRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CartLine::class);
     }
+
+    public function getCartLine(Product $product, Cart $cart): ?CartLine
+    {
+        return $this->createQueryBuilder('cl')
+            ->where('cl.cart = :cartid')
+            ->andWhere('cl.product = :productid')
+            ->setParameter('cartid', $cart)
+            ->setParameter('productid', $product)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 
 //    /**
 //     * @return CartLine[] Returns an array of CartLine objects

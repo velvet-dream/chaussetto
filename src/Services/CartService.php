@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Entity\Cart;
 use App\Entity\CartLine;
 use App\Form\AddToCartFormType;
+use App\Repository\CartLineRepository;
 use App\Repository\CartRepository;
 use App\Services\SimpleFormHandlerService;
 use Doctrine\Common\Collections\Collection;
@@ -28,7 +29,8 @@ class CartService {
         private Security $security,
         private CartRepository $cartRepo,
         private SimpleFormHandlerService $simpleService,
-        private EntityManagerInterface $em
+        private EntityManagerInterface $em,
+        private CartLineRepository $cartLineRepo
     )
     {
         // Empty
@@ -40,12 +42,32 @@ class CartService {
             return false;
         }
         $cartLine = $form->getData();
-        if (($currentCart = $this->cartRepo->getLastCart($customer)) === NULL) {
-            $currentCart = new Cart();
-        }
+        $currentCart = $this->getUserCart();
         $cartLine->setCart($currentCart);
         $form->setData($cartLine);
-        return $this->simpleService->handleForm($form, $request);
+        //return $this->simpleService->handleForm($form, $request);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newCL = $form->getData();
+            //dd($newCL);
+            if (($existingCL = $this->cartLineRepo->getCartLine($newCL->getProduct(), $newCL->getCart())) !== null) {
+                $request->getSession()->getFlashBag()->add(
+                    'warning',
+                    'Vous avez déjà ce produit dans votre panier : sa quantité a été modifiée.'
+                );
+                $existingCL->setQuantity($newCL->getQuantity() + $existingCL->getQuantity());
+            } else {
+                $request->getSession()->getFlashBag()->add(
+                    'success',
+                    'Article ajouté au panier !'
+                );
+                $currentCart->addCartLine($form->getData());
+            }
+            $this->persistCart($currentCart);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function persistCart(Cart $cart):void
@@ -59,7 +81,12 @@ class CartService {
         if (($user = $this->security->getUser()) === NULL) {
             throw new Error("Cannot get a cart if user isn't authenticated");
         }
-        return $this->cartRepo->getLastCart($user) ? $this->cartRepo->getLastCart($user) : new Cart();
+        // Si l'user n'a pas de cart on lui en crée un
+        if (($userCart = $this->cartRepo->getLastCart($user)) === NULL) {
+            $userCart = new Cart();
+            $userCart->setCustomer($user);
+        }
+        return $userCart;
     }
 
 
