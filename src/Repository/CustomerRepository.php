@@ -21,10 +21,11 @@ class CustomerRepository extends ServiceEntityRepository
         parent::__construct($registry, Customer::class);
     }
 
-    public function searchByName(string $name,
-    string $triName, 
-    string $triLastname, 
-    string $trimail) :?array
+    public function searchByName(
+        string $name,
+        string $triName, 
+        string $triLastname, 
+        string $trimail) :?array
 
     {
         return $this->createQueryBuilder('c')
