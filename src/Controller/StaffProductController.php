@@ -101,26 +101,26 @@ class StaffProductController extends AbstractController
     }
 
 
-    #[Route('/updateProducts/{id}', name: 'app_update_product')]
+    #[Route('/updateProduct/{id}', name: 'app_update_product')]
     public function updateProduct (
         Request $request,
         Security $security,
         Product $product,
         ProductRepository $productRepository,
-        ImageRepository $imageRepository
+        ImageRepository $imageRepository,
+        int $id
     ) : Response
     {
         if (!$security->isGranted('ROLE_ADMIN')){
             return $this->redirectToRoute('app_index');
         }
+        $product = $productRepository->findProductById($id);
 
         if ($product === null){
             return $this->redirectToRoute('app_list_product');
         }
-
-        $product = $this->gestionProduct($productRepository);
+    
         $form = $this->createForm(ProductFormType::class, $product);
-        $form->setData($product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -142,15 +142,16 @@ class StaffProductController extends AbstractController
                 $img->setName($newFilename);
                 $imageRepository->save($img);
                 $product->addImage($img);
+                $productRepository->save($product);
+
             }
 
 
-            $productRepository->save($product);
         }
 
         return $this->render('staff_product/addproduct.html.twig', [
             'title' => 'Mise à jour d\'un produit !',
-            'form' => $form, // Rendre la vue du formulaire disponible dans le template Twig
+            'form' => $form->createView(), // Création de la vue du formulaire
             'product' => $product
         ]);
     }
