@@ -14,7 +14,6 @@
 .landing h1{
   color: #000;
   text-align: center;
-  font-family: Inria Serif;
   font-size: 2.625rem;
   font-style: normal;
   font-weight: 700;
@@ -26,7 +25,6 @@
 .landing h2 {
   color: #000;
   text-align: center;
-  font-family: Inria Sans;
   font-size: 1.0625rem;
   font-style: normal;
   font-weight: 700;
@@ -78,7 +76,6 @@
 .banner_index p{
   color: #000;
   text-align: center;
-  font-family: Inria Sans;
   font-size: 1.0625rem;
   font-style: normal;
   font-weight: 300;
@@ -284,7 +281,6 @@
 .landing h1{
   color: #000;
   text-align: center;
-  font-family: Inria Serif;
   font-size: 2.625rem;
   font-style: normal;
   font-weight: 700;
@@ -295,7 +291,6 @@
 .landing h2 {
   color: #000;
   text-align: center;
-  font-family: Inria Sans;
   font-size: 1.0625rem;
   font-style: normal;
   font-weight: 700;
@@ -314,7 +309,6 @@
 .banner_index p{
   color: #000;
   text-align: center;
-  font-family: Inria Sans;
   font-size: 1.0625rem;
   font-style: normal;
   font-weight: 300;

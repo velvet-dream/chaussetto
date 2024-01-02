@@ -1,3 +1,69 @@
+form {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+.titre_form h1 {
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#customer_form {
+  border-radius: 0.1875rem;
+  background: #fff;
+  box-shadow: 1px 6px 8px 4px #f5f5e5;
+  width: 77%;
+  height: auto;
+  flex-shrink: 0;
+  padding: 2em;
+  box-sizing: border-box;
+}
+
+#customer_form div {
+  display: flex;
+  flex-direction: column;
+}
+
+#customer_form label {
+  font-weight: 300;
+  line-height: normal;
+}
+
+#customer_form input {
+  border-radius: 0.1875rem;
+  background: #fff;
+  box-shadow: 1px 6px 8px 4px #f5f5e5 inset;
+  padding: 0.66em;
+  border: none;
+  margin-bottom: 0.5em;
+}
+
+#connexion {
+  display: flex;
+  justify-content: center;
+}
+
+.connexion {
+  border-radius: 0.1875rem;
+  background: #fff;
+  box-shadow: 1px 6px 8px 4px #f5f5e5;
+  width: 77%;
+  height: auto;
+}
+
+#customer_form_submit {
+  width: 6.75rem;
+  height: 2.625rem;
+  border-radius: 0.125rem;
+  background-color: #fff11d;
+  align-self: end;
+  color: #000;
+  text-align: center;
+  font-size: 1.0625rem;
+}
+
 @media screen and (max-width: 1920px) {
   /* Styles par défaut pour les écrans larges */
 }
@@ -36,7 +102,6 @@
 
   #customer_form label {
     color: #000;
-    font-family: Inria Sans;
     font-size: 1.0625rem;
     font-style: normal;
     font-weight: 300;

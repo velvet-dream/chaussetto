@@ -39,7 +39,6 @@ body{
 
 #customer_form div {
     color: #000;
-    font-family: Inria Sans;
     font-size: 1.0625rem;
     font-style: normal;
     font-weight: 300;
@@ -48,7 +47,6 @@ body{
 
 #customer_form label {
     color: #000;
-    font-family: Inria Sans;
     font-size: 1.0625rem;
     font-style: normal;
     font-weight: 300;
