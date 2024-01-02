@@ -80,6 +80,27 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findProductById(int $id): ?Product
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
+
+
+    public function remove(Product $product): void
+    {
+        
+        $entityManager = $this->getEntityManager();
+        
+        $entityManager->remove($product);
+        $entityManager->flush();
+        // Détacher l'entité Product après la suppression
+        $entityManager->detach($product);
+        
+    }
+
+
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

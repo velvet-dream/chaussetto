@@ -153,4 +153,26 @@ class StaffProductController extends AbstractController
             'product' => $product
         ]);
     }
+
+    #[Route('/deleteProduct/{id}', name: 'app_delete_product')]
+    public function deleteProduct(int $id, ProductRepository $productRepository): Response
+    {
+        $product = $productRepository->findProductById($id);
+
+        if (!$product) {
+            // Si le produit n'est pas trouvé, tu peux rediriger ou afficher un message d'erreur
+            return $this->redirectToRoute('app_list_product');
+        }
+    
+        $productRepository->remove($product);
+
+        return $this->redirectToRoute('app_gestionProduct');
+
+        return $this->render('produit/GestionProduit.html.twig', [
+            'title' => 'Mise à jour d\'un produit !',
+                'product' => $product
+        ]);
+    }
+
+    
 }
