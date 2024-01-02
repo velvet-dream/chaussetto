@@ -160,6 +160,7 @@ class Product
         return $this->tax->getRate()/100 + 1;
     }
 
+
     /**
      * @return Collection<int, image>
      */
