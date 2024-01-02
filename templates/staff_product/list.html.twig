@@ -40,7 +40,7 @@
             <td>
                 Produit : {{ products.name }}
             </td>
-            <td>
+            <td class="controls">
                 <a href=" {{ path('app_show_product', {'id' : products.id}) }}">Voir</a> 
 				<a href=" {{ path('app_update_product', {'id' : products.id}) }}">Mettre à jour</a> 
 				{# <a href=" {{ path('app_update_category', {'id' : item.id}) }}">Supprimer</a>  #}

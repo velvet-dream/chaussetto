@@ -5,6 +5,15 @@ body {
   margin: 0;
 }
 
+/* .controls a {
+  padding: 5px 10px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 5px;
+  margin: 0.5em;
+} */
+
 @media screen and (min-width: 1300px) {
   .info_page_product {
     margin-top: 8%;
