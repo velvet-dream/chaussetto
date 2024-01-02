@@ -1,38 +1,49 @@
 {% extends 'base.html.twig' %}
+{% block additionalStyles %}
+		{# 'app' must match the first argument to addEntry() in webpack.config.js #}
+		<link
+		href="{{ asset('./styles/detail.css') }}" rel="stylesheet"/>
+	<!-- Renders a link tag (if your module requires any CSS)
+	    <link rel="stylesheet" href="/build/app.css"> -->
+	{% endblock %}
 
 {% block title %}Hello ProduitController!{% endblock %}
 {% block main %}
     <div>
-        <h1>Voici l'article Sélectionné</h1>
+       
 
-        <div>
+        
+        <div class="titre">
             <p>
-                <b>Nom :</b> {{ produit.name }},  
-                <b>Prix :</b> {{ produit.price }}, 
-                <b>Poids :</b> {{ produit.weight }},  
-                <b>Stock :</b> {{ produit.stock }}, 
-                <b>Tax :</b> {{ produit.tax.rate }}, 
-                <b>Description :</b> {{ produit.description }}
+                 <b>Nom :</b> {{ produit.name }}, 
+               <br> <b>Prix :</b> {{ produit.price }},  <br>
+               
             </p>
+         </div>   
             
-            <div>
-                {% for category in produit.categories %}
-                    <b>Catégorie :</b> {{ category.label }}<br>
-                {% endfor %}
-            </div>
 
-            <div>
+            <div class="image">
                 {% for image in produit.images %}
                     <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit">
                 {% endfor %}
             </div>
-        </div>  
-                {% if produit.stock > 0 %}
+            <div class="produit">
+            {% if produit.stock > 0 %}
                 {# Verifier l'ajout de condition ajout au panier apparait SI le produit est en stock, sinon affichier temporairement en rupture de stock #}
                 <a href="{{ path('app_cart_add', {id: produit.id}) }}"><button class="add-cart">Ajouter au panier</button></a>
                 {% else %}
                     <p>Temporairement en rupture de stock>
                 {% endif %}
+            </div>
+            <div class="detail">
+                <b>Poids :</b> {{ produit.weight }},  
+                <b>Stock :</b> {{ produit.stock }}, 
+                <b>Tax :</b> {{ produit.tax.rate }}, 
+             </div>
+             <div class="description"  
+              <br> <b>Description :</b> {{ produit.description }}<br>
+              </div>
+                
     </div>
     <a href="{{ path("app_produit") }}">Retour</a>
 
@@ -45,22 +56,30 @@
 
 <div>
     {% for product in products %}
-        <div>
+         <div class="titre">
             <p>
                 <b>Nom :</b> {{ product.name }},  
-                <b>Prix :</b> {{ product.price }}, 
+                <br><b>Prix :</b> {{ product.price }}, <br>
             </p>
+        </div>
 
-            {% for category in product.categories %}
-                <b>Catégorie :</b> {{ category.label }}
-            {% endfor %}
+    
 
             {% for image in product.images %}
-                <div>
+                <div class="image">
                     <img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit">
                 </div>
             {% endfor %}
-        </div>
+            </div>  
+            <div class="produit">
+                {% if produit.stock > 0 %}
+                {# Verifier l'ajout de condition ajout au panier apparait SI le produit est en stock, sinon affichier temporairement en rupture de stock #}
+                <a href="{{ path('app_cart_add', {id: produit.id}) }}"><button class="add-cart">Ajouter au panier</button></a>
+                {% else %}
+                    <p>Temporairement en rupture de stock>
+                {% endif %}
+                </div>  
+        </div> 
     {% endfor %}
 </div>
 
