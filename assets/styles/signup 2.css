@@ -1,11 +1,11 @@
 @font-face {
     font-family: InriaSans-Light;
-    src: url(../img/polices/InriaSans-Light.ttf);
+    src: url(../fonts/Inria_Sans/InriaSans-Regular.ttf);
 }
 
 @font-face {
     font-family: InriaSerif-Bold;
-    src: url(../img/polices/InriaSerif-Bold.ttf);
+    src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
 }
 
 body{
@@ -39,7 +39,7 @@ body{
 
 #customer_form div {
     color: #000;
-    font-family: Inria Sans;
+    font-family: InriaSans-Light;
     font-size: 1.0625rem;
     font-style: normal;
     font-weight: 300;
@@ -48,7 +48,7 @@ body{
 
 #customer_form label {
     color: #000;
-    font-family: Inria Sans;
+    font-family: InriaSans-Light;
     font-size: 1.0625rem;
     font-style: normal;
     font-weight: 300;

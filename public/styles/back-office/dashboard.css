@@ -1,11 +1,11 @@
 @font-face {
   font-family: InriaSans-Light;
-  src: url(../img/polices/InriaSans-Light.ttf);
+  src: url(../fonts/Inria_Sans/InriaSans-Regular.ttf);
 }
 
 @font-face {
   font-family: InriaSerif-Bold;
-  src: url(../img/polices/InriaSerif-Bold.ttf);
+  src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
 }
 
 @import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css");
@@ -16,12 +16,12 @@ body {
 
 @media screen and (min-width: 1300px) {
   .emplacement {
-    margin-left: 22% !important;
+    margin-left: 20% !important;
   }
 
   .info_h {
     color: #000;
-    font-family: Inria Serif;
+    font-family: InriaSerif-Bold;
     font-size: 0.875rem;
     text-transform: uppercase;
   }
