@@ -1,10 +1,13 @@
 {% extends 'admin/dashboard.html.twig' %}
 
+
+
 {% block title %}
 	{{ title }}
 {% endblock %}
 
 {% block main %}
+
 	<h2>
 		{{ title }}
 	</h2>
@@ -38,6 +41,10 @@
 		{% endif %}
 		</td>
 
+		<td>
+		Adresse : 
+		</td>
+
 		</tr>
 
         
@@ -60,7 +67,7 @@
 
 		</table>
 	<form>
-        <input type='text' name='name' value='{{ name }}' placeholder='Recherchez par le label'>
+        <input type='text' name='name' value='{{ name }}' placeholder='Recherchez par le prénom'>
         {# <input type='text' name='prenom' value='{{ prenom }}' placeholder='Recherchez par le prénom'> #}
         {# <input type='text' name='date_naissance' value='{{ date_naissance }}' placeholder='Recherchez par la date de naissance'> #}
         <input type = 'submit' value='rechercher' name='submit'>

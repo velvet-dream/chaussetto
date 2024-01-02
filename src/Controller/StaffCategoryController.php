@@ -70,9 +70,10 @@ class StaffCategoryController extends AbstractController
         }
 
         return $this->render('staff_category/new.html.twig', [
-            'title' => 'Création d\une nouvelle catégorie !',
+            'title' => 'Création d\'une nouvelle catégorie !',
             'form' => $form,
             'categories' => $categories,
+            'category' => $category
         
         ]);
     }
@@ -108,7 +109,7 @@ class StaffCategoryController extends AbstractController
     }
     // a refacto 
     #[Route ('getCategories', name: 'app_get_categories')]
-    public function getCategories(CategoryRepository $categoryRepository) : Response
+    public function getCategoriesNav(CategoryRepository $categoryRepository) : Response
     {
         $categories = $categoryRepository->findAll();
         // dd($categories);
@@ -119,10 +120,25 @@ class StaffCategoryController extends AbstractController
                 
             }
         }
-        return $this->render('_header/_nav.html.twig', [
-            'categories' => $tabEmpty
-        ]);
         // dd($tabEmpty); 
+        return $this->render('_header/_nav.html.twig', [
+            'header_categories' => $tabEmpty
+        ]);
+    }
+
+    public function getCategories(CategoryRepository $categoryRepository)
+    {
+        $categories = $categoryRepository->findAll();
+        // dd($categories);
+        $tabEmpty = [];
+        foreach ($categories as $category) {
+            if ($category->getParentCategory() === null) {
+                $tabEmpty[] = $category; 
+                
+            }
+        }
+        // dd($tabEmpty); 
+        return $tabEmpty;
     }
     
     // #[Route ('deleteCategory', name: 'app_delete_category')]

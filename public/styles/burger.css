@@ -1,17 +1,3 @@
-@font-face {
-    font-family: InriaSans-Light;
-    src: url(../img/polices/InriaSans-Light.ttf);
-}
-
-@font-face {
-    font-family: InriaSerif-Bold;
-    src: url(../img/polices/InriaSerif-Bold.ttf);
-}
-
-body{
-  margin: 0;
-}
-
 @media screen and (min-width: 480px) {
 /* Styles par défaut pour les écrans larges */
 nav {
@@ -48,13 +34,7 @@ nav {
   display: none; 
 }
 
-/* .icons_connexion{
-  width: 2.5%;
-}
 
-#icons_panier{
-  width: 2.5%;
-} */
 }
 
 
@@ -79,6 +59,7 @@ nav {
 
     #web-menu{
       width: 100% !important;
+      
     }
   
     .burger-icon:hover + #web-menu,
@@ -97,10 +78,18 @@ nav {
     }
   
     .icons_connexion{
-      width: 3%;
+      width: 6%;
     }
     
     #icons_panier{
-      width: 3%;
+      width: 6%;
     }  
+
+    .web-menu a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      padding-right: 9px;
+      padding-left: 4%;
+      text-align: center;
+    }
 }

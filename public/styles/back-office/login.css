@@ -1,27 +1,32 @@
-html {
-  background-color: var(--kaki);
-}
 
-h1 {
+
+.admin_co {
   text-transform: uppercase;
   text-align: center;
 }
 
-form {
+.form_admin {
   background-color: white;
   max-width: 50rem;
   margin: auto;
   padding: 2rem;
 }
 
-form label, form input {
+.form_admin label{
   display: block;
   margin: .5rem 0;
   width: 100%;
   box-sizing: border-box;
 }
 
-form input {
+.form_admin input {
+  display: block;
+  margin: .5rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form_admin input {
   padding: 1rem;
   border: 0;
   box-shadow: inset 1px 6px 8px 4px #F5F5E5;

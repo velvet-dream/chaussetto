@@ -1,71 +1,114 @@
-@font-face {
-  font-family: InriaSans-Light;
-  src: url(../img/polices/InriaSans-Light.ttf);
+@media screen and (min-width: 1300px) {
+  /* FOOTER */
+
+  .links-contact p {
+    font-family: InriaSerif-Bold;
+  }
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    background-color: #cacbb9;
+    padding: 20px;
+
+  }
+
+  .text,
+  .links-menu,
+  .links-contact,
+  .up-footer {
+    padding: 15px;
+  }
+
+  .links-menu ul {
+    list-style: none;
+    padding-left: 22%;
+  }
+
+  a:any-link {
+    text-decoration: none !important;
+    color: #000;
+    font-family: InriaSans-Light;
+  }
+
+  .links-menu li {
+    margin-bottom: 10px;
+  }
+
+  .links-contact h2 {
+    font-family: InriaSerif-Bold;
+  }
+
+  .links-contact div {
+    margin-bottom: 6%;
+  }
+
+  .links-contact hr {
+    display: none;
+  }
+  .up-footer a {
+    float: inline-end;
+  }
+
+  .up-footer p {
+    text-align: center;
+  }
 }
 
-@font-face {
-  font-family: InriaSerif-Bold;
-  src: url(../img/polices/InriaSerif-Bold.ttf);
-}
+/* Styles pour les écrans de petite taille (tablette) */
+@media screen and (max-width: 1300px) {
+  .links-contact p {
+    font-family: InriaSerif-Bold;
+  }
 
-body {
-  margin: 0;
-}
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    background-color: #cacbb9;
+    padding: 20px;
 
-/* Styles par défaut pour les écrans larges */
+  }
 
-/* FOOTER */
+  .text,
+  .links-menu,
+  .links-contact,
+  .up-footer {
+    padding: 15px;
+  }
 
-.links-contact p {
-  font-family: InriaSerif-Bold;
-}
+  .links-menu ul {
+    list-style: none;
+    padding-left: 22%;
+  }
 
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  background-color: #cacbb9;
-  padding: 20px;
-}
+  a:any-link {
+    text-decoration: none !important;
+    color: #000;
+    font-family: InriaSans-Light;
+  }
 
-.text,
-.links-menu,
-.links-contact,
-.up-footer {
-  padding: 15px;
-}
+  .links-menu li {
+    margin-bottom: 10px;
+  }
 
-.links-menu ul {
-  list-style: none;
-  padding-left: 22%;
-}
+  .links-contact h2 {
+    font-family: InriaSerif-Bold;
+  }
 
-a:any-link {
-  text-decoration: none !important;
-  color: #000;
-  font-family: InriaSans-Light;
-}
+  .links-contact div {
+    margin-bottom: 6%;
+  }
 
-.links-menu li {
-  margin-bottom: 10px;
-}
+  .links-contact hr {
+    display: none;
+  }
+  .up-footer a {
+    float: inline-end;
+  }
 
-.links-contact h2 {
-  font-family: InriaSerif-Bold;
-}
-
-.links-contact div {
-  margin-bottom: 6%;
-}
-
-.links-contact hr {
-  display: none;
-}
-.up-footer a {
-  float: inline-end;
-}
-
-.up-footer p {
-  text-align: center;
+  .up-footer p {
+    text-align: center;
+  }
 }
 
 /* Styles pour les écrans de petite taille (mobile) */
@@ -74,6 +117,10 @@ a:any-link {
 
   .footer-container {
     grid-template-columns: 1fr;
+    display: grid;
+    background-color: #cacbb9;
+    padding: 20px;
+
   }
 
   .up-footer {
@@ -83,8 +130,6 @@ a:any-link {
     justify-content: space-between;
     align-items: center;
   }
-
-
 
   .links-contact,
   .text .links-menu {
@@ -128,7 +173,6 @@ a:any-link {
     padding-left: 20%;
     padding-right: 20%;
     background-color: #cacbb9;
-
   }
 
   .insta {
@@ -152,7 +196,6 @@ a:any-link {
     padding-left: 20%;
     padding-right: 20%;
     background-color: #cacbb9;
-
   }
 
   .reseau {
@@ -165,5 +208,13 @@ a:any-link {
 
   .up-footer p {
     padding-right: 12%;
+  }
+
+  .text{
+    margin-top: 5%;
+  }
+
+  a:link{
+    text-decoration: none !important;
   }
 }

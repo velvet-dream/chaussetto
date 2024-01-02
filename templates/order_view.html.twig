@@ -1,0 +1,57 @@
+{% block order_view %}
+    <h1>Commande N°{{ order.id }}</h1>
+    <h2>Détails</h2>
+    <table>
+        <tr>
+            <th>À destination de</th>
+            <td>{{ order.customerName }} {{ order.customerLastName }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ order.email }}</td>
+        </tr>
+        <tr>
+            <th>Facturation</th>
+            <td>{{ order.billingAdress }}</td>
+        </tr>
+        <tr>
+            <th>Livraison</th>
+            <td>{{ order.deliveryAdress }}</td>
+        </tr>
+        <tr>
+            <th>État de la commande</th>
+            <td>{{ order.orderState.label }}</td>
+        </tr>
+        <tr>
+            <th>Produits commandés</th>
+            <td>
+                <table>
+                    <tr>
+                        <th>Qte</th>
+                        <th>Nom</th>
+                        <th>Prix Unitaire</th>
+                        <th>Promotion</th>
+                        <th>Taxe</th>
+                        <th>Prix TTC</th>
+                    </tr>
+                    {% for orderLine in order.orderLine %}
+                        <tr>
+                            <td>{{ orderLine.quantity }}</td>
+                            <td>{{ orderLine.productName }}</td>
+                            <td>{{ orderLine.productPrice }}€</td>
+                            <td>{{ orderLine.promotion }}</td>
+                            <td>{{ orderLine.tax }} %</td>
+                            <td>{{ orderLine.totalPriceVAT }}€</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td colspan="5">
+                            </td>
+                            <td>{{ order.totalPrice }}</td>
+                        </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+{% endblock %}

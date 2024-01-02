@@ -2,74 +2,88 @@
 
 {% extends 'base.html.twig' %}
 
+{% block additionalStyles %}
+	<link href="{{ asset('./styles/history.css') }}" rel="stylesheet"/>
+{% endblock %}
+
 {% block title %}
-    Vos commandes
+	Vos commandes
 {% endblock %}
 
 {% block main %}
-    <div>
-        <h1>VOS COMMANDES EN COURS</h1>
-        {% if currentOrders is not empty %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Customer name</th>
-                        <th>Customer Last name</th>
-                        <th>Total</th>
-                        <th>Email</th>
-                        <th>Etat</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in currentOrders %}
-                        <tr>
-                            <td>{{ order.id }}</td>
-                            <td>{{ order.customerName }}</td>
-                            <td>{{ order.customerLastName }}</td>
-                            <td>{{ order.totalPrice }}</td>
-                            <td>{{ order.email }}</td>
-                            <td>{{ order.orderState.label }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>Aucune commande en cours trouvée.</p>
-        {% endif %}
-    </div>
+	<section class="dashboard">
+		<h1>VOS COMMANDES EN COURS</h1>
+		{% if currentOrders is not empty %}
+			<div class="info_dash">
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Customer name</th>
+							<th>Customer Last name</th>
+							<th>Total</th>
+							<th>Email</th>
+							<th>Etat</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order in currentOrders %}
+							<tr>
+								<td>{{ order.id }}</td>
+								<td>{{ order.customerName }}</td>
+								<td>{{ order.customerLastName }}</td>
+								<td>{{ order.totalPrice }}</td>
+								<td>{{ order.email }}</td>
+								<td>{{ order.orderState.label }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% else %}
+				<div id="none">
+					<p class="none">Aucune commande en cours trouvée.</p>
+				</div>
+			{% endif %}
+		</div>
+	</section>
 
-    <div>
-        <h1>HISTORIQUE DE VOS COMMANDES</h1>
-        {% if historicalOrders is not empty %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Customer name</th>
-                        <th>Customer Last name</th>
-                        <th>Total</th>
-                        <th>Email</th>
-                        <th>Etat</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in historicalOrders %}
-                        <tr>
-                            <td>{{ order.id }}</td>
-                            <td>{{ order.customerName }}</td>
-                            <td>{{ order.customerLastName }}</td>
-                            <td>{{ order.totalPrice }}</td>
-                            <td>{{ order.email }}</td>
-                            <td>{{ order.orderState.label }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>Aucune commande historique trouvée.</p>
-        {% endif %}
-    </div>
+	<section class="dashboard">
+		<h2>HISTORIQUE DE VOS COMMANDES</h2>
+		<div class="info_dash">
+
+			{% if historicalOrders is not empty %}
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Customer name</th>
+							<th>Customer Last name</th>
+							<th>Total</th>
+							<th>Email</th>
+							<th>Etat</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order in historicalOrders %}
+							<tr>
+								<td>{{ order.id }}</td>
+								<td>{{ order.customerName }}</td>
+								<td>{{ order.customerLastName }}</td>
+								<td>{{ order.totalPrice }}</td>
+								<td>{{ order.email }}</td>
+								<td>{{ order.orderState.label }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% else %}
+				<div id="none">
+					<p class="none">Aucune commande historique trouvée.</p>
+				</div>
+			{% endif %}
+		</div>
+
+	</section>
 {% endblock %}
 
 {% block footer %}{% endblock %}

@@ -4,51 +4,65 @@
 	{{ title }}
 {% endblock %}
 
-{% block main %}
-	<h2>
-		{{ title }}
-	</h2>
-	{# {% if is_granted('ROLE_ADMIN') %} #}
-    <h3><a href=" {{ path('app_create_category')}}"> Créer une nouvelle catégorie </a></h3>
-    {# {% endif %} #}
+{% block additionalStyles %}
+	<link href="{{ asset('styles/back-office/category.css') }}" rel="stylesheet"/>
+{% endblock %}
 
-	<table>
+{% block main %}
+<div class="info_page_categ">
+		<h2 class="title_categ">
+		{{ title }}
+		</h2>
+		<hr class="info_categ_hr">
+	</div>
+	
+<section class="filtre">
+	{% if is_granted('ROLE_ADMIN') %}
+	<div class="bouton_ajout_categ">
+    	<h3>
+		<a href=" {{ path('app_create_category')}}"> Créer une nouvelle catégorie </a>
+		</h3>
+		</div>
+    {% endif %}
+
+	</section>
+
+	<section id="tableau_categ">
+	<table id="tableau_categ_table">
 		<tr>
-		Catégorie : 
-		{% if (triName == 'desc') %}
-			<a href=" {{ path('app_list_category' ) }}?label={{ label }}&triName=asc">></a>
-		{% else %}
-			<a href=" {{ path('app_list_category' ) }}?label={{ label }}&triName=desc"><</a>
-		{% endif %}
+			Catégorie : 
+			{% if (triName == 'desc') %}
+				<a href=" {{ path('app_list_category' ) }}?label={{ label }}&triName=asc">></a>
+			{% else %}
+				<a href=" {{ path('app_list_category' ) }}?label={{ label }}&triName=desc"><</a>
+			{% endif %}
 		</tr>
-	{% for item in category %}
+		{% for item in category %}
 		<tr>
 			<td>
 				Catégorie : {{ item.label}}
 			</td>
-			<td>
+			
+			<td class="aff_categ">
 				<a href=" {{ path('app_show_category', {'id' : item.id}) }}">Voir</a> 
 				<a href=" {{ path('app_update_category', {'id' : item.id}) }}">Mettre à jour</a> 
+				{# <a href=" {{ path('app_update_category', {'id' : item.id}) }}">Supprimer</a>  #}
 
-
-			</td><br>
+			</td>
+			
 		</tr>
 		{% else %}
 		<tr>
             <td>Aucun enregistrement</td>
         </tr>
-    {% endfor %}
+    	{% endfor %}
 
-		</table>
-	<form>
+	</table>
+	</section>
+	<form class="form_categ">
         <input type='text' name='label' value='{{ label }}' placeholder='Recherchez par le label'>
-        {# <input type='text' name='prenom' value='{{ prenom }}' placeholder='Recherchez par le prénom'> #}
-        {# <input type='text' name='date_naissance' value='{{ date_naissance }}' placeholder='Recherchez par la date de naissance'> #}
         <input type = 'submit' value='rechercher' name='submit'>
-        {# <button type= 'submit' name= 'subasc'>ASC</button>
-        <button type= 'submit' name= 'subdesc'>DESC</button> #}
-
     </form>
-
+	
 
 {% endblock %}

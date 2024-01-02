@@ -1,0 +1,232 @@
+@media screen and (min-width: 1300px) {
+
+  .information_perso h1 {
+    color: #000;
+    font-family: Inria Serif Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    padding-bottom: 1%;
+    padding-top: 2%;
+    text-align: center;
+  }
+
+  .card_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 0%;
+  }
+
+  .card {
+    border-radius: 0.1875rem;
+    background: #fff;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    width: 77%;
+    height: auto;
+    padding: 1% 5% 2% 5%;
+    margin-bottom: 3%;
+    }
+  
+
+  .card h2 {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .card tr {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  .card th {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: inherit;
+  }
+
+  .card-controls a {
+    color: #909090;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  .retour {
+    margin-bottom: 6%;
+  }
+  .retour a{
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    text-decoration: none;
+  }
+}
+
+/* Styles pour les écrans de petite taille (tablette) */
+@media screen and (max-width: 1300px) {
+    .information_perso h1 {
+        color: #000;
+        font-family: Inria Serif Bold;
+        font-size: 2.1875rem;
+        text-transform: uppercase;
+        padding-bottom: 1%;
+        padding-top: 2%;
+        text-align: center;
+      }
+    
+      .card_info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+        margin-right: 0%;
+      }
+    
+      .card {
+        border-radius: 0.1875rem;
+        background: #fff;
+        box-shadow: 1px 6px 8px 4px #f5f5e5;
+        width: 77%;
+        height: auto;
+        padding: 1% 5% 2% 5%;
+        margin-bottom: 3%;
+        }
+      
+    
+      .card h2 {
+        color: #000;
+        font-family: InriaSans-Light;
+        font-size: 1.0625rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    
+      .card tr {
+        color: #000;
+        font-family: InriaSans-Light;
+        font-size: 1.0625rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+      }
+    
+      .card th {
+        color: #000;
+        font-family: InriaSans-Light;
+        font-size: 1.0625rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        text-align: inherit;
+      }
+    
+      .card-controls a {
+        color: #909090;
+        font-family: InriaSans-Light;
+        font-size: 1.0625rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+      }
+    
+      .retour {
+        margin-bottom: 6%;
+      }
+      .retour a{
+        color: #000;
+        font-family: InriaSans-Light;
+        font-size: 1.0625rem;
+        text-decoration: none;
+      }
+
+    }
+/* Styles pour les écrans de petite taille (mobile) */
+@media screen and (max-width: 480px) {
+  .information_perso h1 {
+    color: #000;
+    text-align: center;
+    font-family: Inria Serif Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    padding-bottom: 4%;
+    text-align: center;
+  }
+
+  .card_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 0%;
+  }
+
+  .card {
+    border-radius: 0.1875rem;
+    background: #fff;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    width: 77%;
+    height: auto;
+    padding: 6%;
+    margin-bottom: 8%;
+  }
+
+  .card h2 {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .card tr {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  .card th {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: inherit;
+  }
+
+  .card-controls a {
+    color: #909090;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  .retour {
+    margin-bottom: 6%;
+  }
+  .retour a{
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+    text-decoration: none;
+  }
+}

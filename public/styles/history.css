@@ -1,0 +1,147 @@
+@media screen and (min-width: 1300px) {
+  .dashboard {
+    margin: 0% 4% 3% 5%;
+  }
+
+  .dashboard h1 {
+    color: #000;
+    text-align: center;
+    font-family: InriaSerif-Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    margin-top: 6%;
+  }
+
+  .dashboard h2 {
+    color: #000;
+    text-align: center;
+    font-family: InriaSerif-Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    margin-top: 6%;
+  }
+
+  .info_dash tr {
+    border-radius: 0.1875rem;
+    background: #fff11d;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    width: auto;
+    height: auto;
+    padding: 10% 0% 10% 0%;
+    text-align: center;
+    margin-bottom: 11%;
+  }
+
+  .info_dash th {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+  }
+
+  .none {
+    border-radius: 0.1875rem;
+    background: #ff6565;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    padding: 2%;
+    margin-bottom: 10%;
+  }
+}
+
+/* Styles pour les écrans de petite taille (tablette) */
+@media screen and (max-width: 1300px) {
+  .dashboard {
+    margin: 0% 4% 3% 5%;
+  }
+
+  .dashboard h1 {
+    color: #000;
+    text-align: center;
+    font-family: InriaSerif-Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    margin-top: 6%;
+  }
+
+  .dashboard h2 {
+    color: #000;
+    text-align: center;
+    font-family: InriaSerif-Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    margin-top: 6%;
+  }
+
+  .info_dash tr {
+    border-radius: 0.1875rem;
+    background: #fff11d;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    width: auto;
+    height: auto;
+    padding: 10% 0% 10% 0%;
+    text-align: center;
+    margin-bottom: 11%;
+  }
+
+  .info_dash th {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+  }
+
+  .none {
+    border-radius: 0.1875rem;
+    background: #ff6565;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    padding: 2%;
+    margin-bottom: 10%;
+  }
+}
+
+/* Styles pour les écrans de petite taille (mobile) */
+@media screen and (max-width: 480px) {
+  .dashboard {
+    margin: 0% 4% 26% 5%;
+  }
+
+  .dashboard h1 {
+    color: #000;
+    text-align: center;
+    font-family: InriaSerif-Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    margin-top: 11%;
+  }
+
+  .dashboard h2 {
+    color: #000;
+    text-align: center;
+    font-family: InriaSerif-Bold;
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+    margin-top: 11%;
+  }
+
+  .info_dash tr {
+    border-radius: 0.1875rem;
+    background: #fff11d;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    width: auto;
+    height: auto;
+    padding: 10% 0% 10% 0%;
+    text-align: center;
+    margin-bottom: 11%;
+  }
+
+  .info_dash th {
+    color: #000;
+    font-family: InriaSans-Light;
+    font-size: 1.0625rem;
+  }
+
+  .none {
+    border-radius: 0.1875rem;
+    background: #ff6565;
+    box-shadow: 1px 6px 8px 4px #f5f5e5;
+    padding: 4%;
+  }
+}

@@ -1,0 +1,14 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+    {{ block("order_view", "order_view.html.twig") }}
+    <aside>
+        <h3>Contrôles</h3>
+        {# <a href="{{ path('app_update_order', { 'id': order.id }) }}">Modifier</a>
+        <a href="{{ path('app_delete_order', { 'id': order.id }) }}" class="danger">Supprimer</a> #}
+        <a href="{{ path('app_list_orders') }}">Retour</a>
+    </aside>
+
+{% endblock %}

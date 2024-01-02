@@ -1,0 +1,35 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block additionalStyles %}
+	<link href="{{ asset('styles/back-office/list.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block main %}
+	<div class="info_page_product">
+		<h2 class="title_product">
+		{{ title }}
+		</h2>
+		<hr class="info_hr">
+	</div>
+
+	{% if is_granted('ROLE_ADMIN') %}
+	<div class="bouton_ajout">
+		<h3>
+			<a href=" {{ path('app_create_product')}}">
+				Créer une nouveau produit
+			</a>
+		</h3>
+	</div>
+	{% endif %}
+
+</table>
+	<form>
+        <input type='text' name='name' value='{{ name }}' placeholder='Recherchez par le nom'>
+        <input type = 'submit' value='rechercher' name='submit'>
+
+    </form>
+            
+{% endblock %}
