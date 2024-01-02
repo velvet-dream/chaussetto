@@ -17,8 +17,8 @@ use App\Repository\ImageRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\TaxRepository;
 use App\Controller\ThumbnailController;
- 
-
+use App\Services\CartService;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class ProduitController extends AbstractController
 {
@@ -85,15 +85,21 @@ class ProduitController extends AbstractController
     public function showCategorie (
     Category $category,
     ProductRepository $productRepo,
-    ThumbnailController $thumbnailController
+    ThumbnailController $thumbnailController,
+    Request $request,
+    CartService $cartService,
+    Security $security,
     ): Response
     {
-        $products = $productRepo->findLatestActiveProducts();
+        $products = $productRepo->getProductByCategory($category->getLabel());
         $productThumbnails = $thumbnailController->generateProductThumbnails($products);
+
+        if ($request->isMethod('POST') && !$thumbnailController->handleCartRequests($productThumbnails, $request, $cartService, $security)) {
+            return $this->redirectToRoute('app_login');
+        }
 
         return $this->render('produit/categorie.html.twig', [
             'title' => $category->getLabel(),
-            'products' => $category->getProducts(),
             'productThumbnails' => $productThumbnails,
 
         ]);

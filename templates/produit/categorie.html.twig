@@ -30,14 +30,8 @@
 								<h3>{{ productThumbnail.product.name }}
 								</h3>
 								<p>{{ productThumbnail.product.price }}€</p>
-                                <a href="{{ path('app_detail', {'id': productThumbnail.product.id, 'category': productThumbnail.product.categories.first().label}) }}"><button>Voir les détails</button></a>
-								{% for product in products %}
-                                {% for image in product.images %}
-                                    <ul>
-                                        <li><img src="{{ asset('../assets/img/web/' ~ product.images[0].name) }}" alt="Image du produit"></li>
-                                    </ul>
-                                {% endfor %}
-                                {% endfor %}
+                                <a href="{{ path('app_detail', {'id': productThumbnail.product.id, 'category': productThumbnail.product.categories.first().label}) }}">Voir les détails</a>
+                                <img src="{{ asset('../assets/img/web/' ~ productThumbnail.product.images[0].name) }}" alt="Image du produit"></li>
 								<!-- AJOUTER AU PANIER  -->
 								{% set cartForm = productThumbnail.formView %}
 								{% set product = productThumbnail.product %}
