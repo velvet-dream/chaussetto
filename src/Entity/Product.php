@@ -153,6 +153,13 @@ class Product
         return $this;
     }
 
+    public function getTaxMultiplier(): float
+    {
+        // Renvoie le multtiplicateur utile au calcul du prix TTC
+        // Ex : Pour une TVA à 20%, retourne 1.20
+        return $this->tax->getRate()/100 + 1;
+    }
+
     /**
      * @return Collection<int, image>
      */

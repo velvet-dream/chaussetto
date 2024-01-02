@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\CartLine;
 use App\Entity\Contact;
 use App\Entity\Customer;
 use App\Entity\NewsletterSubscribers;
-use App\Form\AddToCartFormType;
 use App\Form\ContactFormType;
 use App\Form\NewsletterFormType;
 use App\Repository\CategoryRepository;
@@ -33,7 +31,6 @@ class PagesController extends AbstractController
     {
         $products = $productRepo->findLatestActiveProducts();
         $subscriber = new NewsletterSubscribers();
-        $cartLine = new CartLine();
         $nlForm = $this->createForm( NewsletterFormType::class, $subscriber );
         $productThumbnails = $thumbnailController->generateProductThumbnails($products);
 

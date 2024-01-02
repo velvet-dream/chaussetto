@@ -3,15 +3,11 @@
 namespace App\Services;
 
 use App\Entity\Cart;
-use App\Entity\CartLine;
-use App\Form\AddToCartFormType;
 use App\Repository\CartLineRepository;
 use App\Repository\CartRepository;
 use App\Services\SimpleFormHandlerService;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Error;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
