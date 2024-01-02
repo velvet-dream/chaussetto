@@ -57,4 +57,13 @@ class CartLine
 
         return $this;
     }
+
+    public function getTotalPrice() :float
+    {
+        $total = $this->getProduct()->getPrice() * $this->getProduct()->getTaxMultiplier() * $this->getQuantity();
+        if (($promo = $this->getProduct()->getPromotion()) !== null) {
+            $total *= $promo->getRateMultiplier();
+        }
+        return $total;
+    }
 }

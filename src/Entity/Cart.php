@@ -97,4 +97,13 @@ class Cart
 
         return $this;
     }
+
+    public function getTotalPrice(): float
+    {
+        $totalTTC = 0;
+        foreach($this->getCartLines() as $cl) {
+            $totalTTC += $cl->getTotalPrice();
+        }
+        return $totalTTC;
+    }
 }
