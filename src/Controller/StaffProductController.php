@@ -142,12 +142,27 @@ class StaffProductController extends AbstractController
                 $img->setName($newFilename);
                 $imageRepository->save($img);
                 $product->addImage($img);
-                $productRepository->save($product);
+
 
             }
+            $productRepository->save($product);
 
 
+            
         }
+
+        // Ajout du champ pour afficher le nom de l'image actuelle
+    $formView = $form->createView();
+    $formView->children['image']->vars['attr']['readonly'] = true;
+
+    // Récupération du nom de la première image du produit (s'il y en a)
+    $images = $product->getImages();
+    $imageName = null;
+    if ($images && count($images) > 0) {
+        $imageName = $images[0]->getName(); // Récupérer le nom de la première image
+    }
+
+    $formView->children['image']->vars['data'] = $imageName; // Assignation du nom de l'image au champ du formulaire
 
         return $this->render('staff_product/addproduct.html.twig', [
             'title' => 'Mise à jour d\'un produit !',
