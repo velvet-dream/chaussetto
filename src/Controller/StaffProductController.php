@@ -60,7 +60,7 @@ class StaffProductController extends AbstractController
     
                 // Déplacer le fichier vers le répertoire où vous souhaitez le stocker
                 $imageFile->move(
-                    $this->getParameter('kernel.project_dir') . '/assets/img/web/', // Remplacez 'dossier_images' par le nom de votre répertoire
+                    $this->getParameter('kernel.project_dir') . '/public/images/web/', // Remplacez 'dossier_images' par le nom de votre répertoire
                     $newFilename
                 );
     
@@ -72,13 +72,12 @@ class StaffProductController extends AbstractController
             }
 
             $productrepo->save($product);
-
+            $this->addFlash("success", "Produit ajouté avec succès !");
+            return $this->redirectToRoute("app_list_product");
         }
 
         return $this->render('staff_product/addproduct.html.twig', [
             'form' => $form,
-    
-    
         ]);
 
     }

@@ -10,10 +10,11 @@
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		{% block stylesheets %}
 			{# 'app' must match the first argument to addEntry() in webpack.config.js #}
+			<link href="{{ asset('styles/general.css') }}" rel="stylesheet" />
 			<link href="{{ asset('styles/back-office/nav.css') }}" rel="stylesheet"/>
 			<link
 			href="{{ asset('styles/back-office/dashboard.css') }}" rel="stylesheet"/>
-      <link href="{{ asset('styles/general.css') }}" rel="stylesheet" />
+      
 			<!-- Renders a link tag (if your module requires any CSS)
 			<link rel="stylesheet" href="/build/app.css"> -->
 		{% endblock %}
@@ -92,10 +93,11 @@
 				{# Classes : flash-success, flash-warning #}
 					{% for label, messages in app.flashes %}
 						{% for message in messages %}
-							<div class="flash-{{ label }}"> {{ message }}
-						</div>
+							<div class="flash-message flash-{{ label }}" onclick="this.style.display='none';">
+								{{ message }}
+							</div>
+						{% endfor %}
 					{% endfor %}
-				{% endfor %}
 					{% block main %}
 
 						<div class="info_h">
