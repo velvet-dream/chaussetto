@@ -31,8 +31,7 @@
 	</div>
 
 	<div class="display-products">
-		<h2 class="product_h2">NOS CHAUSSETTES
-		</h2>
+		<h2 class="product_h2">NOS&nbsp;CHAUSSETTES</h2>
 		<hr>
 
 		<div class="grid_product">
@@ -45,7 +44,7 @@
 								</h3>
 								<p>{{ productThumbnail.product.price }}€</p>
 								<img
-								src="/images/mobile/chaussette_guitare_basique.png">
+								src="/images/mobile/{{ productThumbnail.product.image[0].name }}">
 								<!-- AJOUTER AU PANIER  -->
 								{% set cartForm = productThumbnail.formView %}
 								{% set product = productThumbnail.product %}

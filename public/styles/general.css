@@ -1,3 +1,11 @@
+:root {
+  --shadow-color: #F5F5E5;
+  --button-bg-color: #e8eadd;
+  --banner-bg-color: #cacbb9;
+  --yellow: #FFF11D;
+  --kaki: #F5F5E5;
+}
+
 @font-face {
   font-family: "InriaSans-Light";
   src: url(../fonts/Inria_Sans/InriaSans-Light.ttf);
@@ -53,4 +61,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .flash-danger {
   background-color: darkorange;
+}
+
+button {
+  border: none;
+  background-color: var(--yellow);
+  border-radius: 4px;
+  padding: 0.5em;
+}
+
+button:hover {
+  cursor: pointer;
 }

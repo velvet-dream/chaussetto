@@ -1,3 +1,28 @@
+.links-contact button {
+  background-color: transparent;
+  font-weight: bold;
+  padding: 0.5em 2em;
+  border: 2px solid black;
+  border-radius: 2em;
+}
+
+.links-menu li {
+  text-transform: uppercase;
+}
+
+.haut-de-page-button {
+  border-radius: 2em;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+.up-footer a {
+  position: absolute;
+  right: 1em;
+}
+
 @media screen and (min-width: 1300px) {
   /* FOOTER */
 
@@ -46,6 +71,7 @@
   .links-contact hr {
     display: none;
   }
+
   .up-footer a {
     float: inline-end;
   }
@@ -147,12 +173,13 @@
     font-family: InriaSans-Light !important;
     font-size: 1rem;
     border-radius: 1.375rem;
-    border: 1px solid #000;
-    width: auto !important;
+    border: 2px solid #000;
+    width: auto;
     flex-shrink: 0;
     padding: 2%;
     text-align: center;
     background-color: #cacbb9;
+    font-weight: bold;
   }
 
   .title_info_fb {
@@ -166,7 +193,7 @@
     font-size: 1rem;
     border-radius: 1.375rem;
     border: 1px solid #000;
-    width: auto !important;
+    width: auto;
     flex-shrink: 0;
     padding: 2%;
     text-align: center;
@@ -189,7 +216,7 @@
     font-size: 1rem;
     border-radius: 1.375rem;
     border: 1px solid #000;
-    width: auto !important;
+    width: auto;
     flex-shrink: 0;
     padding: 2%;
     text-align: center;
@@ -216,5 +243,15 @@
 
   a:link{
     text-decoration: none !important;
+  }
+
+  .links-contact a {
+    display: block;
+    width: 100%;
+  }
+
+  .links-contact button {
+    width: 100%;
+    text-align: center;
   }
 }
