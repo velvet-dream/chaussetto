@@ -1,11 +1,11 @@
 @font-face {
     font-family: InriaSans-Light;
-    src: url(../img/polices/InriaSans-Light.ttf);
+    src: url(../fonts/Inria_Sans/InriaSans-Regular.ttf);
 }
 
 @font-face {
     font-family: InriaSerif-Bold;
-    src: url(../img/polices/InriaSerif-Bold.ttf);
+    src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
 }
 
 body{
@@ -17,6 +17,7 @@ body{
   .connection h1{
      color: #000;
     text-align: center;
+    font-family: InriaSerif-Bold;
     font-size: 35px;
     text-transform: uppercase;
   }
@@ -103,6 +104,7 @@ body{
     flex-shrink: 0;
     color: #000;
     text-align: center;
+    font-family: InriaSerif-Bold;
     font-size: 35px;
     text-transform: uppercase;
     margin-top: 11%;
@@ -189,6 +191,7 @@ body{
     flex-shrink: 0;
     color: #000;
     text-align: center;
+    font-family: InriaSerif-Bold;
     font-size: 35px;
     text-transform: uppercase;
     width: 356px;

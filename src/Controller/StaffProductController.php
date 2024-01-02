@@ -107,21 +107,22 @@ class StaffProductController extends AbstractController
         Security $security,
         Product $product,
         ProductRepository $productRepository,
-        ImageRepository $imageRepository
+        ImageRepository $imageRepository,
+        int $id
     ) : Response
     {
         if (!$security->isGranted('ROLE_ADMIN')){
             return $this->redirectToRoute('app_index');
         }
+        $product = $productRepository->findProductById($id);
 
         if ($product === null){
             return $this->redirectToRoute('app_list_product');
         }
-
-        $product = $this->gestionProduct($productRepository);
+    
         $form = $this->createForm(ProductFormType::class, $product);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()){
             $imageFile = $form->get('image')->getData(); // Récupérer le fichier image soumis
             
@@ -141,14 +142,16 @@ class StaffProductController extends AbstractController
                 $img->setName($newFilename);
                 $imageRepository->save($img);
                 $product->addImage($img);
+                $productRepository->save($product);
+
             }
 
-            $productRepository->save($product);
+
         }
 
         return $this->render('staff_product/addproduct.html.twig', [
             'title' => 'Mise à jour d\'un produit !',
-            'form' => $form,
+            'form' => $form->createView(), // Création de la vue du formulaire
             'product' => $product
         ]);
     }

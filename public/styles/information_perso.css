@@ -2,7 +2,7 @@
 
   .information_perso h1 {
     color: #000;
-    font-weight: bold;
+    font-family: InriaSerif-Bold Bold;
     font-size: 2.1875rem;
     text-transform: uppercase;
     padding-bottom: 1%;
@@ -80,7 +80,7 @@
 @media screen and (max-width: 1300px) {
     .information_perso h1 {
         color: #000;
-        font-weight: bold;
+        font-family: InriaSerif-Bold Bold;
         font-size: 2.1875rem;
         text-transform: uppercase;
         padding-bottom: 1%;
@@ -159,7 +159,7 @@
   .information_perso h1 {
     color: #000;
     text-align: center;
-    font-weight: bold;
+    font-family: InriaSerif-Bold Bold;
     font-size: 2.1875rem;
     text-transform: uppercase;
     padding-bottom: 4%;

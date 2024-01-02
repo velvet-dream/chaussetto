@@ -2,8 +2,17 @@
 
 {% block title %}Promotion{% endblock %}
 
+{% block additionalStyles %}
+	<link href="{{ asset('styles/back-office/promo.css') }}" rel="stylesheet"/>
+{% endblock %}
+
 {% block main %}
-  	<h1>{{ title }}</h1>
+<section class="emplacement">
+    <div class="info_page_promo">
+		<h1>{{ title }}</h1>
+		<hr class="info_promo_hr">
+	</div>
+
 	<h2>{{ promotion.label }} - {{ promotion.rate }}%</h2>
 	<h3>Produits concernés</h3>
 	<ul>
@@ -12,4 +21,5 @@
 		{% endfor %}
 	</ul>
 	<a href="{{ path('app_list_promotion') }}">Retour</a>
+	</section>
 {% endblock %}
