@@ -88,7 +88,6 @@
 		{% endblock %}
 
 
-		<section class="emplacement">
 				{# Lit et affiche tous les message flash #}
 				{# Classes : flash-success, flash-warning #}
 					{% for label, messages in app.flashes %}
@@ -98,6 +97,7 @@
 					{% endfor %}
 				{% endfor %}
 					{% block main %}
+		<section class="emplacement">
 
 						<div class="info_h">
 							<h1>Tableau de bord
