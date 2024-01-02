@@ -40,10 +40,11 @@ class CartController extends AbstractController
             ];
             //le total est égal au prix des produits multiplié par la quantité.
             $total += $product->getPrice() * $quantity;
+            $totalTTC = $total + ($total * 0.20);
         }
         
 
-        return $this->render('cart/cart.html.twig', compact('data', 'total'));
+        return $this->render('cart/cart.html.twig', compact('data', 'total', 'totalTTC'));
     } 
 
     #[Route('/add/{id}', name: 'app_cart_add')]
