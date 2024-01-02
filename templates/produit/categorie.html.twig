@@ -21,7 +21,32 @@
         {% endfor %}
     {% endfor %}
 </div>
+<div class="grid_product">
+			{% for productThumbnail in productThumbnails %}
+				<div class="container_product">
+					<div id="slider_product">
+						<div class="slide_product">
+							<div class="wrapInfoPost">
+								<h3>{{ productThumbnail.product.name }}
+								</h3>
+								<p>{{ productThumbnail.product.price }}€</p>
+								<img
+								src="/images/mobile/chaussette_guitare_basique.png">
+								<!-- AJOUTER AU PANIER  -->
+								{% set cartForm = productThumbnail.formView %}
+								{% set product = productThumbnail.product %}
+								{{ include('fragments/add_to_cart.html.twig') }}
+								<!-- AJOUTER AU PANIER -->
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+		</div>
 
 {% endblock %}
+
+
 
 

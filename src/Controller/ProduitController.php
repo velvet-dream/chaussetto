@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ImageRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\TaxRepository;
+use App\Controller\ThumbnailController;
  
 
 
@@ -35,28 +36,41 @@ class ProduitController extends AbstractController
 
 
     #[Route('produit/detail/{id}', name: 'app_detail')]
-    public function detail(Product $produit, ProductRepository $productRepo): Response
+    public function detail(Product $produit, 
+    ProductRepository $productRepo,
+    ): Response
     {
 
 
-
         // Récupérez les produits similaires en fonction de la catégorie du produit actuel, par exemple.
-        $category = $produit->getCategories()->first(); // Récupérez la première catégorie (à adapter selon votre logique)
-        $products = $productRepo->getProductByCategory($category->getLabel()); // Obtenez les produits similaires
+        $category = $produit->getCategories()->first(); 
+         // Obtenir les produits similaires
+        $products = $productRepo->getProductByCategory($category->getLabel());
+
 
         return $this->render('produit/detail.html.twig', [
             'produit' => $produit,
             'products' => $products,
+            
         ]);
 
     }
 
     #[Route('/category/{id}', name: 'app_categorie')]
-    public function showCategorie (Category $category): Response
+    public function showCategorie (
+    Category $category,
+    ProductRepository $productRepo,
+    ThumbnailController $thumbnailController
+    ): Response
     {
+        $products = $productRepo->findLatestActiveProducts();
+        $productThumbnails = $thumbnailController->generateProductThumbnails($products);
+
         return $this->render('produit/categorie.html.twig', [
             'title' => $category->getLabel(),
             'products' => $category->getProducts(),
+            'productThumbnails' => $productThumbnails,
+
         ]);
     }
 
