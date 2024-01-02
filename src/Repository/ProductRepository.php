@@ -45,9 +45,13 @@ class ProductRepository extends ServiceEntityRepository
     public function save(Product $product): Product
     {
         $this->getEntityManager()->persist($product);
+
         $this->getEntityManager()->flush();
         return $product;
     }
+
+
+
 
     public function findAvailableProductsForPromotion()
     {
