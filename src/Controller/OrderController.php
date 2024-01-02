@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Order;
 use App\Entity\OrderLine;
 use App\Entity\Customer;
@@ -11,6 +12,7 @@ use App\Repository\OrderRepository;
 use App\Repository\OrderStateRepository;
 use App\Repository\PaymentMethodRepository;
 use App\Repository\ProductRepository;
+use App\Services\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,13 +60,12 @@ class OrderController extends AbstractController
 
     #[Route('/ajout', name: 'app_add_order')]
     public function add(Security $security, 
-        SessionInterface $session, 
-        ProductRepository $productRepository, 
         EntityManagerInterface $em,
-        CartRepository $cartRepository,
         OrderStateRepository $orderStateRepository,
         PaymentMethodRepository $paymentMethodRepository,
-        CarrierRepository $carrierRepository): Response
+        CarrierRepository $carrierRepository,
+        CartService $cartService
+    ): Response
     {
     
         // Vérification si l'utilisateur est connecté
@@ -73,16 +74,16 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $cart = $cartRepository->getLastCart($user);
+        $cart = $cartService->getUserCart();
         
 
         // si j'ai un panier vide, j'affiche un message
         // ET redirect accueil.
-        if($cart === [])
-        {
-            $this->addFlash('warning', 'votre panier est vide');
-            return $this->redirectToRoute('app_login');        
-        }
+        // if($cart === [])
+        // {
+        //     $this->addFlash('warning', 'Votre panier est vide');
+        //     return $this->redirectToRoute('app_login');        
+        // }
 
         // le panier n'est pas vide on créé la commande.
         $order = new Order();
@@ -90,43 +91,25 @@ class OrderController extends AbstractController
         //$customerId
         //on remplit la commande
         $order->setCustomer($user);
-        //iniqid définit un identifiant unique.
-        //$order->getId();
-
-        //récupération des détails de Order 
-        $customerName = $user->getName();
-        $customerLastName = $user->getLastName();
-        // FAUT CORRIGER !!!!!!!!
-        $totalPrice = 100;
-        $email = $user->getEmail();
-        $orderState = $orderStateRepository->find(1);  
-        $billingAdress = $user->getAdress();
-        $deliveryAdress = $user->getAdress();
-        $paymentMethod = $paymentMethodRepository->find(1);
-        $carrier = $carrierRepository->find(1);    
-
-        $order->setCustomerName($customerName);
-        $order->setCustomerLastName($customerLastName);
-        $order->setTotalPrice($totalPrice);
-        $order->setEmail($email);
-        $order->setOrderState($orderState);
-        $order->setCustomer($user);
-        $order->setbillingAdress($billingAdress);
-        $order->setDeliveryAdress($deliveryAdress);
-        $order->setPaymentMethod($paymentMethod);
-        $order->setCarrier($carrier);
+        $order->setCustomerName($user->getName());
+        $order->setCustomerLastName($user->getLastName());
+        $order->setTotalPrice($cart->getTotalPrice());
+        $order->setEmail($user->getEmail());
+        $order->setOrderState($orderStateRepository->find(1));
+        $order->setbillingAdress($user->getAdress());
+        $order->setDeliveryAdress($user->getAdress());
+        $order->setPaymentMethod($paymentMethodRepository->find(1));
+        $order->setCarrier($carrierRepository->find(1));
         $order->setCart($cart);
 
-        // affecter par la suite un nouveau panier a l'utlisateur ¿¿
-        // peut être passer par une méthode qui affecte un new Cart à un customer ¿¿
-        
-        
+        // On crée un nouveau panier vide pour notre customer
+        $newCart = new Cart();
+        $newCart->setCustomer($user);
 
         // on parcourt le panier pour créer les détails de commande
         foreach($cart->getCartLines() as $cartLine){
             $orderLine = new OrderLine();
-            //$order = new Order();
-           
+
             //on va chercher le produit
             $product = $cartLine->getProduct();
             $quantity = $cartLine->getQuantity();
@@ -136,36 +119,40 @@ class OrderController extends AbstractController
             $orderLine->setProductName($product->getName());
             $orderLine->setProductPrice($productPrice);
             $orderLine->setQuantity($quantity);
+            $orderLine->setTax($product->getTax()->getRate());
+            $orderLine->setTotalPriceVAT($cartLine->getTotalPrice());
+            $orderLine->setPromotion($product->getPromotion());
 
             $order->addOrderLine($orderLine);
-
         }
         //dd($order);
         //on persiste et flush
         $em->persist($order);
-        $em->flush();
+        $cartService->persistCart($newCart);
 
-        $this->addFlash('success', 'commande créée avec succés');
+        $this->addFlash('success', 'Commande créée avec succés !');
+        // On redirige où après ???
         return $this->redirectToRoute('app_index');
         
     }
 
     #[Route('/show/{id}', name: 'app_order_show')]
-    public function show(Security $security,
-    ?Order $order,    
-): Response
+    public function show(
+        Security $security,
+        ?Order $order,    
+    ): Response
 
-{
-    // Vérification si l'utilisateur est connecté
-    if (($user = $security->getUser()) === NULL) 
     {
-        return $this->redirectToRoute('app_login');
-    }
+        // Vérification si l'utilisateur est connecté
+        if (($user = $security->getUser()) === NULL) 
+        {
+            return $this->redirectToRoute('app_login');
+        }
 
-    return $this->render('order/show.html.twig', [
-        'title' => 'TA commande !',
-        'order' => $order,     
-    ]);
-}
+        return $this->render('order/show.html.twig', [
+            'title' => 'TA commande !',
+            'order' => $order,     
+        ]);
+    }
 
 }
