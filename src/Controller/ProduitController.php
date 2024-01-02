@@ -17,8 +17,8 @@ use App\Repository\ImageRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\TaxRepository;
 use App\Controller\ThumbnailController;
- 
-
+use App\Services\CartService;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class ProduitController extends AbstractController
 {
@@ -35,30 +35,30 @@ class ProduitController extends AbstractController
     }
 
 
-    #[Route('/updateProduct', name: 'app_updateProduct')]
-    public function gestionProduct(ProductRepository $product): Response
-    {
-        $produit = $product->findAll();
+    // #[Route('/updateProduct', name: 'app_updateProduct')]
+    // public function gestionProduct(ProductRepository $product): Response
+    // {
+    //     $produit = $product->findAll();
 
-        return $this->render('produit/GestionProduit.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
+    //     return $this->render('produit/GestionProduit.html.twig', [
+    //         'produit' => $produit,
+    //     ]);
+    // }
 
-    #[Route('/updateProduct', name: 'app_gestionProduct')]
-    public function updateProduct(ProductRepository $product): Response
-    {
-        $categories = $this->getCategories($categoryRepository);
-        $form = $this->createForm(CategoryFormType::class, $category);
+    // #[Route('/updateProduct', name: 'app_gestionProduct')]
+    // public function updateProduct(ProductRepository $product): Response
+    // {
+    //     $categories = $this->getCategories($categoryRepository);
+    //     $form = $this->createForm(CategoryFormType::class, $category);
 
-        $form->handleRequest($request);
+    //     $form->handleRequest($request);
 
 
         
-        return $this->render('staff_product/addproduct.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
+    //     return $this->render('produit/GestionProduit.html.twig', [
+    //         'produit' => $produit,
+    //     ]);
+    // }
 
     #[Route('produit/detail/{id}', name: 'app_detail')]
     public function detail(Product $produit, 
@@ -85,15 +85,21 @@ class ProduitController extends AbstractController
     public function showCategorie (
     Category $category,
     ProductRepository $productRepo,
-    ThumbnailController $thumbnailController
+    ThumbnailController $thumbnailController,
+    Request $request,
+    CartService $cartService,
+    Security $security,
     ): Response
     {
-        $products = $productRepo->findLatestActiveProducts();
+        $products = $productRepo->getProductByCategory($category->getLabel());
         $productThumbnails = $thumbnailController->generateProductThumbnails($products);
+
+        if ($request->isMethod('POST') && !$thumbnailController->handleCartRequests($productThumbnails, $request, $cartService, $security)) {
+            return $this->redirectToRoute('app_login');
+        }
 
         return $this->render('produit/categorie.html.twig', [
             'title' => $category->getLabel(),
-            'products' => $category->getProducts(),
             'productThumbnails' => $productThumbnails,
 
         ]);

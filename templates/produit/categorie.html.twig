@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-        
+      {#}  
     <div class="example-wrapper">
         {% for product in products %}
             <p>
                 <b>Nom :</b> {{ product.name }},  
-                <b>Prix :</b> {{ product.price }}, 
-                <a href="{{ path('app_detail', {'id': product.id, 'category': product.categories.first().label}) }}">Voir les détails</a>
+                <b>Prix :</b> {{ product.price }} €, 
+                <a href="{{ path('app_detail', {'id': product.id, 'category': product.categories.first().label}) }}"><button>Voir les détails</button></a>
             </p>
 
             {% for category in product.categories %}
@@ -20,8 +20,8 @@
             </ul>
         {% endfor %}
     {% endfor %}
-</div>
-<div class="grid_product">
+    </div>{#}  
+    <div class="grid_product">
 			{% for productThumbnail in productThumbnails %}
 				<div class="container_product">
 					<div id="slider_product">
@@ -30,20 +30,37 @@
 								<h3>{{ productThumbnail.product.name }}
 								</h3>
 								<p>{{ productThumbnail.product.price }}€</p>
-								<img
-								src="/images/mobile/chaussette_guitare_basique.png">
+                                <a href="{{ path('app_detail', {'id': productThumbnail.product.id, 'category': productThumbnail.product.categories.first().label}) }}">Voir les détails</a>
+                                <img src="{{ asset('../assets/img/web/' ~ productThumbnail.product.images[0].name) }}" alt="Image du produit"></li>
 								<!-- AJOUTER AU PANIER  -->
 								{% set cartForm = productThumbnail.formView %}
 								{% set product = productThumbnail.product %}
 								{{ include('fragments/add_to_cart.html.twig') }}
 								<!-- AJOUTER AU PANIER -->
+
 							</div>
 						</div>
 					</div>
 				</div>
 			{% endfor %}
+	</div>
 
-		</div>
+    {#}<div class="example-wrapper">
+                    {% for product in products %}
+                        {% for image in product.images %}
+                            <ul>
+                                <li><img src="{{ asset('../assets/img/web/' ~ image.name) }}" alt="Image du produit"></li>
+                            </ul>
+                        {% endfor %}
+                        <p>
+                            
+                            <b>Nom :</b> {{ product.name }},  
+                            <b>Prix :</b> {{ product.price }} €, 
+                             
+                            <a href="{{ path('app_detail', {'id': product.id, 'category': product.categories.first().label}) }}"><button>Voir les détails</button></a>
+                        </p>
+                    {% endfor %}
+                </div>{#}
 
 {% endblock %}
 

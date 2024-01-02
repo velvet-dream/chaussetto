@@ -12,11 +12,11 @@
 			{# 'app' must match the first argument to addEntry() in webpack.config.js #}
 			<link href="{{ asset('styles/general.css') }}" rel="stylesheet" />
 			<link href="{{ asset('styles/back-office/nav.css') }}" rel="stylesheet"/>
+			<link href="{{ asset('styles/back-office/dashboard.css') }}" rel="stylesheet"/>
 			<link
-			href="{{ asset('styles/back-office/dashboard.css') }}" rel="stylesheet"/>
-      
-			<!-- Renders a link tag (if your module requires any CSS)
-			<link rel="stylesheet" href="/build/app.css"> -->
+			href="{{ asset('styles/general.css') }}" rel="stylesheet"/>
+		<!-- Renders a link tag (if your module requires any CSS)
+					<link rel="stylesheet" href="/build/app.css"> -->
 		{% endblock %}
 
 		{% block additionalStyles %}{% endblock %}
@@ -25,7 +25,7 @@
             {{ encore_entry_script_tags('colors') }}
 
             <!-- Renders app.js & a webpack runtime.js file
-                          <script src="/build/runtime.js" defer></script>
+                           <script src="/build/runtime.js" defer></script>
 			 <script src="/build/app.js" defer></script>
 			See note below about the "defer" attribute -->
 		{% endblock %}
@@ -88,17 +88,16 @@
 		{% endblock %}
 
 
-		<section class="emplacement">
 				{# Lit et affiche tous les message flash #}
 				{# Classes : flash-success, flash-warning #}
 					{% for label, messages in app.flashes %}
 						{% for message in messages %}
-							<div class="flash-message flash-{{ label }}" onclick="this.style.display='none';">
-								{{ message }}
-							</div>
-						{% endfor %}
+							<div class="flash-{{ label }}"> {{ message }}
+						</div>
 					{% endfor %}
+				{% endfor %}
 					{% block main %}
+		<section class="emplacement">
 
 						<div class="info_h">
 							<h1>Tableau de bord
@@ -106,9 +105,9 @@
 							<hr>
 						</div>
 
-						<section>
-							<a href="{{ path ('app_list_product') }} ">
-								Liste des produits</a><br>
+				<section>
+					<a href="{{ path ('app_list_product') }} ">
+						Liste des produits</a><br>
 
 						</section>
 						<a href="{{ path ('app_list_admin') }} ">
@@ -124,9 +123,8 @@
 						<a href="{{ path ('app_list_orders') }} ">
 							Liste des commandes</a><br>
 						<a href="{{ path ('app_list_promotion') }}">Promotions</a><br>
-               			<a href="{{ path ('app_gestionProduct') }}">Gérer les produits<br>
 
-					{% endblock %}
+			{% endblock %}
 
 		</section>
 

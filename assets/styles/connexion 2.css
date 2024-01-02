@@ -1,11 +1,11 @@
 @font-face {
     font-family: InriaSans-Light;
-    src: url(../img/polices/InriaSans-Light.ttf);
+    src: url(../fonts/Inria_Sans/InriaSans-Regular.ttf);
 }
 
 @font-face {
     font-family: InriaSerif-Bold;
-    src: url(../img/polices/InriaSerif-Bold.ttf);
+    src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
 }
 
 body{

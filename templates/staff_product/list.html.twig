@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block main %}
+<section class="emplacement">
 	<div class="info_page_product">
 		<h2 class="title_product">
 		{{ title }}
@@ -40,7 +41,7 @@
             <td>
                 Produit : {{ products.name }}
             </td>
-            <td>
+            <td class="controls">
                 <a href=" {{ path('app_show_product', {'id' : products.id}) }}">Voir</a> 
 				<a href=" {{ path('app_update_product', {'id' : products.id}) }}">Mettre à jour</a> 
 				{# <a href=" {{ path('app_update_category', {'id' : item.id}) }}">Supprimer</a>  #}
@@ -60,5 +61,5 @@
         <input type = 'submit' value='rechercher' name='submit'>
 
     </form>
-            
+</section>           
 {% endblock %}

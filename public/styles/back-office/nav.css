@@ -1,3 +1,13 @@
+@font-face {
+  font-family: InriaSans-Light;
+  src: url(../fonts/Inria_Sans/InriaSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: InriaSerif-Bold;
+  src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
+}
+
 @import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css");
 
 body {
