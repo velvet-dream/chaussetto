@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Repository\CartLineRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
+use App\Services\CartService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
 
@@ -16,7 +19,10 @@ class CartController extends AbstractController
 {
    
     #[Route('/', name: 'app_cart_index')]
-    public function index(Security $security, SessionInterface $session, ProductRepository $productRepository)
+    public function index(Security $security, 
+    SessionInterface $session, 
+    ProductRepository $productRepository, 
+    CartService $cartService)
     {
         $user = $this->getUser();
 
@@ -25,14 +31,16 @@ class CartController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $cart = $session->get('cart', []);
-       
-       // initialisation des variables
-       $data = [];
-       $total = 0;
+        $cart = $cartService->getUserCart();
+        //$cart = $session->get('cart', []);
+        // initialisation des variables
+        $data = [];
+        $total = 0;
+        $totalTTC = 0;
 
-        foreach($cart as $id => $quantity){
-            $product = $productRepository->find($id);
+        foreach($cart->getCartLines() as $cl){
+            $product = $cl->getProduct();
+            $quantity = $cl->getQuantity();
 
             $data[] = [
                 'product' => $product,
@@ -40,7 +48,7 @@ class CartController extends AbstractController
             ];
             //le total est égal au prix des produits multiplié par la quantité.
             $total += $product->getPrice() * $quantity;
-            $totalTTC = $total + ($total * 0.20);
+            $totalTTC += $product->getPrice() * $product->getTaxMultiplier() * $quantity;
         }
         
 
@@ -48,71 +56,81 @@ class CartController extends AbstractController
     } 
 
     #[Route('/add/{id}', name: 'app_cart_add')]
-    public function add(Product $product, SessionInterface $session)
+    public function add(Product $product, CartService $cartService, CartLineRepository $cartLineRepo)
     {
         //récuperer le produit
         $id = $product->getId();
 
         //récup le panier s'il y en a un, sinon renvoie de tableau vide
-        $cart = $session->get('cart', []);
-
-        //ajout de produit dans la session s'il n'y est pas encore
-        //sinon on incrémente sa quantité
-        if(empty($cart[$id]))
-        {
-            $cart[$id] = 3;
-        } else {
-            $cart[$id]++;
+        // $cart = $session->get('cart', []);
+        $cart = $cartService->getUserCart();
+        
+        if (($existingCL = $cartLineRepo->getCartLine($product, $cart)) === null) {
+            $this->addFlash("danger", "Article à ajouter inexistant dans le panier");
         }
 
-        $session->set('cart', $cart);
+        $existingCL->setQuantity($existingCL->getQuantity() + 1);
+
+        $cartService->persistCart($cart);
+
        // redirection vers page panier
        return $this->redirectToRoute('app_cart_index');
 
     }
 
     #[Route('/remove/{id}', name: 'app_cart_remove')]
-    public function remove(Product $product, SessionInterface $session)
+    public function remove(Product $product,
+        CartService $cartService,
+        CartLineRepository $cartLineRepo,
+        EntityManagerInterface $em
+    )
     {
-        //récuperer le produit
-        $id = $product->getId();
-
         //récup le panier s'il y en a un.
-        $cart = $session->get('cart', []);
-
+        // $cart = $session->get('cart', []);
+        $cart = $cartService->getUserCart();
+        
         //on retire le produit du panier s'il n'y a qu'un exemplaire
         //sinon on décrémente sa quantité
-        if(!empty($cart[$id]))
-        {
-            if($cart[$id] > 1){
-                $cart[$id]--;
-            } else {
-            unset($cart[$id]);
-            }
+        if (($existingCL = $cartLineRepo->getCartLine($product, $cart)) === null) {
+            $this->addFlash("danger", "Article à retirer inexistant dans le panier");
         }
 
-        $session->set('cart', $cart);
+        if ($existingCL->getQuantity() === 1) {
+            $cart->removeCartLine($existingCL);
+            $em->remove($existingCL);
+            
+        } else {
+            $existingCL->setQuantity($existingCL->getQuantity() - 1);
+        }
+        
+
+        $cartService->persistCart($cart);
+
        // redirection vers page panier
        return $this->redirectToRoute('app_cart_index');
 
     }
 
     #[Route('/delete/{id}', name: 'app_cart_delete')]
-    public function delete(Product $product, SessionInterface $session)
+    public function delete(Product $product,
+        CartService $cartService, 
+        CartLineRepository $cartLineRepo,
+        EntityManagerInterface $em
+    )
     {
-        //récuperer le produit
-        $id = $product->getId();
-
         //récup le panier s'il y en a un.
-        $cart = $session->get('cart', []);
-
-        //si le panier n'est pas vide
-        if(!empty($cart[$id]))
-        {
-            unset($cart[$id]);
+        // $cart = $session->get('cart', []);
+        $cart = $cartService->getUserCart();
+        
+        // S'il n'y a pas de produit à retirer (cartLine nulle)
+        if (($existingCL = $cartLineRepo->getCartLine($product, $cart)) === null) {
+            $this->addFlash("danger", "Article à retirer inexistant dans le panier");
         }
 
-        $session->set('cart', $cart);
+        $cart->removeCartLine($existingCL);
+        $em->remove($existingCL);
+        
+        $cartService->persistCart($cart);
         
        // redirection vers page panier
        return $this->redirectToRoute('app_cart_index');
