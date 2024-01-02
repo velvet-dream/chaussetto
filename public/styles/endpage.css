@@ -49,9 +49,10 @@
   margin-left: 10%;
   padding: 2%;
   padding-left: 29%;
-  margin-top: 9px;
-  border-color: black;
+  margin-top: 12px;
+  border: none;
   margin-left: 17%;
+  box-shadow: inset 1px 3px 8px 4px #F5F5E5;
 }
 
 .newletter button{
@@ -60,7 +61,6 @@
   display: flex;
   align-self: center;
   margin-right: 13%;
-  background-color: #e8eadd;
   padding-left: 11%;
 }
 

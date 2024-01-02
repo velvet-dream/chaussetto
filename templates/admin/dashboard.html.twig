@@ -33,58 +33,58 @@
 	<body>
 
 
-					{% block header %}
+		{% block header %}
 
-						<nav class="menu_admin">
-							<ol>
-								{% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
-									<li class="menu-item">
-										<a href="{{ path ('app_admin_dashboard') }} ">
-											Pannel d'administration
-										</a>
-									</li>
+			<nav class="menu_admin">
+				<ol>
+					{% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+						<li class="menu-item">
+							<a href="{{ path ('app_admin_dashboard') }} ">
+								Pannel d'administration
+							</a>
+						</li>
 
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_list_product') }} ">Produits</a>
-									</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_list_product') }} ">Produits</a>
+						</li>
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_list_category') }} ">Catégories</a>
-									</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_list_category') }} ">Catégories</a>
+						</li>
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_list_orders') }} ">Commandes</a>
-									</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_list_orders') }} ">Commandes</a>
+						</li>
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_list_promotion') }} ">Promotions</a>
-									</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_list_promotion') }} ">Promotions</a>
+						</li>
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_list_tax') }} ">Taxes</a>
-									</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_list_tax') }} ">Taxes</a>
+						</li>
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_list_admin') }} ">Administrateur</a>
-									</li>
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_admin_profile') }} ">Mon profil</a>
-									</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_list_admin') }} ">Administrateur</a>
+						</li>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_admin_profile') }} ">Mon profil</a>
+						</li>
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_admin_logout') }} ">Se déconnecter</a>
-									</li>
-								{% else %}
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_admin_logout') }} ">Se déconnecter</a>
+						</li>
+					{% else %}
 
-									<li class="menu-item">
-										<a class="administration" href="{{ path ('app_admin_login') }} ">Se connecter</a>
-									</li>
-								{% endif %}
-							</ol>
-						</nav>
+						<li class="menu-item">
+							<a class="administration" href="{{ path ('app_admin_login') }} ">Se connecter</a>
+						</li>
+					{% endif %}
+				</ol>
+			</nav>
 
-					{% endblock %}
+		{% endblock %}
 
 
 		<section class="emplacement">
