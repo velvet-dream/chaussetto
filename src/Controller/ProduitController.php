@@ -35,30 +35,30 @@ class ProduitController extends AbstractController
     }
 
 
-    // #[Route('/updateProduct', name: 'app_updateProduct')]
-    // public function gestionProduct(ProductRepository $product): Response
-    // {
-    //     $produit = $product->findAll();
+    #[Route('/updateProduct', name: 'app_updateProduct')]
+    public function gestionProduct(ProductRepository $product): Response
+    {
+        $produit = $product->findAll();
 
-    //     return $this->render('produit/GestionProduit.html.twig', [
-    //         'produit' => $produit,
-    //     ]);
-    // }
+        return $this->render('produit/GestionProduit.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
 
-    // #[Route('/updateProduct', name: 'app_gestionProduct')]
-    // public function updateProduct(ProductRepository $product): Response
-    // {
-    //     $categories = $this->getCategories($categoryRepository);
-    //     $form = $this->createForm(CategoryFormType::class, $category);
+    #[Route('/updateProduct', name: 'app_gestionProduct')]
+    public function updateProduct(ProductRepository $product): Response
+    {
+        $categories = $this->getCategories($categoryRepository);
+        $form = $this->createForm(CategoryFormType::class, $category);
 
-    //     $form->handleRequest($request);
+        $form->handleRequest($request);
 
 
         
-    //     return $this->render('produit/GestionProduit.html.twig', [
-    //         'produit' => $produit,
-    //     ]);
-    // }
+        return $this->render('produit/GestionProduit.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
 
     #[Route('produit/detail/{id}', name: 'app_detail')]
     public function detail(Product $produit, 
