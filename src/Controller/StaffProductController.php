@@ -102,7 +102,7 @@ class StaffProductController extends AbstractController
     }
 
 
-    #[Route('/updateProduct/{id}', name: 'app_update_product')]
+    #[Route('/updateProducts/{id}', name: 'app_update_product')]
     public function updateProduct (
         Request $request,
         Security $security,
@@ -121,8 +121,9 @@ class StaffProductController extends AbstractController
 
         $product = $this->gestionProduct($productRepository);
         $form = $this->createForm(ProductFormType::class, $product);
-
+        $form->setData($product);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()){
             $imageFile = $form->get('image')->getData(); // Récupérer le fichier image soumis
             
@@ -144,12 +145,13 @@ class StaffProductController extends AbstractController
                 $product->addImage($img);
             }
 
+
             $productRepository->save($product);
         }
 
         return $this->render('staff_product/addproduct.html.twig', [
             'title' => 'Mise à jour d\'un produit !',
-            'form' => $form,
+            'form' => $form, // Rendre la vue du formulaire disponible dans le template Twig
             'product' => $product
         ]);
     }
