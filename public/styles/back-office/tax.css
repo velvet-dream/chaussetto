@@ -17,11 +17,11 @@
   @media screen and (min-width: 1300px) {
   
   
-    .info_page_staff {
+    .info_page_tax {
       margin-top: 2%;
     }
   
-    .title_staff {
+    .title_tax {
       color: #000;
       font-family: InriaSerif-Bold;
       font-size: 0.875rem;
@@ -31,7 +31,7 @@
     .info_hr {
       border-color: black;
       width: 66.0625rem;
-      height: 0.0625rem;
+      margin-left: 0%;
     }
 
     .bouton_ajout h3 {

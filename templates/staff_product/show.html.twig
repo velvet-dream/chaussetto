@@ -1,15 +1,21 @@
 {% extends 'admin/dashboard.html.twig' %}
 
-
+{% block additionalStyles %}
+	<link href="{{ asset('styles/back-office/promo.css') }}" rel="stylesheet"/>
+{% endblock %}
 
 {% block title %}
 	{{ title }}
 {% endblock %}
 
 {% block main %}
+<section class="emplacement">
+    <div class="info_page_promo">
 	<h2>
 		{{ title }}
 	</h2>
+    <hr class="info_promo_hr">
+    </div>
     <table>
         <tr>
             <td> 
@@ -49,6 +55,6 @@
         </tr>
         
     </table>
-
+</section>
 
 {% endblock %}
