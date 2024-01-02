@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+
+{% block additionalStyles %}
+    <link href="{{ asset('./styles/categories.css') }}" rel="stylesheet"/>
+{% endblock %}
       {#}  
     <div class="example-wrapper">
         {% for product in products %}

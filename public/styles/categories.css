@@ -1,0 +1,303 @@
+@font-face {
+    font-family: InriaSans-Light;
+    src: url(../fonts/Inria_Sans/InriaSans-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: InriaSerif-Bold;
+    src: url(../fonts/Inria_Serif/InriaSerif-Bold.ttf);
+  }
+  
+  @import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css");
+  
+  body {
+    margin: 0;
+    
+  }
+
+  @media screen and (max-width: 1920px) {
+    /* Styles par défaut pour les écrans larges */
+
+    .slide_product{
+      display: flex;
+    }
+
+    /*Carroussel page accueil*/
+ 
+.grid_product{
+  display: grid;
+  width: 85%;
+  grid-template-columns: 31% 31% 31% 31%;
+  align-items: start;
+  justify-content: space-between;
+}
+ 
+.container_product{
+  display: block;
+ 
+}
+ 
+#slider_product{
+  border-radius: 0.1875rem;
+  background: #FFF;
+  box-shadow: 1px 6px 8px 4px #F5F5E5;
+  width: 75%;
+  height: auto;
+  flex-shrink: 0;
+}
+ 
+.slider_product{
+  padding: 20px;
+}
+ 
+.wrapInfoPost{
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-top: 5%;
+}
+ 
+.wrapInfoPost h3{
+  text-align: center;
+  font-family: InriaSerif-Bold;
+}
+ 
+.wrapInfoPost p{
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 0;
+  margin: 0;
+  font-family: InriaSans-Light;
+ 
+}
+ 
+.wrapInfoPost img{
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+.ajout_panier{
+  padding: 4%;
+  background-color: #e8eadd;
+  width: auto;
+  padding-left: 27%;
+  padding-right: 27%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: InriaSans-Light;
+  font-size: 0.9rem;
+}
+ 
+}
+
+    .wrapInfoPost{
+
+    }
+
+  
+  @media screen and (min-width: 1300px) {
+
+    .slide_product{
+      display: flex;
+    }
+
+    /*Carroussel page accueil*/
+ 
+.grid_product{
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
+  align-items: start;
+  justify-content: space-between;
+  padding-left: 6%;
+}
+ 
+.container_product{
+  display: block;
+ 
+}
+ 
+#slider_product{
+  border-radius: 0.1875rem;
+  background: #FFF;
+  box-shadow: 1px 6px 8px 4px #F5F5E5;
+  width: 75%;
+  height: auto;
+  flex-shrink: 0;
+}
+ 
+.slider_product{
+  padding: 20px;
+}
+ 
+.wrapInfoPost{
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-top: 5%;
+}
+ 
+.wrapInfoPost h3{
+  text-align: center;
+  font-family: InriaSerif-Bold;
+}
+ 
+.wrapInfoPost p{
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 0;
+  margin: 0;
+  font-family: InriaSans-Light;
+ 
+}
+ 
+.wrapInfoPost img{
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+.ajout_panier{
+  padding: 4%;
+  background-color: #e8eadd;
+  width: auto;
+  padding-left: 20%;
+  padding-right: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: InriaSans-Light;
+  font-size: 0.9rem;
+}
+
+  }
+
+  /* Styles pour les écrans de petite taille (mobile) */
+  @media screen and (max-width: 480px) {
+
+    h3{
+        color: #000;
+        text-align: center;
+        font-family: Inria Sans;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        text-transform: uppercase; 
+    }
+
+    p{
+      color: #000;
+      text-align: center;
+      font-family: Inria Sans;
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      text-transform: uppercase; 
+    }
+
+    img{
+      width: 216px;
+      height: 279px;
+      flex-shrink: 0; 
+
+    }
+
+    .grid_product{
+      width: 99%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+     
+    .container_product{
+      display: block;
+     
+    }
+     
+    #slider_product{
+      border-radius: 0.1875rem;
+      background: #FFF;
+      box-shadow: 1px 6px 8px 4px #F5F5E5;
+      width: 93%;
+      height: auto;
+      margin-top: 6%;
+    }
+     
+    .slide_product{
+      padding: 20px;
+    }
+     
+    .wrapInfoPost{
+      padding-top: 12%;
+      padding-bottom: 12%;
+      margin-top: 5%;
+    }
+     
+    .wrapInfoPost h3{
+      text-align: center;
+      font-family: InriaSerif-Bold;
+    }
+     
+    .wrapInfoPost p{
+      text-align: center;
+      padding-top: 1%;
+      padding-bottom: 0;
+      margin: 0;
+      font-family: InriaSans-Light;
+     
+    }
+     
+    .wrapInfoPost img{
+      width: 200px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+     
+    .ajout_panier{
+      padding: 4%;
+      background-color: #e8eadd;
+      width: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: InriaSans-Light;
+      font-size: 0.9rem;
+    }
+     
+    #discovery_category{
+      margin-top: 20%;
+      margin-bottom: 20%;
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+     
+    .discovery_category{
+      padding: 4%;
+      background-color: #e8eadd;
+      width: 340px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0%;
+      margin-bottom: 3%;
+    }
+     
+    .discovery_category_basic{
+      padding: 4%;
+      background-color: #e8eadd;
+      width: 340px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0%;
+      margin-bottom: 3%;
+    }
+
+}
