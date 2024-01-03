@@ -1,20 +1,10 @@
 # Bienvenue dans notre projet
 
-## init project:
+## Accéder à l'interface d'aministration :
 
-```bash
-composer update
-npm install
-```
+Route : `/admin/login`
 
-## compile css and js one time:
+### Admin existant dans le dump de la bdd :
 
-```bash
-npm run dev
-```
-
-## compile css and js in real time:
-
-```bash
-npm run watch
-```
+- Email : `v@a.com`
+- mdp : `a`
