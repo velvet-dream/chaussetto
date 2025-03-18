@@ -92,8 +92,9 @@
 				{# Classes : flash-success, flash-warning #}
 					{% for label, messages in app.flashes %}
 						{% for message in messages %}
-							<div class="flash-message flash-{{ label }}"> {{ message }}
-						</div>
+							<div class="flash-message flash-{{ label }}" onclick="this.style.display='none';">
+								{{ message }}
+							</div>
 					{% endfor %}
 				{% endfor %}
 					{% block main %}
