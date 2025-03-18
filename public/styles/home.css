@@ -1,3 +1,7 @@
+.wrapInfoPost img {
+	max-width: 80%;
+}
+
 @media screen and (min-width: 1300px) {
 	/* Styles par défaut pour les écrans larges */
 
@@ -166,7 +170,6 @@
 	}
 
 	.wrapInfoPost img {
-		width: auto;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -250,7 +253,6 @@
 	}
 
 	.wrapInfoPost img {
-		width: auto;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -402,6 +404,7 @@
 	}
 
 	.wrapInfoPost img {
+		max-width: initial;
 		width: 200px;
 		display: block;
 		margin-left: auto;
