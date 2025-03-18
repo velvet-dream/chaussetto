@@ -17,13 +17,14 @@ use Symfony\Bundle\SecurityBundle\Security;
 #[Route('/cart')]
 class CartController extends AbstractController
 {
-   
+
     #[Route('/', name: 'app_cart_index')]
-    public function index(Security $security, 
-    SessionInterface $session, 
-    ProductRepository $productRepository, 
-    CartService $cartService)
-    {
+    public function index(
+        Security $security,
+        SessionInterface $session,
+        ProductRepository $productRepository,
+        CartService $cartService
+    ) {
         $user = $this->getUser();
 
         // Vérification si l'utilisateur est connecté
@@ -38,7 +39,7 @@ class CartController extends AbstractController
         $total = 0;
         $totalTTC = 0;
 
-        foreach($cart->getCartLines() as $cl){
+        foreach ($cart->getCartLines() as $cl) {
             $product = $cl->getProduct();
             $quantity = $cl->getQuantity();
 
@@ -50,10 +51,10 @@ class CartController extends AbstractController
             $total += $product->getPrice() * $quantity;
             $totalTTC += $product->getPrice() * $product->getTaxMultiplier() * $quantity;
         }
-        
+
 
         return $this->render('cart/cart.html.twig', compact('data', 'total', 'totalTTC'));
-    } 
+    }
 
     #[Route('/add/{id}', name: 'app_cart_add')]
     public function add(Product $product, CartService $cartService, CartLineRepository $cartLineRepo)
@@ -64,7 +65,7 @@ class CartController extends AbstractController
         //récup le panier s'il y en a un, sinon renvoie de tableau vide
         // $cart = $session->get('cart', []);
         $cart = $cartService->getUserCart();
-        
+
         if (($existingCL = $cartLineRepo->getCartLine($product, $cart)) === null) {
             $this->addFlash("danger", "Article à ajouter inexistant dans le panier");
         }
@@ -73,22 +74,21 @@ class CartController extends AbstractController
 
         $cartService->persistCart($cart);
 
-       // redirection vers page panier
-       return $this->redirectToRoute('app_cart_index');
-
+        // redirection vers page panier
+        return $this->redirectToRoute('app_cart_index');
     }
 
     #[Route('/remove/{id}', name: 'app_cart_remove')]
-    public function remove(Product $product,
+    public function remove(
+        Product $product,
         CartService $cartService,
         CartLineRepository $cartLineRepo,
         EntityManagerInterface $em
-    )
-    {
+    ) {
         //récup le panier s'il y en a un.
         // $cart = $session->get('cart', []);
         $cart = $cartService->getUserCart();
-        
+
         //on retire le produit du panier s'il n'y a qu'un exemplaire
         //sinon on décrémente sa quantité
         if (($existingCL = $cartLineRepo->getCartLine($product, $cart)) === null) {
@@ -98,30 +98,28 @@ class CartController extends AbstractController
         if ($existingCL->getQuantity() === 1) {
             $cart->removeCartLine($existingCL);
             $em->remove($existingCL);
-            
         } else {
             $existingCL->setQuantity($existingCL->getQuantity() - 1);
         }
-        
+
 
         $cartService->persistCart($cart);
 
-       // redirection vers page panier
-       return $this->redirectToRoute('app_cart_index');
-
+        // redirection vers page panier
+        return $this->redirectToRoute('app_cart_index');
     }
 
     #[Route('/delete/{id}', name: 'app_cart_delete')]
-    public function delete(Product $product,
-        CartService $cartService, 
+    public function delete(
+        Product $product,
+        CartService $cartService,
         CartLineRepository $cartLineRepo,
         EntityManagerInterface $em
-    )
-    {
+    ) {
         //récup le panier s'il y en a un.
         // $cart = $session->get('cart', []);
         $cart = $cartService->getUserCart();
-        
+
         // S'il n'y a pas de produit à retirer (cartLine nulle)
         if (($existingCL = $cartLineRepo->getCartLine($product, $cart)) === null) {
             $this->addFlash("danger", "Article à retirer inexistant dans le panier");
@@ -129,13 +127,10 @@ class CartController extends AbstractController
 
         $cart->removeCartLine($existingCL);
         $em->remove($existingCL);
-        
+
         $cartService->persistCart($cart);
-        
-       // redirection vers page panier
-       return $this->redirectToRoute('app_cart_index');
 
+        // redirection vers page panier
+        return $this->redirectToRoute('app_cart_index');
     }
-
-    
 }
