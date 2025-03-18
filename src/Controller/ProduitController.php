@@ -3,19 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Entity\Tax;
-use App\Entity\Image;
 use App\Entity\Category;
-use App\Form\CategoryFormType;
-use App\Form\ProductFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
-use App\Repository\ImageRepository;
-use App\Repository\CategoryRepository;
-use App\Repository\TaxRepository;
 use App\Controller\ThumbnailController;
 use App\Services\CartService;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -26,8 +19,6 @@ class ProduitController extends AbstractController
     public function show_product(ProductRepository $product): Response
     {
         $produit = $product->findAll();
-
-
 
         return $this->render('produit/index.html.twig', [
             'produit' => $produit,
@@ -50,7 +41,6 @@ class ProduitController extends AbstractController
         Product $produit,
         ProductRepository $productRepo,
     ): Response {
-
 
         // Récupérez les produits similaires en fonction de la catégorie du produit actuel, par exemple.
         $category = $produit->getCategories()->first();
