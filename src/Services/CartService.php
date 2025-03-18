@@ -19,7 +19,8 @@ use Symfony\Component\HttpFoundation\Request;
  * 2- Elle appelle elle même le SimpleFormHandlerService pour persister l'ajout au panier
  */
 
-class CartService {
+class CartService
+{
 
     public function __construct(
         private Security $security,
@@ -27,8 +28,7 @@ class CartService {
         private SimpleFormHandlerService $simpleService,
         private EntityManagerInterface $em,
         private CartLineRepository $cartLineRepo
-    )
-    {
+    ) {
         // Empty
     }
 
@@ -44,9 +44,11 @@ class CartService {
         //return $this->simpleService->handleForm($form, $request);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // Ici, vérifier que le cart est bien bind au user.
             $newCL = $form->getData();
-            //dd($newCL);
-            if (($existingCL = $this->cartLineRepo->getCartLine($newCL->getProduct(), $newCL->getCart())) !== null) {
+            $cart = $this->getUserCart();
+
+            if (($existingCL = $this->cartLineRepo->getCartLine($newCL->getProduct(), $cart)) !== null) {
                 $request->getSession()->getFlashBag()->add(
                     'warning',
                     'Vous avez déjà ce produit dans votre panier : sa quantité a été modifiée.'
@@ -66,7 +68,7 @@ class CartService {
         }
     }
 
-    public function persistCart(Cart $cart):void
+    public function persistCart(Cart $cart): void
     {
         $this->em->persist($cart);
         $this->em->flush();
@@ -81,9 +83,8 @@ class CartService {
         if (($userCart = $this->cartRepo->getLastCart($user)) === NULL) {
             $userCart = new Cart();
             $userCart->setCustomer($user);
+            $this->persistCart($userCart);
         }
         return $userCart;
     }
-
-
 }
