@@ -43,8 +43,12 @@ class StaffProductController extends AbstractController
     }
 
     #[Route('/addProduct', name: 'app_create_product')]
-    public function addproduct (Request $request, ProductRepository $productrepo, ImageRepository $imageRepo): Response
+    public function addproduct(Request $request, ProductRepository $productrepo, ImageRepository $imageRepo, Security $security): Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_admin_login');
+        }
+
         $product = new Product(); // Ou récupérez une catégorie existante à éditer
 
         $form = $this->createForm(ProductFormType::class, $product);
@@ -172,8 +176,12 @@ class StaffProductController extends AbstractController
     }
 
     #[Route('/deleteProduct/{id}', name: 'app_delete_product')]
-    public function deleteProduct(int $id, ProductRepository $productRepository): Response
+    public function deleteProduct(int $id, ProductRepository $productRepository, Security $security): Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_index');
+        }
+
         $product = $productRepository->findProductById($id);
 
         if (!$product) {
