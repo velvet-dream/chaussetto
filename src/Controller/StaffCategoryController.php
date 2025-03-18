@@ -12,27 +12,27 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route ('admin/')]
+#[Route('admin/')]
 class StaffCategoryController extends AbstractController
 {
-    #[Route ('showCategory/{id}', name: 'app_show_category')]
-    public function showCategory(?Category $category, Security $security) : Response
+    #[Route('showCategory/{id}', name: 'app_show_category')]
+    public function showCategory(?Category $category, Security $security): Response
     {
-        if (!$security->isGranted('ROLE_ADMIN')){
+        if (!$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_admin_dashboard');
         }
-        
+
         return $this->render('staff_category/show.html.twig', [
             'title' => 'Détails de la catégorie',
             'category' => $category,
         ]);
     }
-    
 
-    #[Route ('listCategory', name: 'app_list_category')]
-    public function listCategory (CategoryRepository $categoryRepository, Request $request,Security $security) : Response
+
+    #[Route('listCategory', name: 'app_list_category')]
+    public function listCategory(CategoryRepository $categoryRepository, Request $request, Security $security): Response
     {
-        if (!$security->isGranted('ROLE_ADMIN')){
+        if (!$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_admin_dashboard');
         }
         $triName = $request->query->get('triName', 'asc');
@@ -42,18 +42,18 @@ class StaffCategoryController extends AbstractController
             'title' => 'Liste des catégories',
             'category' => $category,
             'triName' => $triName,
-            'label' => $request->query->get('label','')
+            'label' => $request->query->get('label', '')
         ]);
     }
 
-    #[Route ('createCategory', name: 'app_create_category')]
-    public function createCategory (
-        Request $request, 
+    #[Route('createCategory', name: 'app_create_category')]
+    public function createCategory(
+        Request $request,
         FormCategoryService $formCategoryService,
         Security $security,
-        CategoryRepository $categoryRepository) : Response
-    {
-        if (!$security->isGranted('ROLE_ADMIN')){
+        CategoryRepository $categoryRepository
+    ): Response {
+        if (!$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
@@ -65,7 +65,7 @@ class StaffCategoryController extends AbstractController
         $categories = $this->getCategories($categoryRepository);
 
         $form->handleRequest($request);
-        if ($formCategoryService->submitForm($form, $category,$request)){
+        if ($formCategoryService->submitForm($form, $category, $request)) {
             return $this->redirectToRoute('app_index');
         }
 
@@ -74,21 +74,23 @@ class StaffCategoryController extends AbstractController
             'form' => $form,
             'categories' => $categories,
             'category' => $category
-        
+
         ]);
     }
 
-    #[Route ('updateCategory/{id}', name: 'app_update_category')]
-    public function updateCategory (
-        Request $request, 
+    #[Route('updateCategory/{id}', name: 'app_update_category')]
+    public function updateCategory(
+        Request $request,
         FormCategoryService $formCategoryService,
         Security $security,
-        Category $category, CategoryRepository $categoryRepository) : Response
-    {
-        // if (!$security->isGranted('ROLE_ADMIN')){
-        //     return $this->redirectToRoute('app_index');
-        // }
-        if($category === null){
+        Category $category,
+        CategoryRepository $categoryRepository
+    ): Response {
+        if (!$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_index');
+        }
+
+        if ($category === null) {
             return $this->redirectToRoute('app_list_category');
         }
         $categories = $this->getCategories($categoryRepository);
@@ -96,7 +98,7 @@ class StaffCategoryController extends AbstractController
         $form = $this->createForm(CategoryFormType::class, $category);
 
         $form->handleRequest($request);
-        if ($formCategoryService->submitForm($form, $category,$request)){
+        if ($formCategoryService->submitForm($form, $category, $request)) {
             return $this->redirectToRoute('app_list_category');
         }
 
@@ -107,17 +109,17 @@ class StaffCategoryController extends AbstractController
             'category' => $category->getParentCategory()
         ]);
     }
+
     // a refacto 
-    #[Route ('getCategories', name: 'app_get_categories')]
-    public function getCategoriesNav(CategoryRepository $categoryRepository) : Response
+    #[Route('getCategories', name: 'app_get_categories')]
+    public function getCategoriesNav(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
         // dd($categories);
         $tabEmpty = [];
         foreach ($categories as $category) {
             if ($category->getParentCategory() === null) {
-                $tabEmpty[] = $category; 
-                
+                $tabEmpty[] = $category;
             }
         }
         // dd($tabEmpty); 
@@ -133,14 +135,13 @@ class StaffCategoryController extends AbstractController
         $tabEmpty = [];
         foreach ($categories as $category) {
             if ($category->getParentCategory() === null) {
-                $tabEmpty[] = $category; 
-                
+                $tabEmpty[] = $category;
             }
         }
         // dd($tabEmpty); 
         return $tabEmpty;
     }
-    
+
     // #[Route ('deleteCategory', name: 'app_delete_category')]
     // public function deleteCategory() // A FAIRE 
     // {
