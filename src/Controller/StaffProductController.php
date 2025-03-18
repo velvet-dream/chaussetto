@@ -10,13 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ProductFormType;
 use App\Entity\Product;
-use App\Entity\Tax;
 use App\Entity\Image;
-use App\Entity\Category;
 use App\Repository\ImageRepository;
-use App\Repository\TaxRepository;
-use App\Repository\CategoryRepository;
-use App\Services\FormCategoryService;
 
 
 
@@ -98,12 +93,6 @@ class StaffProductController extends AbstractController
             'product' => $product,
         ]);
     }
-
-    public function gestionProduct(ProductRepository $productRepository)
-    {
-        $product = $productRepository->findAll();
-    }
-
 
     #[Route('/updateProduct/{id}', name: 'app_update_product')]
     public function updateProduct (
