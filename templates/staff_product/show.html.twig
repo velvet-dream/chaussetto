@@ -50,7 +50,11 @@
         <tr>
             <td> 
                 Est actif ? : 
-                    {{ product.active }}
+                {% if product.active %}
+                    Oui
+                {% else %}
+                        Non
+                {% endif %}
             </td>
         </tr>
         
