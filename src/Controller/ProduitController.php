@@ -25,24 +25,13 @@ class ProduitController extends AbstractController
         ]);
     }
 
-
-    #[Route('/updateProduct', name: 'app_updateProduct')]
-    public function gestionProduct(ProductRepository $product): Response
-    {
-        $produit = $product->findAll();
-
-        return $this->render('produit/GestionProduit.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
-
     #[Route('produit/detail/{id}', name: 'app_detail')]
     public function detail(
         Product $produit,
         ProductRepository $productRepo,
     ): Response {
 
-        // Récupérez les produits similaires en fonction de la catégorie du produit actuel, par exemple.
+        // Récupérer les produits similaires en fonction de la catégorie du produit actuel, par exemple.
         $category = $produit->getCategories()->first();
         // Obtenir les produits similaires
         $products = $productRepo->getProductByCategory($category->getLabel());
@@ -64,6 +53,7 @@ class ProduitController extends AbstractController
         CartService $cartService,
         Security $security,
     ): Response {
+
         $products = $productRepo->getProductByCategory($category->getLabel());
         $productThumbnails = $thumbnailController->generateProductThumbnails($products);
 
