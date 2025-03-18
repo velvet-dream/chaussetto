@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('private/')]
-class ThumbnailController extends AbstractController {
+class ThumbnailController extends AbstractController
+{
     /**
      * Méthode qui génère et retourne un array à partir d'une collection de produits contenant :
      * [
@@ -27,10 +28,9 @@ class ThumbnailController extends AbstractController {
     public function generateProductThumbnails(
         array $products,
         CartLine $cartLine = new CartLine(),
-    ): array
-    {
+    ): array {
         $productThumbnails = [];
-        foreach($products as $key=>$product) {
+        foreach ($products as $key => $product) {
             $productThumbnails[] = [
                 "product" => $product,
                 "cartForm" => $this->createForm(AddToCartFormType::class, $cartLine),
@@ -52,9 +52,8 @@ class ThumbnailController extends AbstractController {
         Request $request,
         CartService $cartService,
         Security $security,
-    ):bool
-    {
-        foreach($productThumbnails as $productThumbnail) {
+    ): bool {
+        foreach ($productThumbnails as $productThumbnail) {
             if ($cartService->addToCartHandle($productThumbnail["cartForm"], $request)) {
                 return true;
             }
@@ -70,5 +69,4 @@ class ThumbnailController extends AbstractController {
         }
         return true;
     }
-
 }
