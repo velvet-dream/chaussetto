@@ -26,12 +26,12 @@ class StaffProductController extends AbstractController
             return $this->redirectToRoute('app_admin_login');
         }
         $triName = $request->query->get('triName', 'asc');
-        $product = $productRepository->searchByName($request->query->get('name', ''), $triName);
+        $products = $productRepository->searchByName($request->query->get('name', ''), $triName);
 
 
         return $this->render('staff_product/list.html.twig', [
             'title' => 'Liste des produits',
-            'product' => $product,
+            'products' => $products,
             'triName' => $triName,
             'name' => $request->query->get('name', ''),
         ]);
@@ -175,7 +175,8 @@ class StaffProductController extends AbstractController
 
         $productRepository->remove($product);
 
-        return $this->redirectToRoute('app_gestionProduct');
+        $this->addFlash("success", "Produit supprimé");
+        return $this->redirectToRoute('app_list_product');
 
         // return $this->render('produit/GestionProduit.html.twig', [
         //     'title' => 'Mise à jour d\'un produit !',

@@ -36,15 +36,16 @@
         {% endif %} 
     </tr>
 
-    {% for products in product %}
+    {% for product in products %}
         <tr>
             <td>
-                Produit : {{ products.name }}
+                Produit : {{ product.name }}
             </td>
             <td class="controls">
-                <a href=" {{ path('app_show_product', {'id' : products.id}) }}">Voir</a> 
-				<a href=" {{ path('app_update_product', {'id' : products.id}) }}">Mettre à jour</a> 
+                <a href=" {{ path('app_show_product', {'id' : product.id}) }}">Voir</a> 
+				<a href=" {{ path('app_update_product', {'id' : product.id}) }}">Mettre à jour</a> 
 				{# <a href=" {{ path('app_update_category', {'id' : item.id}) }}">Supprimer</a>  #}
+				<a href="{{ path('app_delete_product', {'id': product.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')">Supprimer</a>
             </td>
         </tr>
         {% else %}
