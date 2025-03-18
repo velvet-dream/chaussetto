@@ -27,7 +27,7 @@ class ProduitController extends AbstractController
     {
         $produit = $product->findAll();
 
-        
+
 
         return $this->render('produit/index.html.twig', [
             'produit' => $produit,
@@ -45,52 +45,35 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/updateProduct', name: 'app_gestionProduct')]
-    public function updateProduct(ProductRepository $product): Response
-    {
-        $categories = $this->getCategories($categoryRepository);
-        $form = $this->createForm(CategoryFormType::class, $category);
-
-        $form->handleRequest($request);
-
-
-        
-        return $this->render('produit/GestionProduit.html.twig', [
-            'produit' => $produit,
-        ]);
-    }
-
     #[Route('produit/detail/{id}', name: 'app_detail')]
-    public function detail(Product $produit, 
-    ProductRepository $productRepo,
-    ): Response
-    {
+    public function detail(
+        Product $produit,
+        ProductRepository $productRepo,
+    ): Response {
 
 
         // Récupérez les produits similaires en fonction de la catégorie du produit actuel, par exemple.
-        $category = $produit->getCategories()->first(); 
-         // Obtenir les produits similaires
+        $category = $produit->getCategories()->first();
+        // Obtenir les produits similaires
         $products = $productRepo->getProductByCategory($category->getLabel());
 
 
         return $this->render('produit/detail.html.twig', [
             'produit' => $produit,
             'products' => $products,
-            
-        ]);
 
+        ]);
     }
 
     #[Route('/category/{id}', name: 'app_categorie')]
-    public function showCategorie (
-    Category $category,
-    ProductRepository $productRepo,
-    ThumbnailController $thumbnailController,
-    Request $request,
-    CartService $cartService,
-    Security $security,
-    ): Response
-    {
+    public function showCategorie(
+        Category $category,
+        ProductRepository $productRepo,
+        ThumbnailController $thumbnailController,
+        Request $request,
+        CartService $cartService,
+        Security $security,
+    ): Response {
         $products = $productRepo->getProductByCategory($category->getLabel());
         $productThumbnails = $thumbnailController->generateProductThumbnails($products);
 
@@ -104,5 +87,4 @@ class ProduitController extends AbstractController
 
         ]);
     }
-
 }
