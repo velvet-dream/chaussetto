@@ -13,7 +13,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils; 
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('admin/')]
 class AdminController extends AbstractController
@@ -21,9 +21,6 @@ class AdminController extends AbstractController
     #[Route(path: 'login', name: 'app_admin_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('app_admin_dashboard');
-        // }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -31,7 +28,7 @@ class AdminController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('admin/login.html.twig', [
-            'last_username' => $lastUsername, 
+            'last_username' => $lastUsername,
             'error' => $error
         ]);
     }
@@ -43,7 +40,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('dashboard', name: 'app_admin_dashboard')]
-    public function dashboard(Security $security) : Response
+    public function dashboard(Security $security): Response
     {
         if (($staff = $security->getUser()) === NULL) {
             return $this->redirectToRoute('app_admin_login');
@@ -55,7 +52,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('myprofile', name: 'app_admin_profile')]
-    public function myprofile(Security $security) : Response
+    public function myprofile(Security $security): Response
     {
         if (($staff = $security->getUser()) === NULL) {
             return $this->redirectToRoute('app_admin_login');
@@ -68,16 +65,20 @@ class AdminController extends AbstractController
     }
 
     #[Route('updatemyprofile', name: 'app_admin_updateprofile')]
-    public function updatemyprofile(Security $security, FormStaffService $formStaffService,
-    Staff $staff, Request $request, PasswordHasherService $pwd) : Response
-    {
+    public function updatemyprofile(
+        Security $security,
+        FormStaffService $formStaffService,
+        Staff $staff,
+        Request $request,
+        PasswordHasherService $pwd
+    ): Response {
         if (($staff = $security->getUser()) === NULL) {
             return $this->redirectToRoute('app_admin_login');
         }
 
         $form = $this->createForm(StaffFormType::class, $staff);
         $form->handleRequest($request);
-        if($formStaffService->submitForm($form,$staff,$request,$pwd)){
+        if ($formStaffService->submitForm($form, $staff, $request, $pwd)) {
             $this->addFlash(
                 'success',
                 'Mise à jour réussie !'

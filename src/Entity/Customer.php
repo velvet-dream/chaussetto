@@ -176,19 +176,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->carts;
     }
 
-    /*public function getCurrentCart(): Cart
-    {
-        
-        $pouet = uasort($this->carts, function($firstCart, $secondCart) 
-        {
-        return ($firstCart->getId() < $secondCart->getId()) ? -1 : 1 ; 
-        });
-
-       dd($pouet);
-       //return $pouet;
-    }*/
-
-
     public function addCart(Cart $cart): static
     {
         if (!$this->carts->contains($cart)) {
@@ -223,7 +210,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the value of roles
-     */ 
+     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -292,5 +279,4 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 }

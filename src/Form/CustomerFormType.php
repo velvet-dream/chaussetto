@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Adress;
 use App\Entity\Customer;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,10 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 
@@ -27,8 +22,7 @@ class CustomerFormType extends AbstractType
     function __construct(
         private UserPasswordHasherInterface $uph,
         private Security $security,
-    )
-    {
+    ) {
         // empty
     }
 
@@ -43,14 +37,14 @@ class CustomerFormType extends AbstractType
             // If no data is passed to the form, the data is "null".
             // This should be considered a new "Customer"
             if (!$customer || null === $customer->getId()) {
-                $form->add('name', TextType::class, [ 
-                    'attr'=> ['class' => 'form_nom'],
+                $form->add('name', TextType::class, [
+                    'attr' => ['class' => 'form_nom'],
                     'label' => "Nom",
-                    ])
-                    ->add('lastName', TextType::class,[
+                ])
+                    ->add('lastName', TextType::class, [
                         'label' => "Prénom",
                     ])
-                    ->add('email', TextType::class,[
+                    ->add('email', TextType::class, [
                         'label' => "Adresse e-mail",
                     ])
                     ->add('password', RepeatedType::class, [
@@ -65,17 +59,17 @@ class CustomerFormType extends AbstractType
                         'label' => 'S\'inscrire',
                     ]);
             } else {
-                $form->add('name', TextType::class,[
-                        'label' => "Nom",
-                        'attr' => ['value'=> $customer->getName()],
-                    ])
-                    ->add('lastName', TextType::class,[
+                $form->add('name', TextType::class, [
+                    'label' => "Nom",
+                    'attr' => ['value' => $customer->getName()],
+                ])
+                    ->add('lastName', TextType::class, [
                         'label' => "Prénom",
-                        'attr' => ['value'=> $customer->getLastName()],
+                        'attr' => ['value' => $customer->getLastName()],
                     ])
-                    ->add('email', TextType::class,[
+                    ->add('email', TextType::class, [
                         'label' => "Adresse e-mail",
-                        'attr' => ['value'=> $customer->getEmail()],
+                        'attr' => ['value' => $customer->getEmail()],
                     ])
                     ->add('plainPassword', PasswordType::class, [
                         'label' => 'Ancien mot de passe',
